@@ -1,0 +1,52 @@
+<?php
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\KetosController as AdminKetosController;
+use App\Http\Controllers\Admin\SekolahController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\KetosController as PublicKetosController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('landing');
+})->name('home');
+
+Route::get('/organisasi/daftar', [OrganisasiController::class, 'create'])->name('organisasi.create');
+Route::post('/organisasi', [OrganisasiController::class, 'store'])->name('organisasi.store');
+
+Route::get('/ketos/daftar', [PublicKetosController::class, 'create'])->name('ketos.create');
+Route::post('/ketos', [PublicKetosController::class, 'store'])->name('ketos.store');
+
+Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    
+    // Routes untuk Ketos Admin
+    Route::get('/ketos', [AdminKetosController::class, 'index'])->name('ketos.index');
+    Route::get('/ketos/{id}', [AdminKetosController::class, 'show'])->name('ketos.show');
+    Route::get('/ketos/{id}/edit', [AdminKetosController::class, 'edit'])->name('ketos.edit');
+    Route::put('/ketos/{id}', [AdminKetosController::class, 'update'])->name('ketos.update');
+    Route::delete('/ketos/{id}', [AdminKetosController::class, 'destroy'])->name('ketos.destroy');
+    
+    // Routes untuk Organisasi Admin
+    Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
+    Route::get('/sekolah/{id}', [SekolahController::class, 'show'])->name('sekolah.show');
+    Route::get('/sekolah/{id}/edit', [SekolahController::class, 'edit'])->name('sekolah.edit');
+    Route::put('/sekolah/{id}', [SekolahController::class, 'update'])->name('sekolah.update');
+    Route::delete('/sekolah/{id}', [SekolahController::class, 'destroy'])->name('sekolah.destroy');
+});
