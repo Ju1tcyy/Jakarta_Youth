@@ -37,6 +37,8 @@
         }
         
         nav .logo {
+            display: flex;
+            align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
             color: #667eea;
@@ -251,7 +253,10 @@
     <!-- Navbar -->
     <nav>
         <div class="container">
-            <div class="logo">Youth Generation</div>
+            <div class="logo">
+                <img src="{{ asset('icon/logo jyaa.png') }}" alt="Youth Generation Logo" style="height: 40px; margin-right: 10px;">
+                Youth Generation
+            </div>
             <ul>
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#about">Tentang</a></li>
