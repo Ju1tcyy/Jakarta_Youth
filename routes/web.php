@@ -25,6 +25,13 @@ Route::get('/organisasi/logout', [App\Http\Controllers\OrganisasiAuthController:
 Route::get('/ketos/daftar', [PublicKetosController::class, 'create'])->name('ketos.create');
 Route::post('/ketos', [PublicKetosController::class, 'store'])->name('ketos.store');
 
+// Routes untuk login ketos
+Route::get('/ketos/login', [App\Http\Controllers\KetosAuthController::class, 'showLoginForm'])->name('ketos.login');
+Route::post('/ketos/login', [App\Http\Controllers\KetosAuthController::class, 'login']);
+Route::get('/ketos/dashboard', [App\Http\Controllers\KetosAuthController::class, 'dashboard'])->name('ketos.dashboard');
+Route::post('/ketos/upload-nomination', [App\Http\Controllers\KetosAuthController::class, 'uploadNomination'])->name('ketos.upload.nomination');
+Route::get('/ketos/logout', [App\Http\Controllers\KetosAuthController::class, 'logout'])->name('ketos.logout');
+
 Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
 
 Route::get('/dashboard', function () {

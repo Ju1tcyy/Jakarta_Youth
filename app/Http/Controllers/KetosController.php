@@ -17,7 +17,8 @@ class KetosController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'asal_sekolah' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:ketos,email',
+            'password' => 'required|string|min:8',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'nomor_wa' => 'required|string|max:20',
@@ -26,6 +27,6 @@ class KetosController extends Controller
         Ketos::create($validated);
 
         return redirect()->route('home')
-            ->with('success', 'Pendaftaran ketos berhasil disimpan!');
+            ->with('success', 'Pendaftaran ketos berhasil! Silakan login dengan email dan password yang telah dibuat.');
     }
 }

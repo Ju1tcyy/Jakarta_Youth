@@ -16,7 +16,7 @@
         <aside class="w-64 bg-white shadow-lg">
             <div class="p-6 border-b">
                 <div class="flex items-center">
-                    <img src="{{ asset('icon/logo jyaa.png') }}" alt="Youth Generation Logo" class="h-8 w-8 mr-3">
+                    <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo" class="h-16 w-16 mr-4">
                     <div>
                         <h1 class="text-xl font-bold text-orange-500">Youth Generation</h1>
                         <p class="text-xs text-gray-500">MANAGEMENT PANEL</p>

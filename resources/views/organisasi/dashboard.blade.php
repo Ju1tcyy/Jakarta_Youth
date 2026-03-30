@@ -18,7 +18,7 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
             color: white;
             padding: 20px 5%;
             display: flex;
@@ -32,8 +32,9 @@
         }
         
         .header .logo img {
-            height: 40px;
-            margin-right: 10px;
+            height: 100px;
+            width: auto;
+            margin-right: 20px;
         }
         
         .header h1 {
@@ -181,7 +182,7 @@
 <body>
     <div class="header">
         <div class="logo">
-            <img src="{{ asset('icon/logo jyaa.png') }}" alt="Youth Generation Logo">
+            <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo">
             <h1>Dashboard Organisasi</h1>
         </div>
         <div class="user-info">

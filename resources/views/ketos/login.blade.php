@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Organisasi - Youth Generation</title>
+    <title>Login Ketos - Youth Generation</title>
     <style>
         * {
             margin: 0;
@@ -123,22 +123,22 @@
             <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo">
         </div>
         
-        <h1>Login Organisasi</h1>
-        <p class="subtitle">Akses dashboard untuk melengkapi dokumen</p>
+        <h1>Login Ketos</h1>
+        <p class="subtitle">Akses dashboard ketua OSIS</p>
         
-        <form action="{{ route('organisasi.login') }}" method="POST">
+        <form action="{{ route('ketos.login') }}" method="POST">
             @csrf
             
             <div class="form-group">
-                <label for="email_organisasi">Email Organisasi</label>
+                <label for="email">Email</label>
                 <input 
                     type="email" 
-                    id="email_organisasi" 
-                    name="email_organisasi" 
-                    value="{{ old('email_organisasi') }}"
+                    id="email" 
+                    name="email" 
+                    value="{{ old('email') }}"
                     required
                 >
-                @error('email_organisasi')
+                @error('email')
                     <div class="error-message">{{ $message }}</div>
                 @enderror
             </div>
@@ -161,7 +161,7 @@
         
         <div class="links">
             <a href="{{ route('home') }}">← Kembali ke Beranda</a>
-            <a href="{{ route('organisasi.create') }}">Belum daftar?</a>
+            <a href="{{ route('ketos.create') }}">Belum daftar?</a>
         </div>
     </div>
 </body>

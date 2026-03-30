@@ -177,6 +177,21 @@
                     <div class="error-message">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Minimal 8 karakter"
+                    required
+                >
+                <small style="color: #666; font-size: 12px;">Password ini akan digunakan untuk login ke dashboard ketos</small>
+                @error('password')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
             
             <div class="form-row">
                 <div class="form-group">
