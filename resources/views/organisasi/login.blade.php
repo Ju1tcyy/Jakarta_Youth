@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Pendaftaran Organisasi</title>
+    <title>Login Organisasi - Youth Generation</title>
     <style>
         * {
             margin: 0;
@@ -27,7 +27,17 @@
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-bottom: 10px;
         }
         
         h1 {
@@ -53,31 +63,16 @@
             font-weight: 500;
         }
         
-        input, textarea {
+        input {
             width: 100%;
             padding: 12px;
             border: 2px solid #e0e0e0;
             border-radius: 5px;
             font-size: 16px;
             transition: border-color 0.3s;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        input[type="file"] {
-            padding: 8px;
-            background: #f8f9fa;
-        }
-        
-        input[type="file"]:focus {
-            background: white;
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        input:focus, textarea:focus {
+        input:focus {
             outline: none;
             border-color: #667eea;
         }
@@ -99,15 +94,18 @@
             transform: translateY(-2px);
         }
         
-        .back-link {
-            display: block;
+        .links {
             text-align: center;
             margin-top: 20px;
-            color: #667eea;
-            text-decoration: none;
         }
         
-        .back-link:hover {
+        .links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .links a:hover {
             text-decoration: underline;
         }
         
@@ -120,39 +118,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Form Pendaftaran Organisasi</h1>
-        <p class="subtitle">Daftarkan organisasi sekolah Anda</p>
+        <div class="logo">
+            <img src="{{ asset('icon/logo jyaa.png') }}" alt="Youth Generation Logo">
+        </div>
         
-        <form action="{{ route('organisasi.store') }}" method="POST">
+        <h1>Login Organisasi</h1>
+        <p class="subtitle">Akses dashboard untuk melengkapi dokumen</p>
+        
+        <form action="{{ route('organisasi.login') }}" method="POST">
             @csrf
-            
-            <div class="form-group">
-                <label for="nama_sekolah">Nama Sekolah</label>
-                <input 
-                    type="text" 
-                    id="nama_sekolah" 
-                    name="nama_sekolah" 
-                    value="{{ old('nama_sekolah') }}"
-                    required
-                >
-                @error('nama_sekolah')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="form-group">
-                <label for="nama_organisasi">Nama Organisasi</label>
-                <input 
-                    type="text" 
-                    id="nama_organisasi" 
-                    name="nama_organisasi" 
-                    value="{{ old('nama_organisasi') }}"
-                    required
-                >
-                @error('nama_organisasi')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
             
             <div class="form-group">
                 <label for="email_organisasi">Email Organisasi</label>
@@ -167,53 +141,27 @@
                     <div class="error-message">{{ $message }}</div>
                 @enderror
             </div>
-
+            
             <div class="form-group">
                 <label for="password">Password</label>
                 <input 
                     type="password" 
                     id="password" 
                     name="password" 
-                    placeholder="Minimal 8 karakter"
                     required
                 >
-                <small style="color: #666; font-size: 12px;">Password ini akan digunakan untuk login ke dashboard organisasi</small>
                 @error('password')
                     <div class="error-message">{{ $message }}</div>
                 @enderror
             </div>
             
-            <div class="form-group">
-                <label for="nomor_wa">Nomor WhatsApp</label>
-                <input 
-                    type="text" 
-                    id="nomor_wa" 
-                    name="nomor_wa" 
-                    value="{{ old('nomor_wa') }}"
-                    placeholder="08xxxxxxxxxx"
-                    required
-                >
-                @error('nomor_wa')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="form-group">
-                <label for="alamat">Alamat</label>
-                <textarea 
-                    id="alamat" 
-                    name="alamat" 
-                    required
-                >{{ old('alamat') }}</textarea>
-                @error('alamat')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <button type="submit">Daftar</button>
+            <button type="submit">Login</button>
         </form>
         
-        <a href="{{ route('home') }}" class="back-link">← Kembali ke Beranda</a>
+        <div class="links">
+            <a href="{{ route('home') }}">← Kembali ke Beranda</a>
+            <a href="{{ route('organisasi.create') }}">Belum daftar?</a>
+        </div>
     </div>
 </body>
 </html>

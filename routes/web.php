@@ -15,6 +15,13 @@ Route::get('/', function () {
 Route::get('/organisasi/daftar', [OrganisasiController::class, 'create'])->name('organisasi.create');
 Route::post('/organisasi', [OrganisasiController::class, 'store'])->name('organisasi.store');
 
+// Routes untuk login organisasi
+Route::get('/organisasi/login', [App\Http\Controllers\OrganisasiAuthController::class, 'showLoginForm'])->name('organisasi.login');
+Route::post('/organisasi/login', [App\Http\Controllers\OrganisasiAuthController::class, 'login']);
+Route::get('/organisasi/dashboard', [App\Http\Controllers\OrganisasiAuthController::class, 'dashboard'])->name('organisasi.dashboard');
+Route::post('/organisasi/upload', [App\Http\Controllers\OrganisasiAuthController::class, 'uploadDocuments'])->name('organisasi.upload');
+Route::get('/organisasi/logout', [App\Http\Controllers\OrganisasiAuthController::class, 'logout'])->name('organisasi.logout');
+
 Route::get('/ketos/daftar', [PublicKetosController::class, 'create'])->name('ketos.create');
 Route::post('/ketos', [PublicKetosController::class, 'store'])->name('ketos.store');
 

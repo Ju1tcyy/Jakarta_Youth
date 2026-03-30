@@ -348,6 +348,7 @@
                     <p class="activity-date">Pendaftaran Organisasi</p>
                     <p>Daftarkan organisasi sekolah Anda untuk bergabung dengan Youth Generation Community</p>
                     <a href="{{ route('organisasi.create') }}" class="coming-soon-btn">Daftar</a>
+                    <a href="{{ route('organisasi.login') }}" class="coming-soon-btn" style="background: white; color: #667eea; margin-top: 10px;">Login Dashboard</a>
                 </div>
             </div>
             
@@ -367,7 +368,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Youth Generation Community. All rights reserved.</p>
+        <p>&copy; Created By Gavino Pasha Putra.</p>
     </footer>
 
     <script>

@@ -45,6 +45,56 @@
                             <p class="mt-1">{{ $organisasi->alamat }}</p>
                         </div>
 
+                        <div class="border-t pt-4 mt-4">
+                            <h4 class="font-semibold text-gray-700 dark:text-gray-300 mb-3">Dokumen Pendukung:</h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="font-medium text-gray-600 dark:text-gray-400">Surat Rekomendasi Sekolah:</label>
+                                    @if($organisasi->surat_rekomendasi)
+                                        <a href="{{ Storage::url($organisasi->surat_rekomendasi) }}" target="_blank" class="text-blue-600 hover:underline block">
+                                            📄 Lihat Dokumen PDF
+                                        </a>
+                                    @else
+                                        <p class="text-gray-400">Belum diupload</p>
+                                    @endif
+                                </div>
+                                
+                                <div>
+                                    <label class="font-medium text-gray-600 dark:text-gray-400">Struktur Kepengurusan:</label>
+                                    @if($organisasi->struktur_kepengurusan)
+                                        <a href="{{ Storage::url($organisasi->struktur_kepengurusan) }}" target="_blank" class="text-blue-600 hover:underline block">
+                                            📄 Lihat Dokumen PDF
+                                        </a>
+                                    @else
+                                        <p class="text-gray-400">Belum diupload</p>
+                                    @endif
+                                </div>
+                                
+                                <div>
+                                    <label class="font-medium text-gray-600 dark:text-gray-400">Bukti Share IG Story:</label>
+                                    @if($organisasi->bukti_share_ig)
+                                        <a href="{{ Storage::url($organisasi->bukti_share_ig) }}" target="_blank" class="text-blue-600 hover:underline block">
+                                            🖼️ Lihat Screenshot
+                                        </a>
+                                    @else
+                                        <p class="text-gray-400">Belum diupload</p>
+                                    @endif
+                                </div>
+                                
+                                <div>
+                                    <label class="font-medium text-gray-600 dark:text-gray-400">Bukti Repost IG Feeds:</label>
+                                    @if($organisasi->bukti_repost_ig)
+                                        <a href="{{ Storage::url($organisasi->bukti_repost_ig) }}" target="_blank" class="text-blue-600 hover:underline block">
+                                            🖼️ Lihat Screenshot
+                                        </a>
+                                    @else
+                                        <p class="text-gray-400">Belum diupload</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
                         <div>
                             <label class="font-semibold text-gray-700 dark:text-gray-300">Nilai:</label>
                             <p class="mt-1">

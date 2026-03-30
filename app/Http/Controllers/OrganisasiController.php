@@ -17,7 +17,8 @@ class OrganisasiController extends Controller
         $validated = $request->validate([
             'nama_sekolah' => 'required|string|max:255',
             'nama_organisasi' => 'required|string|max:255',
-            'email_organisasi' => 'required|email|max:255',
+            'email_organisasi' => 'required|email|max:255|unique:organisasis,email_organisasi',
+            'password' => 'required|string|min:8',
             'nomor_wa' => 'required|string|max:20',
             'alamat' => 'required|string',
         ]);
@@ -25,6 +26,6 @@ class OrganisasiController extends Controller
         Organisasi::create($validated);
 
         return redirect()->route('home')
-            ->with('success', 'Pendaftaran organisasi berhasil disimpan!');
+            ->with('success', 'Pendaftaran organisasi berhasil! Silakan login dengan email dan password yang telah dibuat.');
     }
 }
