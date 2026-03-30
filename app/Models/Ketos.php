@@ -32,6 +32,11 @@ class Ketos extends Authenticatable
         'google_form_kepuasan_president',
         'surat_pernyataan_kedisiplinan',
         'nilai',
+        'nilai_innovation',
+        'nilai_social_impact',
+        'nilai_media',
+        'nilai_video_reels',
+        'nilai_president',
     ];
 
     protected $hidden = [

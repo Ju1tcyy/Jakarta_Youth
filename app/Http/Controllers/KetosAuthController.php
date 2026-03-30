@@ -160,6 +160,44 @@ class KetosAuthController extends Controller
             ->with('success', 'Berkas nominasi berhasil diupload!');
     }
 
+    public function updateProfile(Request $request)
+    {
+        $ketosId = session('ketos_id');
+        if (!$ketosId) {
+            return redirect()->route('ketos.login');
+        }
+
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|unique:ketos,email,' . $ketosId,
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'asal_sekolah' => 'required|string|max:255',
+            'nomor_wa' => 'required|string|max:20',
+            'password' => 'nullable|min:6|confirmed',
+        ]);
+
+        $ketos = Ketos::findOrFail($ketosId);
+        
+        // Update data
+        $ketos->nama = $validated['nama'];
+        $ketos->email = $validated['email'];
+        $ketos->tempat_lahir = $validated['tempat_lahir'];
+        $ketos->tanggal_lahir = $validated['tanggal_lahir'];
+        $ketos->asal_sekolah = $validated['asal_sekolah'];
+        $ketos->nomor_wa = $validated['nomor_wa'];
+        
+        // Update password jika diisi
+        if (!empty($validated['password'])) {
+            $ketos->password = $validated['password']; // akan di-hash otomatis oleh mutator
+        }
+        
+        $ketos->save();
+
+        return redirect()->route('ketos.dashboard')
+            ->with('success', 'Profil berhasil diperbarui!');
+    }
+
     public function logout()
     {
         session()->forget('ketos_id');

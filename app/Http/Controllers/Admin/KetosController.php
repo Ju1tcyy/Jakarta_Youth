@@ -31,13 +31,18 @@ class KetosController extends Controller
         $ketos = Ketos::findOrFail($id);
         
         $validated = $request->validate([
-            'nilai' => 'required|integer|min:0|max:100',
+            'nilai' => 'nullable|integer|min:0|max:100',
+            'nilai_innovation' => 'nullable|integer|min:0|max:100',
+            'nilai_social_impact' => 'nullable|integer|min:0|max:100',
+            'nilai_media' => 'nullable|integer|min:0|max:100',
+            'nilai_video_reels' => 'nullable|integer|min:0|max:100',
+            'nilai_president' => 'nullable|integer|min:0|max:100',
         ]);
 
         $ketos->update($validated);
 
         return redirect()->route('ketos.show', $id)
-            ->with('success', 'Nilai berhasil ditambahkan');
+            ->with('success', 'Nilai berhasil diperbarui');
     }
 
     public function destroy($id)

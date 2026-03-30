@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Ketos - Youth Generation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +13,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: #f5f5f5;
             min-height: 100vh;
             display: flex;
@@ -30,6 +31,8 @@
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
             padding: 0;
             min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
         }
         
         .sidebar-header {
@@ -47,6 +50,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            flex: 1;
         }
         
         .sidebar-menu li {
@@ -79,6 +83,53 @@
             width: 16px;
         }
         
+        .sidebar-footer {
+            padding: 20px 25px;
+            border-top: 1px solid #f0f0f0;
+            background: #f8f9fa;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .user-info-sidebar {
+            flex: 1;
+        }
+        
+        .user-info-sidebar .name {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .user-info-sidebar .school {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .btn-logout-sidebar {
+            background: #dc3545;
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+        
+        .btn-logout-sidebar:hover {
+            background: #c82333;
+            color: white;
+        }
+        
         .content-area {
             flex: 1;
             padding: 30px;
@@ -90,6 +141,131 @@
         
         .content-section.active {
             display: block;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                min-height: auto;
+                order: 2;
+            }
+            
+            .content-area {
+                padding: 15px;
+                order: 1;
+            }
+            
+            .header {
+                padding: 15px 3%;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header .logo {
+                margin-bottom: 10px;
+            }
+            
+            .header .logo img {
+                height: 60px;
+                margin-right: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .sidebar-menu a {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+            
+            .sidebar-footer {
+                padding: 15px 20px;
+            }
+            
+            .user-profile {
+                padding: 12px;
+            }
+            
+            .user-info-sidebar .name {
+                font-size: 13px;
+            }
+            
+            .user-info-sidebar .school {
+                font-size: 11px;
+            }
+            
+            .btn-logout-sidebar {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+            
+            .welcome-card, .nomination-section, .nilai-display {
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .upload-form {
+                padding: 20px;
+            }
+            
+            .form-group input {
+                padding: 10px;
+            }
+            
+            .btn-upload {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .content-area {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 10px 2%;
+            }
+            
+            .header .logo img {
+                height: 50px;
+            }
+            
+            .sidebar-header {
+                padding: 20px;
+            }
+            
+            .sidebar-menu a {
+                padding: 12px 15px;
+                font-size: 13px;
+            }
+            
+            .welcome-card, .nomination-section, .nilai-display {
+                padding: 15px;
+            }
+            
+            .nomination-title {
+                font-size: 1.2rem;
+            }
+            
+            .requirements-list {
+                padding: 15px;
+            }
+            
+            .upload-form {
+                padding: 15px;
+            }
         }
         
         .info-grid {
@@ -380,7 +556,6 @@
         <div class="user-info">
             <p>{{ $ketos->nama }}</p>
             <p style="font-size: 14px; opacity: 0.8;">{{ $ketos->asal_sekolah }}</p>
-            <a href="{{ route('ketos.logout') }}" class="btn-logout">Logout</a>
         </div>
     </div>
 
@@ -393,28 +568,105 @@
             <ul class="sidebar-menu">
                 <li><a href="#" onclick="showSection('dashboard')" class="menu-item active" data-section="dashboard">🏠 Dashboard</a></li>
                 <li><a href="#" onclick="showSection('profile')" class="menu-item" data-section="profile">👤 Informasi Pribadi</a></li>
+                <li><a href="#" onclick="showSection('edit-profile')" class="menu-item" data-section="edit-profile">✏️ Edit Profil</a></li>
                 <li><a href="#" onclick="showSection('nilai')" class="menu-item" data-section="nilai">📊 Nilai Evaluasi</a></li>
                 <li><a href="#" onclick="showSection('nominasi1')" class="menu-item" data-section="nominasi1">🏆 Outstanding Innovation</a></li>
                 <li><a href="#" onclick="showSection('nominasi2')" class="menu-item" data-section="nominasi2">🤝 Social Impact</a></li>
                 <li><a href="#" onclick="showSection('nominasi3')" class="menu-item" data-section="nominasi3">📱 Next-Level Student Council Media</a></li>
                 <li><a href="#" onclick="showSection('nominasi4')" class="menu-item" data-section="nominasi4">🎬 Video Reels</a></li>
-                <li><a href="#" onclick="showSection('nominasi5')" class="menu-item" data-section="nominasi5">� President 2026</a></li>n
+                <li><a href="#" onclick="showSection('nominasi5')" class="menu-item" data-section="nominasi5">� President 2026</a></li>
             </ul>
+            
+            <!-- Sidebar Footer with User Profile and Logout -->
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-info-sidebar">
+                        <div class="name">{{ $ketos->nama }}</div>
+                        <div class="school">{{ $ketos->asal_sekolah }}</div>
+                    </div>
+                    <a href="{{ route('ketos.logout') }}" class="btn-logout-sidebar">Logout</a>
+                </div>
+            </div>
         </div>
 
         <!-- Content Area -->
         <div class="content-area">
             <!-- Dashboard Section -->
             <div id="dashboard" class="content-section active">
-                <div class="welcome-card">
-                    <h2>Selamat Datang, {{ $ketos->nama }}!</h2>
-                    <p>Dashboard ini menampilkan informasi profil dan nilai Anda sebagai Ketua OSIS.</p>
-                </div>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>Ringkasan Nominasi</h4>
+                        <div class="info-item">
+                            <div class="info-label">Total Nominasi Tersedia:</div>
+                            <div class="info-value">5 Kategori</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Nominasi Terlengkapi:</div>
+                            <div class="info-value">
+                                {{ 
+                                    collect([
+                                        $ketos->portofolio_program_kerja && $ketos->google_form_kepuasan,
+                                        $ketos->portofolio_kegiatan_sosial && $ketos->google_form_kepuasan_sosial,
+                                        $ketos->portofolio_sosial_media && $ketos->google_form_kepuasan_media,
+                                        $ketos->link_instagram_reels && $ketos->google_form_kepuasan_reels,
+                                        $ketos->pas_foto_formal && $ketos->curriculum_vitae && $ketos->fotokopi_rapor && $ketos->video_profil_jakarta && $ketos->portofolio_inovasi && $ketos->esai_solusi_kepemimpinan && $ketos->google_form_kepuasan_president && $ketos->surat_pernyataan_kedisiplinan
+                                    ])->filter()->count() 
+                                }} dari 5
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Status Kelengkapan:</div>
+                            <div class="info-value">
+                                @php
+                                    $completed = collect([
+                                        $ketos->portofolio_program_kerja && $ketos->google_form_kepuasan,
+                                        $ketos->portofolio_kegiatan_sosial && $ketos->google_form_kepuasan_sosial,
+                                        $ketos->portofolio_sosial_media && $ketos->google_form_kepuasan_media,
+                                        $ketos->link_instagram_reels && $ketos->google_form_kepuasan_reels,
+                                        $ketos->pas_foto_formal && $ketos->curriculum_vitae && $ketos->fotokopi_rapor && $ketos->video_profil_jakarta && $ketos->portofolio_inovasi && $ketos->esai_solusi_kepemimpinan && $ketos->google_form_kepuasan_president && $ketos->surat_pernyataan_kedisiplinan
+                                    ])->filter()->count();
+                                    $percentage = ($completed / 5) * 100;
+                                @endphp
+                                <span style="color: {{ $percentage == 100 ? '#28a745' : ($percentage >= 50 ? '#ffc107' : '#dc3545') }}">
+                                    {{ number_format($percentage, 0) }}% Lengkap
+                                </span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="status-card">
-                    <h3>Status Pendaftaran</h3>
-                    <p>✅ Terdaftar sebagai Ketua OSIS</p>
-                    <p>Pendaftaran Anda telah berhasil diverifikasi</p>
+                    <div class="info-card">
+                        <h4>Informasi Penting</h4>
+                        <div class="info-item">
+                            <div class="info-label">Batas Pengumpulan:</div>
+                            <div class="info-value">30 April 2026</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Pengumuman Finalis:</div>
+                            <div class="info-value">10 Mei 2026</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Awarding Night:</div>
+                            <div class="info-value">22 Mei 2026</div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h4>Quick Actions</h4>
+                        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                            <button onclick="showSection('nominasi1')" style="padding: 10px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                🏆 Outstanding Innovation
+                            </button>
+                            <button onclick="showSection('nominasi5')" style="padding: 10px; background: #e53e3e; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                👑 President 2026
+                            </button>
+                            <button onclick="showSection('edit-profile')" style="padding: 10px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                ✏️ Edit Profil
+                            </button>
+                            <button onclick="showSection('profile')" style="padding: 10px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                👤 Lihat Profil
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -454,6 +706,110 @@
                             <div class="info-value">{{ $ketos->created_at->format('d F Y') }}</div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Edit Profile Section -->
+            <div id="edit-profile" class="content-section">
+                <h2 style="color: #667eea; margin-bottom: 25px;">Edit Profil</h2>
+                
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <div class="nomination-section">
+                    <form action="{{ route('ketos.update.profile') }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>Data Pribadi</h4>
+                                <div class="form-group">
+                                    <label for="nama">Nama Lengkap:</label>
+                                    <input type="text" id="nama" name="nama" value="{{ old('nama', $ketos->nama) }}" required 
+                                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                                    @error('nama')
+                                        <div style="color: #dc3545; font-size: 14px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="email" name="email" value="{{ old('email', $ketos->email) }}" required 
+                                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                                    @error('email')
+                                        <div style="color: #dc3545; font-size: 14px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tempat_lahir">Tempat Lahir:</label>
+                                    <input type="text" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir', $ketos->tempat_lahir) }}" required 
+                                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                                    @error('tempat_lahir')
+                                        <div style="color: #dc3545; font-size: 14px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tanggal_lahir">Tanggal Lahir:</label>
+                                    <input type="date" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir', $ketos->tanggal_lahir->format('Y-m-d')) }}" required 
+                                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                                    @error('tanggal_lahir')
+                                        <div style="color: #dc3545; font-size: 14px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h4>Informasi Sekolah & Kontak</h4>
+                                <div class="form-group">
+                                    <label for="asal_sekolah">Asal Sekolah:</label>
+                                    <input type="text" id="asal_sekolah" name="asal_sekolah" value="{{ old('asal_sekolah', $ketos->asal_sekolah) }}" required 
+                                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                                    @error('asal_sekolah')
+                                        <div style="color: #dc3545; font-size: 14px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="nomor_wa">Nomor WhatsApp:</label>
+                                    <input type="text" id="nomor_wa" name="nomor_wa" value="{{ old('nomor_wa', $ketos->nomor_wa) }}" required 
+                                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                                    @error('nomor_wa')
+                                        <div style="color: #dc3545; font-size: 14px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password Baru (Kosongkan jika tidak ingin mengubah):</label>
+                                    <input type="password" id="password" name="password" 
+                                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                                    @error('password')
+                                        <div style="color: #dc3545; font-size: 14px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password_confirmation">Konfirmasi Password Baru:</label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation" 
+                                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button type="submit" class="btn-upload" style="background: #28a745; padding: 12px 30px;">
+                                💾 Simpan Perubahan
+                            </button>
+                            <button type="button" onclick="showSection('profile')" style="background: #6c757d; color: white; padding: 12px 30px; border: none; border-radius: 5px; margin-left: 10px; cursor: pointer;">
+                                ❌ Batal
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jakarta Youth Achivement Award</title>
+    <title>Jakarta Youth Achievement Award</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +13,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
             color: #333;
         }
@@ -20,7 +21,7 @@
         /* Navbar */
         nav {
             background: rgba(255, 255, 255, 0.95);
-            padding: 1rem 5%;
+            padding: 0.5rem 5%;
             position: fixed;
             width: 100%;
             top: 0;
@@ -39,15 +40,15 @@
         nav .logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: #e53e3e;
         }
         
         nav .logo img {
-            height: 100px;
+            height: 60px;
             width: auto;
-            margin-right: 20px;
+            margin-right: 15px;
             display: block;
             max-width: none;
         }
@@ -68,12 +69,91 @@
             color: #e53e3e;
         }
         
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-menu ul {
+            flex-direction: column;
+            padding: 1rem 0;
+            gap: 0;
+        }
+        
+        .mobile-menu ul li {
+            text-align: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .mobile-menu ul li:last-child {
+            border-bottom: none;
+        }
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
             color: white;
-            padding: 150px 5% 100px;
+            padding: 120px 5% 100px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 120px;
+            height: 120px;
+            background: url('{{ asset('icon/element1.png') }}') no-repeat center;
+            background-size: contain;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            background: url('{{ asset('icon/element2.png') }}') no-repeat center;
+            background-size: contain;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
@@ -109,6 +189,20 @@
             padding: 80px 5%;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: url('{{ asset('icon/element1.png') }}') no-repeat center;
+            background-size: contain;
+            opacity: 0.05;
+            z-index: 0;
         }
         
         h2 {
@@ -116,6 +210,8 @@
             margin-bottom: 2rem;
             text-align: center;
             color: #333;
+            position: relative;
+            z-index: 1;
         }
         
         /* About Section */
@@ -132,6 +228,21 @@
             border-radius: 10px;
             text-align: center;
             transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: url('{{ asset('icon/element2.png') }}') no-repeat center;
+            background-size: contain;
+            opacity: 0.08;
+            z-index: 0;
         }
         
         .about-card:hover {
@@ -142,6 +253,8 @@
         .about-card h3 {
             color: #e53e3e;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
         
         /* Timeline Section */
@@ -150,11 +263,25 @@
             position: relative;
         }
         
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background: url('{{ asset('icon/element2.png') }}') no-repeat center;
+            background-size: contain;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
         .timeline-container {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
             padding-left: 50px;
+            z-index: 1;
         }
         
         .timeline-container::before {
@@ -262,6 +389,20 @@
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .registration-card::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: url('{{ asset('icon/element1.png') }}') no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            z-index: 1;
         }
         
         .registration-card:hover {
@@ -282,6 +423,8 @@
         
         .registration-content {
             padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
         
         .registration-content h3 {
@@ -360,16 +503,311 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            /* Navigation */
+            nav {
+                padding: 0.5rem 3%;
             }
             
             nav ul {
-                gap: 1rem;
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            nav .container {
+                justify-content: space-between;
+            }
+            
+            nav .logo {
+                font-size: 1rem;
+            }
+            
+            nav .logo img {
+                height: 40px;
+                margin-right: 10px;
+            }
+            
+            /* Hero Section */
+            .hero {
+                padding: 100px 3% 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero::before,
+            .hero::after {
+                width: 60px;
+                height: 60px;
+                top: 10px;
+            }
+            
+            .hero::before {
+                left: 10px;
+            }
+            
+            .hero::after {
+                right: 10px;
+            }
+            
+            /* Sections */
+            section {
+                padding: 50px 3%;
             }
             
             h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* About Section */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .about-card {
+                padding: 1.5rem;
+            }
+            
+            /* Timeline */
+            .timeline-container {
+                padding-left: 30px;
+            }
+            
+            .timeline-container::before {
+                left: 15px;
+            }
+            
+            .timeline-item {
+                margin-left: 15px;
+                padding: 20px 20px;
+                margin-bottom: 30px;
+            }
+            
+            .timeline-item::before {
+                left: -30px;
+                width: 12px;
+                height: 12px;
+                top: 20px;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1.2rem;
+            }
+            
+            .timeline-date {
+                font-size: 0.9rem;
+            }
+            
+            .timeline-description {
+                font-size: 0.9rem;
+            }
+            
+            /* Registration */
+            .registration-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .registration-card {
+                max-width: 100%;
+            }
+            
+            .registration-image {
+                height: 200px;
+            }
+            
+            .registration-content {
+                padding: 1.5rem;
+            }
+            
+            .registration-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .registration-btn {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Navigation */
+            nav {
+                padding: 0.5rem 2%;
+            }
+            
+            nav .logo {
+                font-size: 0.9rem;
+            }
+            
+            nav .logo img {
+                height: 35px;
+                margin-right: 8px;
+            }
+            
+            nav ul {
+                gap: 0.8rem;
+            }
+            
+            nav ul li a {
+                font-size: 13px;
+            }
+            
+            /* Hero */
+            .hero {
+                padding: 90px 2% 50px;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+                line-height: 1.2;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            /* Sections */
+            section {
+                padding: 40px 2%;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            /* About */
+            .about-card {
+                padding: 1.2rem;
+            }
+            
+            .about-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            /* Timeline */
+            .timeline-container {
+                padding-left: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 12px;
+                width: 3px;
+            }
+            
+            .timeline-item {
+                margin-left: 12px;
+                padding: 15px;
+                margin-bottom: 25px;
+            }
+            
+            .timeline-item::before {
+                left: -27px;
+                width: 10px;
+                height: 10px;
+                top: 15px;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1.1rem;
+                margin-bottom: 6px;
+            }
+            
+            .timeline-date {
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+            
+            .timeline-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+            
+            .timeline-status {
+                font-size: 0.8rem;
+                padding: 4px 10px;
+            }
+            
+            /* Registration */
+            .registration-image {
+                height: 180px;
+            }
+            
+            .registration-content {
+                padding: 1.2rem;
+            }
+            
+            .registration-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .registration-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .registration-content p {
+                font-size: 0.9rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .registration-btn {
+                padding: 9px;
+                font-size: 13px;
+            }
+            
+            /* Footer */
+            footer {
+                padding: 1.5rem 2%;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 320px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            
+            .hero p {
+                font-size: 0.85rem;
+            }
+            
+            nav .logo {
+                font-size: 0.8rem;
+            }
+            
+            nav .logo img {
+                height: 30px;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1rem;
+            }
+            
+            .registration-content h3 {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -379,7 +817,7 @@
     <nav>
         <div class="container">
             <div class="logo">
-                <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo" style="height: 100px; width: auto; margin-right: 20px;">
+                <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo" style="height: 60px; width: auto; margin-right: 15px;">
                 Youth Generation
             </div>
             <ul>
@@ -388,13 +826,28 @@
                 <li><a href="#activities">Timeline</a></li>
                 <li><a href="#registration">Registration</a></li>
             </ul>
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">About Us</a></li>
+                <li><a href="#activities" onclick="closeMobileMenu()">Timeline</a></li>
+                <li><a href="#registration" onclick="closeMobileMenu()">Registration</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <h1>Jakarta Youth Achivement Award</h1>
-        <p>Empowering Student Voices, Shaping Future Leaders</p>
+        <div class="hero-content">
+            <h1>Jakarta Youth Achievement Award</h1>
+            <p>Empowering Student Voices, Shaping Future Leaders</p>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -417,7 +870,6 @@
                 <div class="timeline-description">
                     Periode pendaftaran dan pengumpulan berkas nominasi untuk semua kategori Jakarta Youth Achievement Award 2026 dimulai
                 </div>
-                <span class="timeline-status">Sedang Berlangsung</span>
             </div>
             
             <div class="timeline-item">
@@ -498,6 +950,27 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

@@ -115,6 +115,98 @@
             font-size: 14px;
             margin-top: 5px;
         }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 30px 25px;
+                max-width: 100%;
+            }
+            
+            .logo img {
+                height: 80px;
+                margin-bottom: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 25px;
+            }
+            
+            input {
+                padding: 12px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            button {
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            .links {
+                margin-top: 15px;
+            }
+            
+            .links a {
+                font-size: 14px;
+                display: inline-block;
+                margin: 5px 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 25px 20px;
+            }
+            
+            .logo img {
+                height: 70px;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+            }
+            
+            .form-group {
+                margin-bottom: 18px;
+            }
+            
+            label {
+                font-size: 14px;
+            }
+            
+            input {
+                padding: 11px;
+                font-size: 16px;
+            }
+            
+            button {
+                padding: 13px;
+                font-size: 15px;
+            }
+            
+            .links a {
+                font-size: 13px;
+                margin: 3px 5px;
+            }
+        }
     </style>
 </head>
 <body>

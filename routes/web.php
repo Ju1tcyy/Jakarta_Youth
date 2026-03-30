@@ -30,6 +30,7 @@ Route::get('/ketos/login', [App\Http\Controllers\KetosAuthController::class, 'sh
 Route::post('/ketos/login', [App\Http\Controllers\KetosAuthController::class, 'login']);
 Route::get('/ketos/dashboard', [App\Http\Controllers\KetosAuthController::class, 'dashboard'])->name('ketos.dashboard');
 Route::post('/ketos/upload-nomination', [App\Http\Controllers\KetosAuthController::class, 'uploadNomination'])->name('ketos.upload.nomination');
+Route::put('/ketos/update-profile', [App\Http\Controllers\KetosAuthController::class, 'updateProfile'])->name('ketos.update.profile');
 Route::get('/ketos/logout', [App\Http\Controllers\KetosAuthController::class, 'logout'])->name('ketos.logout');
 
 Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');

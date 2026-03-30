@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Organisasi - Youth Generation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +13,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -76,6 +77,7 @@
         input:focus {
             outline: none;
             border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
         button {
@@ -93,6 +95,7 @@
         
         button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
         
         .links {
@@ -115,6 +118,98 @@
             font-size: 14px;
             margin-top: 5px;
         }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 30px 25px;
+                max-width: 100%;
+            }
+            
+            .logo img {
+                height: 80px;
+                margin-bottom: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 25px;
+            }
+            
+            input {
+                padding: 12px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            button {
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            .links {
+                margin-top: 15px;
+            }
+            
+            .links a {
+                font-size: 14px;
+                display: inline-block;
+                margin: 5px 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 25px 20px;
+            }
+            
+            .logo img {
+                height: 70px;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+            }
+            
+            .form-group {
+                margin-bottom: 18px;
+            }
+            
+            label {
+                font-size: 14px;
+            }
+            
+            input {
+                padding: 11px;
+                font-size: 16px;
+            }
+            
+            button {
+                padding: 13px;
+                font-size: 15px;
+            }
+            
+            .links a {
+                font-size: 13px;
+                margin: 3px 5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -130,7 +225,7 @@
             @csrf
             
             <div class="form-group">
-                <label for="email_organisasi">Email Organisasi</label>
+                <label for="email_organisasi">Email</label>
                 <input 
                     type="email" 
                     id="email_organisasi" 
@@ -161,6 +256,7 @@
         
         <div class="links">
             <a href="{{ route('home') }}">← Kembali ke Beranda</a>
+            <span style="color: #ccc;">•</span>
             <a href="{{ route('organisasi.create') }}">Belum daftar?</a>
         </div>
     </div>

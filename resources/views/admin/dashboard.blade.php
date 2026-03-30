@@ -51,6 +51,82 @@
     </div>
 </div>
 
+<!-- Nomination Categories Section -->
+<div class="mb-8">
+    <div class="flex items-center mb-6">
+        <svg class="w-6 h-6 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+        </svg>
+        <h2 class="text-xl font-semibold text-gray-800">Kategori Nominasi</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach($nominationStats as $key => $nomination)
+            <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center">
+                        <span class="text-2xl mr-3">{{ $nomination['icon'] }}</span>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 text-sm leading-tight">{{ $nomination['name'] }}</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">Lengkap</span>
+                        <div class="flex items-center">
+                            <span class="text-2xl font-bold text-green-600">{{ $nomination['total'] }}</span>
+                            <span class="text-sm text-gray-500 ml-1">peserta</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">Belum Lengkap</span>
+                        <div class="flex items-center">
+                            <span class="text-2xl font-bold text-orange-500">{{ $nomination['pending'] }}</span>
+                            <span class="text-sm text-gray-500 ml-1">peserta</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">Sudah Dinilai</span>
+                        <div class="flex items-center">
+                            <span class="text-xl font-bold text-blue-600">{{ $nomination['scored'] }}</span>
+                            <span class="text-sm text-gray-500 ml-1">peserta</span>
+                        </div>
+                    </div>
+                    
+                    @if($nomination['avg_score'])
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600">Rata-rata Nilai</span>
+                            <div class="flex items-center">
+                                <span class="text-xl font-bold text-purple-600">{{ number_format($nomination['avg_score'], 1) }}</span>
+                                <span class="text-sm text-gray-500 ml-1">/100</span>
+                            </div>
+                        </div>
+                    @endif
+                    
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        @php
+                            $total = $nomination['total'] + $nomination['pending'];
+                            $percentage = $total > 0 ? ($nomination['total'] / $total) * 100 : 0;
+                        @endphp
+                        <div class="bg-green-500 h-2 rounded-full" style="width: {{ $percentage }}%"></div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <span class="text-xs text-gray-500">
+                            {{ $total > 0 ? number_format($percentage, 1) : 0 }}% Completion Rate
+                        </span>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Analitik Pendaftaran -->
     <div class="bg-white rounded-lg shadow p-6">
@@ -59,19 +135,12 @@
             <span class="text-xs text-gray-500">DATA 7 HARI TERAKHIR</span>
         </div>
         <div class="h-48 flex items-end justify-between space-x-2">
-            @for($i = 6; $i >= 0; $i--)
-                @php
-                    $date = now()->subDays($i);
-                    $ketosCount = \App\Models\Ketos::whereDate('created_at', $date)->count();
-                    $orgCount = \App\Models\Organisasi::whereDate('created_at', $date)->count();
-                    $total = $ketosCount + $orgCount;
-                    $height = $total > 0 ? ($total * 20) + 20 : 20;
-                @endphp
+            @foreach($analyticsData as $data)
                 <div class="flex-1 flex flex-col items-center">
-                    <div class="w-full bg-orange-200 rounded-t" style="height: {{ min($height, 180) }}px"></div>
-                    <span class="text-xs text-gray-500 mt-2">{{ $date->format('d/m') }}</span>
+                    <div class="w-full bg-orange-200 rounded-t" style="height: {{ $data['height'] }}px"></div>
+                    <span class="text-xs text-gray-500 mt-2">{{ $data['date'] }}</span>
                 </div>
-            @endfor
+            @endforeach
         </div>
     </div>
 
