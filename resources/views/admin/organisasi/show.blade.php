@@ -1,131 +1,139 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Detail Organisasi
-        </h2>
-    </x-slot>
+@extends('layouts.admin')
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            @if(session('success'))
-                <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-                    {{ session('success') }}
+@section('title', 'Detail Organisasi')
+@section('page-title', 'Profil Organisasi')
+
+@section('content')
+<div class="mb-8 flex items-center justify-between">
+    <a href="{{ route('sekolah.index') }}" class="inline-flex items-center text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors">
+        <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
+        Kembali ke Daftar
+    </a>
+    <div class="flex space-x-3">
+        <form action="{{ route('sekolah.destroy', $organisasi->id) }}" method="POST" id="delete-form">
+            @csrf
+            @method('DELETE')
+            <button type="button" id="delete-btn" class="inline-flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-xl font-bold text-xs hover:bg-red-600 hover:text-white transition-all">
+                <i data-feather="trash-2" class="w-4 h-4 mr-2"></i>
+                Hapus Data
+            </button>
+        </form>
+        <a href="{{ route('sekolah.edit', $organisasi->id) }}" class="inline-flex items-center px-6 py-2 bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-xl font-bold text-xs shadow-lg shadow-blue-200 hover:scale-105 transition-all">
+            <i data-feather="edit-3" class="w-4 h-4 mr-2"></i>
+            {{ $organisasi->nilai ? 'Edit Penilaian' : 'Beri Penilaian' }}
+        </a>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Left Column: Org Info -->
+    <div class="lg:col-span-1 space-y-8">
+        <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full-translate-x-10 -translate-y-10 opacity-50"></div>
+            <div class="relative flex flex-col items-center">
+                <div class="w-24 h-24 bg-gradient-to-br from-blue-700 to-blue-500 rounded-[30px] flex items-center justify-center text-white text-4xl font-black shadow-xl mb-6">
+                    {{ substr($organisasi->nama_organisasi, 0, 1) }}
                 </div>
-            @endif
-
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="mb-6">
-                        <a href="{{ route('sekolah.index') }}" class="text-blue-600 hover:text-blue-900">← Kembali</a>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div>
-                            <label class="font-semibold text-gray-700 dark:text-gray-300">Nama Sekolah:</label>
-                            <p class="mt-1">{{ $organisasi->nama_sekolah }}</p>
+                <h3 class="text-xl font-black text-slate-800 text-center leading-tight">{{ $organisasi->nama_organisasi }}</h3>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2">{{ $organisasi->nama_sekolah }}</p>
+                
+                <div class="w-full h-[1px] bg-slate-50 my-6"></div>
+                
+                <div class="w-full space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 mr-3">
+                            <i data-feather="mail" class="w-4 h-4"></i>
                         </div>
-
-                        <div>
-                            <label class="font-semibold text-gray-700 dark:text-gray-300">Nama Organisasi:</label>
-                            <p class="mt-1">{{ $organisasi->nama_organisasi }}</p>
-                        </div>
-
-                        <div>
-                            <label class="font-semibold text-gray-700 dark:text-gray-300">Email Organisasi:</label>
-                            <p class="mt-1">{{ $organisasi->email_organisasi }}</p>
-                        </div>
-
-                        <div>
-                            <label class="font-semibold text-gray-700 dark:text-gray-300">Nomor WhatsApp:</label>
-                            <p class="mt-1">{{ $organisasi->nomor_wa }}</p>
-                        </div>
-
-                        <div>
-                            <label class="font-semibold text-gray-700 dark:text-gray-300">Alamat:</label>
-                            <p class="mt-1">{{ $organisasi->alamat }}</p>
-                        </div>
-
-                        <div class="border-t pt-4 mt-4">
-                            <h4 class="font-semibold text-gray-700 dark:text-gray-300 mb-3">Dokumen Pendukung:</h4>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="font-medium text-gray-600 dark:text-gray-400">Surat Rekomendasi Sekolah:</label>
-                                    @if($organisasi->surat_rekomendasi)
-                                        <a href="{{ Storage::url($organisasi->surat_rekomendasi) }}" target="_blank" class="text-blue-600 hover:underline block">
-                                            📄 Lihat Dokumen PDF
-                                        </a>
-                                    @else
-                                        <p class="text-gray-400">Belum diupload</p>
-                                    @endif
-                                </div>
-                                
-                                <div>
-                                    <label class="font-medium text-gray-600 dark:text-gray-400">Struktur Kepengurusan:</label>
-                                    @if($organisasi->struktur_kepengurusan)
-                                        <a href="{{ Storage::url($organisasi->struktur_kepengurusan) }}" target="_blank" class="text-blue-600 hover:underline block">
-                                            📄 Lihat Dokumen PDF
-                                        </a>
-                                    @else
-                                        <p class="text-gray-400">Belum diupload</p>
-                                    @endif
-                                </div>
-                                
-                                <div>
-                                    <label class="font-medium text-gray-600 dark:text-gray-400">Bukti Share IG Story:</label>
-                                    @if($organisasi->bukti_share_ig)
-                                        <a href="{{ Storage::url($organisasi->bukti_share_ig) }}" target="_blank" class="text-blue-600 hover:underline block">
-                                            🖼️ Lihat Screenshot
-                                        </a>
-                                    @else
-                                        <p class="text-gray-400">Belum diupload</p>
-                                    @endif
-                                </div>
-                                
-                                <div>
-                                    <label class="font-medium text-gray-600 dark:text-gray-400">Bukti Repost IG Feeds:</label>
-                                    @if($organisasi->bukti_repost_ig)
-                                        <a href="{{ Storage::url($organisasi->bukti_repost_ig) }}" target="_blank" class="text-blue-600 hover:underline block">
-                                            🖼️ Lihat Screenshot
-                                        </a>
-                                    @else
-                                        <p class="text-gray-400">Belum diupload</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="font-semibold text-gray-700 dark:text-gray-300">Nilai:</label>
-                            <p class="mt-1">
-                                @if($organisasi->nilai)
-                                    <span class="text-2xl font-bold text-blue-600">{{ $organisasi->nilai }}</span>
-                                @else
-                                    <span class="text-gray-400">Belum ada nilai</span>
-                                @endif
-                            </p>
-                        </div>
-
-                        <div>
-                            <label class="font-semibold text-gray-700 dark:text-gray-300">Tanggal Pendaftaran:</label>
-                            <p class="mt-1">{{ $organisasi->created_at->format('d F Y H:i') }}</p>
+                        <div class="overflow-hidden">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Email Organisasi</p>
+                            <p class="text-xs font-bold text-slate-700 truncate">{{ $organisasi->email_organisasi }}</p>
                         </div>
                     </div>
-
-                    <div class="mt-6 flex gap-3">
-                        <a href="{{ route('sekolah.edit', $organisasi->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-                            {{ $organisasi->nilai ? 'Edit Nilai' : 'Tambah Nilai' }}
-                        </a>
-                        <form action="{{ route('sekolah.destroy', $organisasi->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded" onclick="return confirm('Yakin ingin menghapus?')">
-                                Hapus Data
-                            </button>
-                        </form>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 mr-3">
+                            <i data-feather="phone" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Nomor WhatsApp</p>
+                            <p class="text-xs font-bold text-slate-700">{{ $organisasi->nomor_wa }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 mr-3">
+                            <i data-feather="map-pin" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Alamat Sekolah</p>
+                            <p class="text-xs font-bold text-slate-700">{{ $organisasi->alamat }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Overall Score Card -->
+        <div class="bg-slate-900 rounded-[30px] p-8 shadow-2xl relative overflow-hidden group">
+            <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
+                <i data-feather="award" class="w-32 h-32 text-blue-500"></i>
+            </div>
+            <h4 class="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-2">Skor Kumulatif</h4>
+            @if($organisasi->nilai)
+                <div class="flex items-baseline">
+                    <span class="text-6xl font-black text-white tracking-tighter">{{ $organisasi->nilai }}</span>
+                    <span class="text-xl font-bold text-slate-500 ml-2">/100</span>
+                </div>
+            @else
+                <p class="text-xl font-black text-slate-500 italic mt-2">Belum Dinilai</p>
+            @endif
+            <div class="mt-6 flex items-center text-xs font-bold">
+                <span class="text-slate-400">Status Seleksi:</span>
+                <span class="ml-2 text-green-400 uppercase tracking-widest">Aktif</span>
+            </div>
+        </div>
     </div>
-</x-app-layout>
+
+    <!-- Right Column: Documents -->
+    <div class="lg:col-span-2">
+        <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 h-full">
+            <h3 class="text-lg font-black text-slate-800 mb-8 flex items-center border-b border-slate-50 pb-6">
+                <i data-feather="file-text" class="w-5 h-5 mr-3 text-blue-500"></i>
+                Berkas Pendukung Organisasi
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Use same doc-item partial -->
+                @include('admin.ketos.partials.doc-item', ['label' => 'Surat Rekomendasi Sekolah', 'file' => $organisasi->surat_rekomendasi])
+                @include('admin.ketos.partials.doc-item', ['label' => 'Struktur Kepengurusan', 'file' => $organisasi->struktur_kepengurusan])
+                @include('admin.ketos.partials.doc-item', ['label' => 'Bukti Share IG Story', 'file' => $organisasi->bukti_share_ig])
+                @include('admin.ketos.partials.doc-item', ['label' => 'Bukti Repost IG Feeds', 'file' => $organisasi->bukti_repost_ig])
+            </div>
+            
+            <div class="mt-12 p-8 bg-slate-50 rounded-[30px] border border-dashed border-slate-200 text-center">
+                <h4 class="text-sm font-black text-slate-800 uppercase tracking-widest mb-2">Instruksi Verifikasi</h4>
+                <p class="text-xs text-slate-500 leading-relaxed max-w-lg mx-auto font-medium">
+                    Mohon periksa keaslian dokumen di atas sebelum memberikan skor. Klik tombol <span class="text-blue-600 font-bold">"Beri Penilaian"</span> di atas untuk menginput hasil evaluasi.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('delete-btn').addEventListener('click', function() {
+        Swal.fire({
+            title: 'Hapus Peserta?',
+            text: "Tindakan ini tidak dapat dibatalkan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#e53e3e',
+            cancelButtonColor: '#94a3b8',
+            confirmButtonText: 'Ya, Hapus Data!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form').submit();
+            }
+        })
+    });
+</script>
+@endsection

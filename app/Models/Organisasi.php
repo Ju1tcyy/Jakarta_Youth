@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class Organisasi extends Authenticatable
 {
     protected $fillable = [
+        'user_id',
         'nama_sekolah',
         'nama_organisasi',
         'email_organisasi',

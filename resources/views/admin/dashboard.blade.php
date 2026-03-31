@@ -1,125 +1,131 @@
 @extends('layouts.admin')
 
 @section('title', 'Dashboard')
-@section('page-title', 'Admin Portal')
+@section('page-title', 'Overview')
 
 @section('content')
-<p class="text-gray-600 mb-8">Pantau statistik pendaftar, verifikasi berkas, dan kelola seleksi dalam satu panel terintegrasi.</p>
+<p class="text-slate-500 mb-8 font-medium ml-1">Pantau statistik pendaftar, verifikasi berkas, dan kelola seleksi dalam satu panel terintegrasi.</p>
 
 <!-- Statistics Cards -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
     <!-- Total Pendaftar -->
-    <div class="bg-white rounded-lg shadow p-6">
-        <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path>
-                </svg>
-            </div>
-            <span class="text-xs text-gray-500">TOTAL</span>
+    <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:scale-110 transition-transform duration-500 text-blue-600">
+            <i data-feather="users" class="w-24 h-24"></i>
         </div>
-        <h3 class="text-3xl font-bold text-gray-800">{{ $totalPendaftar }}</h3>
-        <p class="text-sm text-gray-500 mt-1">Pendaftar Terdaftar</p>
+        <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
+                <i data-feather="user-plus" class="w-6 h-6"></i>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Total</span>
+        </div>
+        <h3 class="text-4xl font-black text-slate-800 tracking-tight">{{ $totalPendaftar }}</h3>
+        <p class="text-sm font-semibold text-slate-500 mt-1">Pendaftar Terdaftar</p>
     </div>
 
     <!-- Data Ketos -->
-    <div class="bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow p-6 text-white">
-        <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
-                </svg>
-            </div>
-            <span class="text-xs opacity-80">LOLOS SELEKSI</span>
+    <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:scale-110 transition-transform duration-500 text-blue-500">
+            <i data-feather="award" class="w-24 h-24"></i>
         </div>
-        <h3 class="text-3xl font-bold">{{ $totalKetos }}</h3>
-        <p class="text-sm opacity-80 mt-1">Data Ketos</p>
+        <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
+                <i data-feather="star" class="w-6 h-6"></i>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Seleksi</span>
+        </div>
+        <h3 class="text-4xl font-black text-slate-800 tracking-tight">{{ $totalKetos }}</h3>
+        <p class="text-sm font-semibold text-slate-500 mt-1">Data Ketos</p>
     </div>
 
     <!-- Data Organisasi -->
-    <div class="bg-white rounded-lg shadow p-6">
-        <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-                </svg>
-            </div>
-            <span class="text-xs text-gray-500">LOLOS SELEKSI</span>
+    <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
+        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:scale-110 transition-transform duration-500 text-green-600">
+            <i data-feather="briefcase" class="w-24 h-24"></i>
         </div>
-        <h3 class="text-3xl font-bold text-gray-800">{{ $totalOrganisasi }}</h3>
-        <p class="text-sm text-gray-500 mt-1">Data Organisasi</p>
+        <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600">
+                <i data-feather="home" class="w-6 h-6"></i>
+            </div>
+            <span class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Seleksi</span>
+        </div>
+        <h3 class="text-4xl font-black text-slate-800 tracking-tight">{{ $totalOrganisasi }}</h3>
+        <p class="text-sm font-semibold text-slate-500 mt-1">Data Organisasi</p>
     </div>
 </div>
 
 <!-- Nomination Categories Section -->
-<div class="mb-8">
-    <div class="flex items-center mb-6">
-        <svg class="w-6 h-6 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-        </svg>
-        <h2 class="text-xl font-semibold text-gray-800">Kategori Nominasi</h2>
+<div class="mb-10">
+    <div class="flex items-center mb-8 ml-1">
+        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white mr-4 shadow-lg shadow-blue-200">
+            <i data-feather="list" class="w-5 h-5"></i>
+        </div>
+        <h2 class="text-2xl font-black text-slate-800 tracking-tight">Kategori Nominasi</h2>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach($nominationStats as $key => $nomination)
-            <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
-                <div class="flex items-start justify-between mb-4">
+            <div class="bg-white rounded-[30px] p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center">
-                        <span class="text-2xl mr-3">{{ $nomination['icon'] }}</span>
+                        <div class="text-3xl mr-4 group-hover:scale-125 transition-transform duration-500">{{ $nomination['icon'] }}</div>
                         <div>
-                            <h3 class="font-semibold text-gray-800 text-sm leading-tight">{{ $nomination['name'] }}</h3>
+                            <h3 class="font-black text-slate-800 text-sm leading-tight uppercase tracking-wide">{{ $nomination['name'] }}</h3>
                         </div>
+                    </div>
+                    <div class="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-blue-500 group-hover:bg-blue-50 transition-colors">
+                        <i data-feather="chevron-right" class="w-4 h-4"></i>
                     </div>
                 </div>
                 
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-600">Lengkap</span>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-2xl">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Lengkap</span>
                         <div class="flex items-center">
-                            <span class="text-2xl font-bold text-green-600">{{ $nomination['total'] }}</span>
-                            <span class="text-sm text-gray-500 ml-1">peserta</span>
+                            <span class="text-xl font-black text-green-600">{{ $nomination['total'] }}</span>
+                            <span class="text-[10px] font-bold text-slate-400 ml-1 uppercase">Peserta</span>
                         </div>
                     </div>
                     
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-600">Belum Lengkap</span>
+                    <div class="flex justify-between items-center p-3">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Belum Lengkap</span>
                         <div class="flex items-center">
-                            <span class="text-2xl font-bold text-orange-500">{{ $nomination['pending'] }}</span>
-                            <span class="text-sm text-gray-500 ml-1">peserta</span>
+                            <span class="text-xl font-black text-orange-500">{{ $nomination['pending'] }}</span>
+                            <span class="text-[10px] font-bold text-slate-400 ml-1 uppercase">Peserta</span>
                         </div>
                     </div>
                     
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-600">Sudah Dinilai</span>
+                    <div class="flex justify-between items-center p-3">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Sudah Dinilai</span>
                         <div class="flex items-center">
-                            <span class="text-xl font-bold text-blue-600">{{ $nomination['scored'] }}</span>
-                            <span class="text-sm text-gray-500 ml-1">peserta</span>
+                            <span class="text-xl font-black text-blue-600">{{ $nomination['scored'] }}</span>
+                            <span class="text-[10px] font-bold text-slate-400 ml-1 uppercase">Peserta</span>
                         </div>
                     </div>
                     
                     @if($nomination['avg_score'])
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-600">Rata-rata Nilai</span>
+                        <div class="flex justify-between items-center bg-purple-50 p-3 rounded-2xl">
+                            <span class="text-xs font-bold text-purple-600 uppercase tracking-wider font-outfit">Rata-rata Nilai</span>
                             <div class="flex items-center">
-                                <span class="text-xl font-bold text-purple-600">{{ number_format($nomination['avg_score'], 1) }}</span>
-                                <span class="text-sm text-gray-500 ml-1">/100</span>
+                                <span class="text-xl font-black text-purple-700">{{ number_format($nomination['avg_score'], 1) }}</span>
+                                <span class="text-[10px] font-bold text-purple-400 ml-1">/100</span>
                             </div>
                         </div>
                     @endif
                     
                     <!-- Progress Bar -->
-                    <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="pt-2">
                         @php
                             $total = $nomination['total'] + $nomination['pending'];
                             $percentage = $total > 0 ? ($nomination['total'] / $total) * 100 : 0;
                         @endphp
-                        <div class="bg-green-500 h-2 rounded-full" style="width: {{ $percentage }}%"></div>
-                    </div>
-                    
-                    <div class="text-center">
-                        <span class="text-xs text-gray-500">
-                            {{ $total > 0 ? number_format($percentage, 1) : 0 }}% Completion Rate
-                        </span>
+                        <div class="flex justify-between items-end mb-2">
+                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Progress</span>
+                            <span class="text-sm font-black text-slate-800">{{ number_format($percentage, 0) }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden p-1">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-full rounded-full transition-all duration-1000" style="width: {{ $percentage }}%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -127,55 +133,91 @@
     </div>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
     <!-- Analitik Pendaftaran -->
-    <div class="bg-white rounded-lg shadow p-6">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-semibold text-gray-800">Analitik Pendaftaran</h3>
-            <span class="text-xs text-gray-500">DATA 7 HARI TERAKHIR</span>
+    <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100">
+        <div class="flex justify-between items-center mb-10">
+            <div>
+                <h3 class="text-xl font-black text-slate-800 tracking-tight">Analitik Pendaftaran</h3>
+                <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase mt-1">Data 7 Hari Terakhir</p>
+            </div>
+            <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400">
+                <i data-feather="activity" class="w-5 h-5"></i>
+            </div>
         </div>
-        <div class="h-48 flex items-end justify-between space-x-2">
+        <div class="h-64 flex items-end justify-between space-x-3 px-2">
             @foreach($analyticsData as $data)
-                <div class="flex-1 flex flex-col items-center">
-                    <div class="w-full bg-orange-200 rounded-t" style="height: {{ $data['height'] }}px"></div>
-                    <span class="text-xs text-gray-500 mt-2">{{ $data['date'] }}</span>
+                <div class="flex-1 flex flex-col items-center group">
+                    <div class="relative w-full">
+                        <div class="w-full bg-slate-50 rounded-2xl transition-all duration-500 overflow-hidden relative" style="height: 180px">
+                            <div class="absolute bottom-0 w-full bg-gradient-to-t from-blue-700 to-blue-400 rounded-t-xl group-hover:from-blue-800 group-hover:to-blue-500 transition-all duration-500" style="height: {{ $data['height'] }}px">
+                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-800 text-white text-[10px] font-bold py-1 px-2 rounded-md whitespace-nowrap">
+                                    {{ $data['height'] }} Peserta
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-400 mt-4 uppercase tracking-tighter">{{ $data['date'] }}</span>
                 </div>
             @endforeach
         </div>
     </div>
 
     <!-- Log Aktivitas -->
-    <div class="bg-white rounded-lg shadow p-6">
-        <div class="flex items-center mb-4">
-            <svg class="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-            </svg>
-            <h3 class="text-lg font-semibold text-gray-800">Log Aktivitas</h3>
+    <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100">
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="text-xl font-black text-slate-800 tracking-tight">Log Aktivitas Terbaru</h3>
+            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500">
+                <i data-feather="clock" class="w-5 h-5"></i>
+            </div>
         </div>
-        <div class="space-y-4">
+        <div class="space-y-6">
             @forelse($recentKetos->take(3) as $ketos)
-                <div class="flex items-start">
-                    <div class="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3"></div>
+                <div class="flex items-start group">
+                    <div class="relative mr-4">
+                        <div class="w-10 h-10 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 shrink-0">
+                            <i data-feather="user" class="w-5 h-5"></i>
+                        </div>
+                        @if(!$loop->last || $recentOrganisasi->count() > 0)
+                            <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[2px] h-6 bg-slate-100"></div>
+                        @endif
+                    </div>
                     <div class="flex-1">
-                        <p class="text-xs text-gray-500">{{ $ketos->created_at->diffForHumans() }}</p>
-                        <p class="text-sm text-gray-800">Pendaftaran Ketos: <span class="font-semibold">{{ $ketos->nama }}</span></p>
-                        <p class="text-xs text-gray-500">{{ $ketos->asal_sekolah }}</p>
+                        <div class="flex justify-between items-start">
+                            <p class="text-sm font-black text-slate-800">Pendaftaran Ketos</p>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0 ml-4">{{ $ketos->created_at->diffForHumans() }}</span>
+                        </div>
+                        <p class="text-xs font-bold text-slate-500 mt-1">{{ $ketos->nama }}</p>
+                        <p class="text-[10px] text-slate-400 uppercase tracking-wide mt-1">{{ $ketos->asal_sekolah }}</p>
                     </div>
                 </div>
             @empty
-                <p class="text-sm text-gray-500">Belum ada aktivitas</p>
+                <p class="text-sm text-slate-500 italic text-center py-10">Belum ada aktivitas</p>
             @endforelse
 
             @foreach($recentOrganisasi->take(2) as $org)
-                <div class="flex items-start">
-                    <div class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3"></div>
+                <div class="flex items-start group">
+                    <div class="relative mr-4">
+                        <div class="w-10 h-10 bg-green-50 rounded-2xl flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shrink-0">
+                            <i data-feather="home" class="w-5 h-5"></i>
+                        </div>
+                        @if(!$loop->last)
+                            <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[2px] h-6 bg-slate-100"></div>
+                        @endif
+                    </div>
                     <div class="flex-1">
-                        <p class="text-xs text-gray-500">{{ $org->created_at->diffForHumans() }}</p>
-                        <p class="text-sm text-gray-800">Pendaftaran Organisasi: <span class="font-semibold">{{ $org->nama_organisasi }}</span></p>
-                        <p class="text-xs text-gray-500">{{ $org->nama_sekolah }}</p>
+                        <div class="flex justify-between items-start">
+                            <p class="text-sm font-black text-slate-800">Pendaftaran Organisasi</p>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0 ml-4">{{ $org->created_at->diffForHumans() }}</span>
+                        </div>
+                        <p class="text-xs font-bold text-slate-500 mt-1">{{ $org->nama_organisasi }}</p>
+                        <p class="text-[10px] text-slate-400 uppercase tracking-wide mt-1">{{ $org->nama_sekolah }}</p>
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="mt-8 pt-6 border-t border-slate-50 text-center">
+            <a href="#" class="text-[10px] font-black text-blue-500 uppercase tracking-widest hover:text-blue-600 transition-colors">Lihat Semua Aktivitas</a>
         </div>
     </div>
 </div>

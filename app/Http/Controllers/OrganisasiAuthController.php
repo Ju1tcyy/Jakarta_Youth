@@ -2,53 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organisasi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class OrganisasiAuthController extends Controller
 {
-    public function showLoginForm()
-    {
-        return view('organisasi.login');
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email_organisasi' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $organisasi = Organisasi::where('email_organisasi', $credentials['email_organisasi'])->first();
-
-        if ($organisasi && Hash::check($credentials['password'], $organisasi->password)) {
-            session(['organisasi_id' => $organisasi->id]);
-            return redirect()->route('organisasi.dashboard');
-        }
-
-        return back()->withErrors([
-            'email_organisasi' => 'Email atau password salah.',
-        ]);
-    }
-
     public function dashboard()
     {
-        $organisasiId = session('organisasi_id');
-        if (!$organisasiId) {
-            return redirect()->route('organisasi.login');
+        $user = Auth::user();
+        if (!$user || $user->role !== 'organisasi') {
+            Auth::logout();
+            return redirect()->route('login');
         }
 
-        $organisasi = Organisasi::findOrFail($organisasiId);
-        return view('organisasi.dashboard', compact('organisasi'));
+        return view('organisasi.dashboard', ['organisasi' => $user]);
     }
 
     public function uploadDocuments(Request $request)
     {
-        $organisasiId = session('organisasi_id');
-        if (!$organisasiId) {
-            return redirect()->route('organisasi.login');
+        $user = Auth::user();
+        if (!$user || $user->role !== 'organisasi') {
+            return redirect()->route('login');
         }
 
         $validated = $request->validate([
@@ -58,7 +34,6 @@ class OrganisasiAuthController extends Controller
             'bukti_repost_ig' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $organisasi = Organisasi::findOrFail($organisasiId);
         $updateData = [];
 
         if ($request->hasFile('surat_rekomendasi')) {
@@ -78,16 +53,18 @@ class OrganisasiAuthController extends Controller
         }
 
         if (!empty($updateData)) {
-            $organisasi->update($updateData);
+            $user->update($updateData);
         }
 
         return redirect()->route('organisasi.dashboard')
             ->with('success', 'Dokumen berhasil diupload!');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        session()->forget('organisasi_id');
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('home');
     }
 }

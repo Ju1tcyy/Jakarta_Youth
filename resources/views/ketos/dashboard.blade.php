@@ -4,455 +4,365 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Ketos - Youth Generation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
+        :root {
+            --primary: #e53e3e;
+            --secondary: #dd6b20;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: #f5f5f5;
+            font-family: var(--font-body);
+            background: radial-gradient(circle at top left, rgba(221, 107, 32, 0.05), transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(229, 62, 62, 0.05), transparent 40%);
+            background-color: var(--light);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--dark);
+        }
+
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--glass-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            height: 60px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .user-info {
+            text-align: right;
+            border-left: 2px solid #e2e8f0;
+            padding-left: 15px;
+        }
+
+        .header .user-info p:first-child {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .header .user-info p:last-child {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
         .main-container {
             display: flex;
             flex: 1;
         }
-        
+
         .sidebar {
             width: 280px;
-            background: white;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            padding: 0;
-            min-height: calc(100vh - 80px);
+            background: var(--white);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
+            z-index: 10;
         }
-        
+
         .sidebar-header {
             padding: 25px;
-            border-bottom: 1px solid #f0f0f0;
         }
-        
+
         .sidebar-header h3 {
-            color: #e53e3e;
-            font-size: 1.2rem;
-            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
-        
+
         .sidebar-menu {
             list-style: none;
             padding: 0;
             margin: 0;
             flex: 1;
         }
-        
-        .sidebar-menu li {
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
+
         .sidebar-menu a {
-            display: block;
+            display: flex;
+            align-items: center;
             padding: 18px 25px;
-            color: #666;
+            color: var(--text-main);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s;
-            cursor: pointer;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
         }
-        
+
+        .sidebar-menu a i, .sidebar-menu a .feather {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
         .sidebar-menu a:hover {
-            background: #f8f9fa;
-            color: #e53e3e;
+            background: rgba(221, 107, 32, 0.05);
+            color: var(--secondary);
         }
-        
+
+        .sidebar-menu a:hover i, .sidebar-menu a:hover .feather {
+            color: var(--secondary);
+        }
+
         .sidebar-menu a.active {
-            background: #e53e3e;
-            color: white;
-            border-right: 3px solid #c53030;
+            background: rgba(221, 107, 32, 0.08);
+            color: var(--secondary);
+            border-left: 4px solid var(--secondary);
+            font-weight: 600;
         }
         
-        .sidebar-menu a i {
-            margin-right: 10px;
-            width: 16px;
+        .sidebar-menu a.active i, .sidebar-menu a.active .feather {
+            color: var(--secondary);
         }
-        
+
         .sidebar-footer {
-            padding: 20px 25px;
-            border-top: 1px solid #f0f0f0;
-            background: #f8f9fa;
+            padding: 20px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
         }
-        
+
         .user-profile {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .user-info-sidebar {
-            flex: 1;
         }
         
         .user-info-sidebar .name {
+            font-size: 0.9rem;
+            color: var(--dark);
             font-weight: 600;
-            color: #333;
-            font-size: 14px;
-            margin-bottom: 2px;
         }
         
         .user-info-sidebar .school {
-            font-size: 12px;
-            color: #666;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
-        
+
         .btn-logout-sidebar {
-            background: #dc3545;
-            color: white;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 12px;
-            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #ffedd5;
+            color: var(--secondary);
+            transition: var(--transition);
         }
         
         .btn-logout-sidebar:hover {
-            background: #c82333;
-            color: white;
+            background: var(--secondary);
+            color: var(--white);
+            transform: scale(1.05);
         }
-        
+
         .content-area {
             flex: 1;
-            padding: 30px;
+            padding: 40px;
+            max-width: calc(100vw - 280px);
         }
-        
+
         .content-section {
             display: none;
+            animation: fadeIn 0.4s ease forwards;
         }
-        
+
         .content-section.active {
             display: block;
         }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                min-height: auto;
-                order: 2;
-            }
-            
-            .content-area {
-                padding: 15px;
-                order: 1;
-            }
-            
-            .header {
-                padding: 15px 3%;
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .header .logo {
-                margin-bottom: 10px;
-            }
-            
-            .header .logo img {
-                height: 60px;
-                margin-right: 10px;
-            }
-            
-            .header h1 {
-                font-size: 1.2rem;
-            }
-            
-            .sidebar-menu a {
-                padding: 15px 20px;
-                font-size: 14px;
-            }
-            
-            .sidebar-footer {
-                padding: 15px 20px;
-            }
-            
-            .user-profile {
-                padding: 12px;
-            }
-            
-            .user-info-sidebar .name {
-                font-size: 13px;
-            }
-            
-            .user-info-sidebar .school {
-                font-size: 11px;
-            }
-            
-            .btn-logout-sidebar {
-                padding: 6px 10px;
-                font-size: 11px;
-            }
-            
-            .welcome-card, .nomination-section, .nilai-display {
-                padding: 20px;
-                margin-bottom: 15px;
-            }
-            
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .upload-form {
-                padding: 20px;
-            }
-            
-            .form-group input {
-                padding: 10px;
-            }
-            
-            .btn-upload {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        @media (max-width: 480px) {
-            .content-area {
-                padding: 10px;
-            }
-            
-            .header {
-                padding: 10px 2%;
-            }
-            
-            .header .logo img {
-                height: 50px;
-            }
-            
-            .sidebar-header {
-                padding: 20px;
-            }
-            
-            .sidebar-menu a {
-                padding: 12px 15px;
-                font-size: 13px;
-            }
-            
-            .welcome-card, .nomination-section, .nilai-display {
-                padding: 15px;
-            }
-            
-            .nomination-title {
-                font-size: 1.2rem;
-            }
-            
-            .requirements-list {
-                padding: 15px;
-            }
-            
-            .upload-form {
-                padding: 15px;
-            }
-        }
-        
+
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .info-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .info-card h4 {
-            color: #e53e3e;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .info-item {
-            margin-bottom: 15px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .info-item:last-child {
-            border-bottom: none;
-        }
-        
-        .info-label {
-            font-weight: 600;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        
-        .info-value {
-            color: #333;
-            font-size: 16px;
-            line-height: 1.4;
-        }
-        
-        .container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
-            color: white;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .header .logo img {
-            height: 100px;
-            width: auto;
-            margin-right: 20px;
-        }
-        
-        .header h1 {
-            font-size: 1.5rem;
-        }
-        
-        .header .user-info {
-            text-align: right;
-        }
-        }
-        
-        .welcome-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            gap: 25px;
             margin-bottom: 30px;
         }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
+
         .info-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary), var(--primary));
+        }
+
         .info-card h4 {
-            color: #667eea;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
         }
-        
-        .info-card p {
-            color: #666;
-            margin-bottom: 5px;
+
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
         }
         
         .status-card {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 20px;
             text-align: center;
             margin-bottom: 30px;
+            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.4);
         }
         
         .status-card h3 {
             font-size: 2rem;
             margin-bottom: 10px;
-        }
-        
-        .btn-logout {
-            background: #dc3545;
             color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            font-size: 14px;
+        }
+
+        .btn-logout {
+            display: none; /* Replaced by sidebar logout */
         }
         
         .nilai-display {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
             text-align: center;
+            border: 1px solid rgba(0,0,0,0.02);
         }
         
         .nilai-display .score {
             font-size: 4rem;
-            font-weight: bold;
-            color: #e53e3e;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            color: var(--secondary);
             margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
         }
         
         .nilai-display .no-score {
-            font-size: 1.5rem;
-            color: #999;
+            font-size: 1.2rem;
+            color: var(--text-muted);
             margin: 20px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
         }
         
         .nomination-section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            background: var(--white);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.02);
         }
         
         .nomination-title {
-            color: #667eea;
+            color: var(--secondary);
             font-size: 1.5rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+            font-family: var(--font-heading);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .requirements-section {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
         
         .requirements-section h4 {
-            color: #333;
+            color: var(--dark);
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
         
         .requirements-list {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
         }
         
         .requirements-list ul {
@@ -461,93 +371,167 @@
         }
         
         .requirements-list li {
-            margin-bottom: 8px;
-            padding-left: 20px;
+            margin-bottom: 12px;
+            padding-left: 28px;
             position: relative;
+            line-height: 1.5;
+            color: var(--text-main);
         }
         
         .requirements-list li:before {
             content: "✓";
             position: absolute;
             left: 0;
-            color: #28a745;
+            color: #10b981;
             font-weight: bold;
+            font-size: 1.1rem;
         }
         
         .upload-form {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            border: 2px dashed #dee2e6;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
         }
-        
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
-        
-        .form-group label {
+
+        label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
+            color: var(--text-main);
+            font-weight: 500;
         }
-        
-        .form-group input[type="file"],
-        .form-group input[type="url"] {
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        input[type="number"],
+        input[type="date"],
+        textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--text-main);
         }
-        
-        .btn-upload {
-            background: #667eea;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(221, 107, 32, 0.1);
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            background: var(--white);
             cursor: pointer;
-            transition: background 0.3s;
+            transition: var(--transition);
+            font-size: 0.95rem;
         }
-        
-        .btn-upload:hover {
-            background: #5a67d8;
+
+        input[type="file"]:hover {
+            border-color: var(--secondary);
+            background: rgba(221, 107, 32, 0.02);
         }
-        
+
+        .btn-upload, .btn-save {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-heading);
+            box-shadow: 0 4px 14px 0 rgba(221, 107, 32, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .btn-upload:hover, .btn-save:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px 0 rgba(221, 107, 32, 0.4);
+        }
+
         .file-info {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        
+
         .current-files {
-            background: #e8f5e8;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #bbf7d0;
         }
-        
+
         .current-files h5 {
-            color: #28a745;
-            margin-bottom: 10px;
+            color: #166534;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
+        .file-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            background: rgba(221, 107, 32, 0.05);
+            border-radius: 8px;
+            transition: var(--transition);
+            word-break: break-all;
+        }
+        
+        .file-link:hover {
+            background: rgba(221, 107, 32, 0.1);
+        }
+
+        /* Notice banner removal - replaced by SweetAlert */
         .alert {
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            display: none !important; 
         }
-        
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+
+        @media (max-width: 768px) {
+            .main-container { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; display: flex; flex-direction: column; }
+            .sidebar-menu { display: flex; overflow-x: auto; scrollbar-width: none; }
+            .sidebar-menu a { padding: 15px; border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+            .sidebar-menu a.active { border-left: none; border-bottom: 3px solid var(--secondary); }
+            .content-area { padding: 20px; max-width: 100%; }
+            .header { flex-direction: column; gap: 15px; text-align: center; }
+            .header .user-info { border-left: none; padding-left: 0; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px; }
+            .info-grid { grid-template-columns: 1fr; }
         }
     </style>
-</head>
-<body>
+</head><body>
     <div class="header">
         <div class="logo">
             <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo">
@@ -555,7 +539,7 @@
         </div>
         <div class="user-info">
             <p>{{ $ketos->nama }}</p>
-            <p style="font-size: 14px; opacity: 0.8;">{{ $ketos->asal_sekolah }}</p>
+            <p style="font-size: 13px; color: var(--text-muted);">{{ $ketos->asal_sekolah }}</p>
         </div>
     </div>
 
@@ -566,15 +550,15 @@
                 <h3>Menu Dashboard</h3>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="#" onclick="showSection('dashboard')" class="menu-item active" data-section="dashboard">🏠 Dashboard</a></li>
-                <li><a href="#" onclick="showSection('profile')" class="menu-item" data-section="profile">👤 Informasi Pribadi</a></li>
-                <li><a href="#" onclick="showSection('edit-profile')" class="menu-item" data-section="edit-profile">✏️ Edit Profil</a></li>
-                <li><a href="#" onclick="showSection('nilai')" class="menu-item" data-section="nilai">📊 Nilai Evaluasi</a></li>
-                <li><a href="#" onclick="showSection('nominasi1')" class="menu-item" data-section="nominasi1">🏆 Outstanding Innovation</a></li>
-                <li><a href="#" onclick="showSection('nominasi2')" class="menu-item" data-section="nominasi2">🤝 Social Impact</a></li>
-                <li><a href="#" onclick="showSection('nominasi3')" class="menu-item" data-section="nominasi3">📱 Next-Level Student Council Media</a></li>
-                <li><a href="#" onclick="showSection('nominasi4')" class="menu-item" data-section="nominasi4">🎬 Video Reels</a></li>
-                <li><a href="#" onclick="showSection('nominasi5')" class="menu-item" data-section="nominasi5">� President 2026</a></li>
+                <li><a href="#" onclick="showSection('dashboard')" class="menu-item active" data-section="dashboard"><i data-feather="grid"></i> Dashboard</a></li>
+                <li><a href="#" onclick="showSection('profile')" class="menu-item" data-section="profile"><i data-feather="user"></i> Informasi Pribadi</a></li>
+                <li><a href="#" onclick="showSection('edit-profile')" class="menu-item" data-section="edit-profile"><i data-feather="edit-2"></i> Edit Profil</a></li>
+                <li><a href="#" onclick="showSection('nilai')" class="menu-item" data-section="nilai"><i data-feather="bar-chart-2"></i> Nilai Evaluasi</a></li>
+                <li><a href="#" onclick="showSection('nominasi1')" class="menu-item" data-section="nominasi1"><i data-feather="award"></i> Outstanding Innovation</a></li>
+                <li><a href="#" onclick="showSection('nominasi2')" class="menu-item" data-section="nominasi2"><i data-feather="heart"></i> Social Impact</a></li>
+                <li><a href="#" onclick="showSection('nominasi3')" class="menu-item" data-section="nominasi3"><i data-feather="smartphone"></i> Next-Level Media</a></li>
+                <li><a href="#" onclick="showSection('nominasi4')" class="menu-item" data-section="nominasi4"><i data-feather="video"></i> Video Reels</a></li>
+                <li><a href="#" onclick="showSection('nominasi5')" class="menu-item" data-section="nominasi5"><i data-feather="star"></i> President 2026</a></li>
             </ul>
             
             <!-- Sidebar Footer with User Profile and Logout -->
@@ -584,7 +568,9 @@
                         <div class="name">{{ $ketos->nama }}</div>
                         <div class="school">{{ $ketos->asal_sekolah }}</div>
                     </div>
-                    <a href="{{ route('ketos.logout') }}" class="btn-logout-sidebar">Logout</a>
+                    <a href="{{ route('ketos.logout') }}" class="btn-logout-sidebar" title="Logout">
+                        <i data-feather="log-out" style="width:16px;"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1354,26 +1340,51 @@
     </div>
 
     <script>
+        feather.replace();
+
         function showSection(sectionId) {
-            // Hide all sections
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => {
                 section.classList.remove('active');
             });
             
-            // Remove active class from all menu items
             const menuItems = document.querySelectorAll('.menu-item');
             menuItems.forEach(item => {
                 item.classList.remove('active');
             });
             
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
+            const selectedSection = document.getElementById(sectionId);
+            if(selectedSection) {
+                selectedSection.classList.add('active');
+            }
             
-            // Add active class to clicked menu item
             const clickedItem = document.querySelector(`[data-section="${sectionId}"]`);
-            clickedItem.classList.add('active');
+            if(clickedItem) {
+                clickedItem.classList.add('active');
+            }
         }
+
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Data Tersimpan!',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#10b981',
+                customClass: {
+                    title: 'font-outfit',
+                    content: 'font-inter'
+                }
+            });
+        @endif
+        
+        @if(session('error') || $errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Menyimpan',
+                text: '{{ session('error') ?? "Periksa kembali isian dan dokumen yang Anda unggah." }}',
+                confirmButtonColor: '#e53e3e',
+            });
+        @endif
     </script>
 </body>
 </html>

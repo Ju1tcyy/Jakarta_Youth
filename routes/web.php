@@ -12,40 +12,30 @@ Route::get('/', function () {
     return view('landing');
 })->name('home');
 
-Route::get('/organisasi/daftar', [OrganisasiController::class, 'create'])->name('organisasi.create');
-Route::post('/organisasi', [OrganisasiController::class, 'store'])->name('organisasi.store');
+// Auth defaults from Breeze
+require __DIR__.'/auth.php';
 
-// Routes untuk login organisasi
-Route::get('/organisasi/login', [App\Http\Controllers\OrganisasiAuthController::class, 'showLoginForm'])->name('organisasi.login');
-Route::post('/organisasi/login', [App\Http\Controllers\OrganisasiAuthController::class, 'login']);
-Route::get('/organisasi/dashboard', [App\Http\Controllers\OrganisasiAuthController::class, 'dashboard'])->name('organisasi.dashboard');
-Route::post('/organisasi/upload', [App\Http\Controllers\OrganisasiAuthController::class, 'uploadDocuments'])->name('organisasi.upload');
+// Unified Registration Override
+Route::get('/register', [App\Http\Controllers\UnifiedRegistrationController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [App\Http\Controllers\UnifiedRegistrationController::class, 'register']);
+Route::get('/daftar', fn() => redirect()->route('register')); // Redirect old path
+
+// Unified Login Override
+Route::get('/login', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'store']);
+
+// Redirection routes for old links
+Route::get('/organisasi/login', fn() => redirect()->route('login'))->name('organisasi.login');
+Route::get('/ketos/login', fn() => redirect()->route('login'))->name('ketos.login');
+
+Route::get('/organisasi/dashboard', [App\Http\Controllers\OrganisasiAuthController::class, 'dashboard'])->middleware('auth')->name('organisasi.dashboard');
+Route::post('/organisasi/upload', [App\Http\Controllers\OrganisasiAuthController::class, 'uploadDocuments'])->middleware('auth')->name('organisasi.upload');
 Route::get('/organisasi/logout', [App\Http\Controllers\OrganisasiAuthController::class, 'logout'])->name('organisasi.logout');
 
-Route::get('/ketos/daftar', [PublicKetosController::class, 'create'])->name('ketos.create');
-Route::post('/ketos', [PublicKetosController::class, 'store'])->name('ketos.store');
-
-// Routes untuk login ketos
-Route::get('/ketos/login', [App\Http\Controllers\KetosAuthController::class, 'showLoginForm'])->name('ketos.login');
-Route::post('/ketos/login', [App\Http\Controllers\KetosAuthController::class, 'login']);
-Route::get('/ketos/dashboard', [App\Http\Controllers\KetosAuthController::class, 'dashboard'])->name('ketos.dashboard');
-Route::post('/ketos/upload-nomination', [App\Http\Controllers\KetosAuthController::class, 'uploadNomination'])->name('ketos.upload.nomination');
-Route::put('/ketos/update-profile', [App\Http\Controllers\KetosAuthController::class, 'updateProfile'])->name('ketos.update.profile');
+Route::get('/ketos/dashboard', [App\Http\Controllers\KetosAuthController::class, 'dashboard'])->middleware('auth')->name('ketos.dashboard');
+Route::post('/ketos/upload-nomination', [App\Http\Controllers\KetosAuthController::class, 'uploadNomination'])->middleware('auth')->name('ketos.upload.nomination');
+Route::put('/ketos/update-profile', [App\Http\Controllers\KetosAuthController::class, 'updateProfile'])->middleware('auth')->name('ketos.update.profile');
 Route::get('/ketos/logout', [App\Http\Controllers\KetosAuthController::class, 'logout'])->name('ketos.logout');
-
-Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');

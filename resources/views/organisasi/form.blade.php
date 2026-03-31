@@ -3,217 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Pendaftaran Organisasi</title>
+    <title>Daftar Seleksi Organisasi | Jakarta Youth Achievement Award 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary: #e53e3e;
+            --primary-light: #fee2e2;
+            --secondary: #dd6b20;
+            --dark: #0f172a;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 600px;
-        }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 500;
-        }
-        
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        input[type="file"] {
-            padding: 8px;
-            background: #f8f9fa;
-        }
-        
-        input[type="file"]:focus {
-            background: white;
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        
-        .error-message {
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; }
+        .font-outfit { font-family: 'Outfit', sans-serif; }
+        .bg-gradient-jyaa { background: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%); }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Form Pendaftaran Organisasi</h1>
-        <p class="subtitle">Daftarkan organisasi sekolah Anda</p>
-        
-        <form action="{{ route('organisasi.store') }}" method="POST">
-            @csrf
-            
-            <div class="form-group">
-                <label for="nama_sekolah">Nama Sekolah</label>
-                <input 
-                    type="text" 
-                    id="nama_sekolah" 
-                    name="nama_sekolah" 
-                    value="{{ old('nama_sekolah') }}"
-                    required
-                >
-                @error('nama_sekolah')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="form-group">
-                <label for="nama_organisasi">Nama Organisasi</label>
-                <input 
-                    type="text" 
-                    id="nama_organisasi" 
-                    name="nama_organisasi" 
-                    value="{{ old('nama_organisasi') }}"
-                    required
-                >
-                @error('nama_organisasi')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="form-group">
-                <label for="email_organisasi">Email Organisasi</label>
-                <input 
-                    type="email" 
-                    id="email_organisasi" 
-                    name="email_organisasi" 
-                    value="{{ old('email_organisasi') }}"
-                    required
-                >
-                @error('email_organisasi')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
+<body class="text-slate-800 min-h-screen flex items-center justify-center p-6 relative overflow-x-hidden">
+    <!-- Background Decor -->
+    <div class="absolute top-0 left-0 w-96 h-96 bg-red-100/50 rounded-full blur-[100px] -z-10 -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-orange-100/50 rounded-full blur-[100px] -z-10 translate-x-1/2 translate-y-1/2"></div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    placeholder="Minimal 8 karakter"
-                    required
-                >
-                <small style="color: #666; font-size: 12px;">Password ini akan digunakan untuk login ke dashboard organisasi</small>
-                @error('password')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
+    <div class="w-full max-w-2xl">
+        <!-- Header Info -->
+        <div class="text-center mb-10">
+            <a href="{{ route('home') }}" class="inline-flex items-center text-xs font-black text-slate-400 uppercase tracking-widest hover:text-red-600 transition-colors mb-8">
+                <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i> Kembali ke Beranda
+            </a>
+            <div class="w-16 h-16 bg-gradient-jyaa rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-xl shadow-red-200">
+                <i data-feather="users" class="w-8 h-8"></i>
             </div>
-            
-            <div class="form-group">
-                <label for="nomor_wa">Nomor WhatsApp</label>
-                <input 
-                    type="text" 
-                    id="nomor_wa" 
-                    name="nomor_wa" 
-                    value="{{ old('nomor_wa') }}"
-                    placeholder="08xxxxxxxxxx"
-                    required
-                >
-                @error('nomor_wa')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <div class="form-group">
-                <label for="alamat">Alamat</label>
-                <textarea 
-                    id="alamat" 
-                    name="alamat" 
-                    required
-                >{{ old('alamat') }}</textarea>
-                @error('alamat')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <button type="submit">Daftar</button>
-        </form>
-        
-        <a href="{{ route('home') }}" class="back-link">← Kembali ke Beranda</a>
+            <h1 class="text-3xl font-black text-slate-900 font-outfit uppercase tracking-tight italic">Registrasi Organisasi</h1>
+            <p class="text-slate-500 mt-2 font-medium">Daftarkan ekstrakurikuler atau organisasi kepemudaan Anda.</p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white rounded-[40px] p-8 lg:p-12 shadow-2xl shadow-red-900/5 border border-slate-100 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1.5 h-full bg-gradient-jyaa"></div>
+
+            <form action="{{ route('organisasi.store') }}" method="POST" id="registrationForm" class="space-y-6">
+                @csrf
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Nama Sekolah -->
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Nama Sekolah</label>
+                        <div class="relative group">
+                            <i data-feather="home" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-red-500 transition-colors"></i>
+                            <input type="text" name="nama_sekolah" value="{{ old('nama_sekolah') }}" required placeholder="Contoh: SMA Negeri 1 Jakarta"
+                                class="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/10 focus:border-red-500 transition-all font-medium text-sm">
+                        </div>
+                        @error('nama_sekolah') <p class="text-[10px] text-red-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <!-- Nama Organisasi -->
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Nama Organisasi</label>
+                        <div class="relative group">
+                            <i data-feather="award" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-red-500 transition-colors"></i>
+                            <input type="text" name="nama_organisasi" value="{{ old('nama_organisasi') }}" required placeholder="Contoh: OSIS SMAN 1"
+                                class="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/10 focus:border-red-500 transition-all font-medium text-sm">
+                        </div>
+                        @error('nama_organisasi') <p class="text-[10px] text-red-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <!-- Email -->
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email Resmi Organisasi</label>
+                        <div class="relative group">
+                            <i data-feather="mail" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-red-500 transition-colors"></i>
+                            <input type="email" name="email_organisasi" value="{{ old('email_organisasi') }}" required placeholder="osis@sekolah.sch.id"
+                                class="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/10 focus:border-red-500 transition-all font-medium text-sm">
+                        </div>
+                        @error('email_organisasi') <p class="text-[10px] text-red-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <!-- Password -->
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Password Dashboard</label>
+                        <div class="relative group">
+                            <i data-feather="lock" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-red-500 transition-colors"></i>
+                            <input type="password" name="password" required placeholder="Min. 8 karakter"
+                                class="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/10 focus:border-red-500 transition-all font-medium text-sm">
+                        </div>
+                        @error('password') <p class="text-[10px] text-red-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <!-- Nomor WA -->
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Nomor WA Narahubung</label>
+                        <div class="relative group">
+                            <i data-feather="phone" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-red-500 transition-colors"></i>
+                            <input type="text" name="nomor_wa" value="{{ old('nomor_wa') }}" required placeholder="08xxxxxxxxxx"
+                                class="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/10 focus:border-red-500 transition-all font-medium text-sm">
+                        </div>
+                        @error('nomor_wa') <p class="text-[10px] text-red-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <!-- Alamat -->
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Alamat Lengkap Sekolah</label>
+                        <div class="relative group">
+                            <i data-feather="map-pin" class="absolute left-4 top-6 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-red-500 transition-colors"></i>
+                            <textarea name="alamat" required placeholder="Masukkan alamat lengkap dengan kecamatan dan kota"
+                                class="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500/10 focus:border-red-500 transition-all font-medium text-sm min-h-[120px]">{{ old('alamat') }}</textarea>
+                        </div>
+                        @error('alamat') <p class="text-[10px] text-red-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <button type="submit" class="w-full bg-gradient-jyaa text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] shadow-xl shadow-red-200 hover:scale-[1.02] transition-all flex items-center justify-center">
+                        <i data-feather="check-circle" class="w-4 h-4 mr-2"></i> Selesaikan Pendaftaran
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer Info -->
+        <p class="text-center text-xs font-bold text-slate-400 mt-10 uppercase tracking-widest">
+            Jakarta Youth Achievement Award © 2026
+        </p>
     </div>
+
+    <script>
+        feather.replace();
+
+        @if($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Data Belum Lengkap',
+                text: 'Mohon periksa kembali isian formulir Anda.',
+                confirmButtonColor: '#e53e3e'
+            });
+        @endif
+    </script>
 </body>
 </html>

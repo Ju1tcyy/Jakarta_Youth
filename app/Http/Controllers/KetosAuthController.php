@@ -2,52 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ketos;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class KetosAuthController extends Controller
 {
-    public function showLoginForm()
-    {
-        return view('ketos.login');
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $ketos = Ketos::where('email', $credentials['email'])->first();
-
-        if ($ketos && Hash::check($credentials['password'], $ketos->password)) {
-            session(['ketos_id' => $ketos->id]);
-            return redirect()->route('ketos.dashboard');
-        }
-
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ]);
-    }
-
     public function dashboard()
     {
-        $ketosId = session('ketos_id');
-        if (!$ketosId) {
-            return redirect()->route('ketos.login');
+        $user = Auth::user();
+        if (!$user || $user->role !== 'ketos') {
+            Auth::logout();
+            return redirect()->route('login');
         }
 
-        $ketos = Ketos::findOrFail($ketosId);
-        return view('ketos.dashboard', compact('ketos'));
+        return view('ketos.dashboard', ['ketos' => $user]);
     }
 
     public function uploadNomination(Request $request)
     {
-        $ketosId = session('ketos_id');
-        if (!$ketosId) {
-            return redirect()->route('ketos.login');
+        $user = Auth::user();
+        if (!$user || $user->role !== 'ketos') {
+            return redirect()->route('login');
         }
 
         $validated = $request->validate([
@@ -70,7 +47,6 @@ class KetosAuthController extends Controller
             'surat_pernyataan_kedisiplinan' => 'nullable|file|mimes:pdf|max:5120',
         ]);
 
-        $ketos = Ketos::findOrFail($ketosId);
         $updateData = [];
 
         // Handle Innovation nomination
@@ -153,7 +129,7 @@ class KetosAuthController extends Controller
         }
 
         if (!empty($updateData)) {
-            $ketos->update($updateData);
+            $user->update($updateData);
         }
 
         return redirect()->route('ketos.dashboard')
@@ -162,45 +138,45 @@ class KetosAuthController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $ketosId = session('ketos_id');
-        if (!$ketosId) {
-            return redirect()->route('ketos.login');
+        $user = Auth::user();
+        if (!$user || $user->role !== 'ketos') {
+            return redirect()->route('login');
         }
 
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:ketos,email,' . $ketosId,
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'asal_sekolah' => 'required|string|max:255',
             'nomor_wa' => 'required|string|max:20',
             'password' => 'nullable|min:6|confirmed',
         ]);
-
-        $ketos = Ketos::findOrFail($ketosId);
         
         // Update data
-        $ketos->nama = $validated['nama'];
-        $ketos->email = $validated['email'];
-        $ketos->tempat_lahir = $validated['tempat_lahir'];
-        $ketos->tanggal_lahir = $validated['tanggal_lahir'];
-        $ketos->asal_sekolah = $validated['asal_sekolah'];
-        $ketos->nomor_wa = $validated['nomor_wa'];
+        $user->name = $validated['nama'];
+        $user->email = $validated['email'];
+        $user->tempat_lahir = $validated['tempat_lahir'];
+        $user->tanggal_lahir = $validated['tanggal_lahir'];
+        $user->asal_sekolah = $validated['asal_sekolah'];
+        $user->nomor_wa = $validated['nomor_wa'];
         
         // Update password jika diisi
         if (!empty($validated['password'])) {
-            $ketos->password = $validated['password']; // akan di-hash otomatis oleh mutator
+            $user->password = Hash::make($validated['password']);
         }
         
-        $ketos->save();
+        $user->save();
 
         return redirect()->route('ketos.dashboard')
             ->with('success', 'Profil berhasil diperbarui!');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        session()->forget('ketos_id');
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('home');
     }
 }

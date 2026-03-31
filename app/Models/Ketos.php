@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 class Ketos extends Authenticatable
 {
     protected $fillable = [
+        'user_id',
         'nama',
         'asal_sekolah',
         'email',
