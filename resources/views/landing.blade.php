@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jakarta Youth Achievement Award 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
@@ -43,7 +46,7 @@
             z-index: 1;
             width: 280px;
             pointer-events: none;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
         }
 
         .decoration-star {
@@ -55,17 +58,21 @@
         }
 
         @keyframes pulse-star {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-            50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.2) rotate(15deg);
+                opacity: 1;
+            }
         }
 
         /* Navigation */
         nav {
-<<<<<<< HEAD
-=======
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem 5%;
->>>>>>> 56106ae6b4e8a716e7b65705bd81b4f3bf2e7232
             position: fixed;
             top: 0;
             left: 0;
@@ -97,34 +104,7 @@
         .logo {
             display: flex;
             align-items: center;
-<<<<<<< HEAD
             gap: 12px;
-=======
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #e53e3e;
-            min-height: 90px;
-        }
-        
-        nav .logo img {
-            height: 80px;
-            width: auto;
-            display: block;
-            object-fit: contain;
-            margin-right: 15px;
-            max-width: none;
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        nav a {
->>>>>>> 56106ae6b4e8a716e7b65705bd81b4f3bf2e7232
             text-decoration: none;
             color: var(--dark);
             font-family: var(--font-heading);
@@ -132,7 +112,12 @@
             font-size: 1.2rem;
         }
 
-        .logo img { height: 45px; width: auto; object-fit: contain; mix-blend-mode: multiply; }
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
 
         .nav-links {
             display: flex;
@@ -148,7 +133,9 @@
             transition: var(--transition);
         }
 
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
 
         .nav-cta {
             padding: 10px 24px;
@@ -168,7 +155,7 @@
             align-items: center;
             padding: 120px 5% 80px;
             background: radial-gradient(circle at 90% 10%, var(--secondary-light), transparent 40%),
-                        radial-gradient(circle at 10% 90%, var(--primary-light), transparent 40%);
+                radial-gradient(circle at 10% 90%, var(--primary-light), transparent 40%);
             overflow: hidden;
         }
 
@@ -194,9 +181,17 @@
             position: relative;
         }
 
-        .hero-text h1 span { color: var(--primary); }
+        .hero-text h1 span {
+            color: var(--primary);
+        }
 
-        .hero-text p { font-size: 1.3rem; color: var(--slate); margin-bottom: 40px; font-weight: 500; max-width: 580px; }
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--slate);
+            margin-bottom: 40px;
+            font-weight: 500;
+            max-width: 580px;
+        }
 
         .btn-main {
             display: inline-block;
@@ -215,13 +210,20 @@
         .hero-image-wrap {
             border-radius: 40px;
             overflow: hidden;
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.15);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.15);
             animation: float 6s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         /* About Section */
@@ -248,7 +250,8 @@
         }
 
         .logo-jyaa-wrap img {
-            height: 220px; /* BOLDER SCALE */
+            height: 220px;
+            /* BOLDER SCALE */
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 20px 50px rgba(255, 215, 0, 0.3));
@@ -287,7 +290,8 @@
         .timeline-line {
             position: absolute;
             left: 50%;
-            top: 0; bottom: 0;
+            top: 0;
+            bottom: 0;
             width: 4px;
             background: #e2e8f0;
             transform: translateX(-50%);
@@ -324,7 +328,7 @@
             background: var(--white);
             padding: 40px;
             border-radius: 32px;
-            box-shadow: 0 15px 40px -10px rgba(0,0,0,0.06);
+            box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.06);
             width: 85%;
             margin: 0 7.5%;
             transition: var(--transition);
@@ -371,7 +375,7 @@
             border-radius: 48px;
             text-align: center;
             transition: var(--transition);
-            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.03);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.03);
         }
 
         .portal-card:hover {
@@ -411,8 +415,16 @@
             margin-top: 15px;
         }
 
-        .btn-portal.primary { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(229, 62, 62, 0.2); }
-        .btn-portal.secondary { background: var(--light); color: var(--dark); }
+        .btn-portal.primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(229, 62, 62, 0.2);
+        }
+
+        .btn-portal.secondary {
+            background: var(--light);
+            color: var(--dark);
+        }
 
         /* Professional Footer */
         footer {
@@ -422,7 +434,6 @@
             position: relative;
             z-index: 10;
         }
-<<<<<<< HEAD
 
         .footer-grid {
             max-width: 1200px;
@@ -432,386 +443,104 @@
             gap: 80px;
         }
 
-        .footer-brand h4 { color: white; font-family: var(--font-heading); font-size: 1.8rem; font-weight: 900; margin-bottom: 25px; }
-        .footer-col h5 { color: white; font-family: var(--font-heading); font-weight: 800; margin-bottom: 30px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 18px; }
-        .footer-links a { color: inherit; text-decoration: none; transition: var(--transition); font-weight: 600; font-size: 0.95rem; }
-        .footer-links a:hover { color: var(--primary); padding-left: 8px; }
+        .footer-brand h4 {
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
+
+        .footer-col h5 {
+            color: white;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 18px;
+        }
+
+        .footer-links a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 8px;
+        }
 
         .footer-bottom {
             max-width: 1200px;
             margin: 0 auto;
             padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.9rem;
         }
 
-        .credit-name { color: white; font-weight: 800; }
+        .credit-name {
+            color: white;
+            font-weight: 800;
+        }
 
         @media (max-width: 1024px) {
-            .hero-text h1 { font-size: 3.5rem; }
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-btns { display: flex; justify-content: center; }
-            .portals-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-            .decoration-ondel { width: 180px; }
-=======
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            /* Navigation */
-            nav {
-                padding: 0.5rem 3%;
+            .hero-text h1 {
+                font-size: 3.5rem;
             }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: flex;
-            }
-            
-            nav .container {
-                justify-content: space-between;
-            }
-            
-            nav .logo {
-                font-size: 1rem;
-            }
-            
-            nav .logo img {
-                height: 60px;
-                margin-right: 10px;
-            }
-            
-            /* Hero Section */
-            .hero {
-                padding: 100px 3% 60px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero::before,
-            .hero::after {
-                width: 60px;
-                height: 60px;
-                top: 10px;
-            }
-            
-            .hero::before {
-                left: 10px;
-            }
-            
-            .hero::after {
-                right: 10px;
-            }
-            
-            /* Sections */
-            section {
-                padding: 50px 3%;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            /* About Section */
-            .about-content {
+
+            .hero-container {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-                margin-top: 2rem;
+                text-align: center;
             }
-            
-            .about-card {
-                padding: 1.5rem;
+
+            .hero-btns {
+                display: flex;
+                justify-content: center;
             }
-            
-            /* Timeline */
-            .timeline-container {
-                padding-left: 30px;
+
+            .portals-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .timeline-container::before {
-                left: 15px;
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
             }
-            
-            .timeline-item {
-                margin-left: 15px;
-                padding: 20px 20px;
-                margin-bottom: 30px;
+
+            .decoration-ondel {
+                width: 180px;
             }
-            
-            .timeline-item::before {
-                left: -30px;
-                width: 12px;
-                height: 12px;
-                top: 20px;
-            }
-            
-            .timeline-item h3 {
-                font-size: 1.2rem;
-            }
-            
-            .timeline-date {
-                font-size: 0.9rem;
-            }
-            
-            .timeline-description {
-                font-size: 0.9rem;
-            }
-            
-            /* Registration */
-            .registration-container {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            
-            .registration-card {
-                max-width: 100%;
-            }
-            
-            .registration-image {
-                height: 200px;
-            }
-            
-            .registration-content {
-                padding: 1.5rem;
-            }
-            
-            .registration-content h3 {
-                font-size: 1.3rem;
-            }
-            
-            .registration-btn {
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            /* Navigation */
-            nav {
-                padding: 0.5rem 2%;
-            }
-            
-            nav .logo {
-                font-size: 0.9rem;
-            }
-            
-            nav .logo img {
-                height: 50px;
-                margin-right: 8px;
-            }
-            
-            nav ul {
-                gap: 0.8rem;
-            }
-            
-            nav ul li a {
-                font-size: 13px;
-            }
-            
-            /* Hero */
-            .hero {
-                padding: 90px 2% 50px;
-            }
-            
-            .hero h1 {
-                font-size: 1.6rem;
-                line-height: 1.2;
-            }
-            
-            .hero p {
-                font-size: 0.9rem;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-            
-            /* Sections */
-            section {
-                padding: 40px 2%;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            /* About */
-            .about-card {
-                padding: 1.2rem;
-            }
-            
-            .about-card h3 {
-                font-size: 1.1rem;
-            }
-            
-            /* Timeline */
-            .timeline-container {
-                padding-left: 25px;
-            }
-            
-            .timeline-container::before {
-                left: 12px;
-                width: 3px;
-            }
-            
-            .timeline-item {
-                margin-left: 12px;
-                padding: 15px;
-                margin-bottom: 25px;
-            }
-            
-            .timeline-item::before {
-                left: -27px;
-                width: 10px;
-                height: 10px;
-                top: 15px;
-            }
-            
-            .timeline-item h3 {
-                font-size: 1.1rem;
-                margin-bottom: 6px;
-            }
-            
-            .timeline-date {
-                font-size: 0.8rem;
-                margin-bottom: 10px;
-            }
-            
-            .timeline-description {
-                font-size: 0.85rem;
-                line-height: 1.5;
-            }
-            
-            .timeline-status {
-                font-size: 0.8rem;
-                padding: 4px 10px;
-            }
-            
-            /* Registration */
-            .registration-image {
-                height: 180px;
-            }
-            
-            .registration-content {
-                padding: 1.2rem;
-            }
-            
-            .registration-content h3 {
-                font-size: 1.2rem;
-            }
-            
-            .registration-subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .registration-content p {
-                font-size: 0.9rem;
-                margin-bottom: 1.2rem;
-            }
-            
-            .registration-btn {
-                padding: 9px;
-                font-size: 13px;
-            }
-            
-            /* Footer */
-            footer {
-                padding: 1.5rem 2%;
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* Extra small devices */
-        @media (max-width: 320px) {
-            .hero h1 {
-                font-size: 1.4rem;
-            }
-            
-            .hero p {
-                font-size: 0.85rem;
-            }
-            
-            nav .logo {
-                font-size: 0.8rem;
-            }
-            
-            nav .logo img {
-                height: 45px;
-            }
-            
-            h2 {
-                font-size: 1.3rem;
-            }
-            
-            .timeline-item h3 {
-                font-size: 1rem;
-            }
-            
-            .registration-content h3 {
-                font-size: 1.1rem;
-            }
->>>>>>> 56106ae6b4e8a716e7b65705bd81b4f3bf2e7232
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
-<<<<<<< HEAD
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <img src="{{ asset('icon/logo collab.png') }}" alt="JYAA Logo">
+                <img src="{{ asset('icon/logo_collab.png') }}" alt="JYAA Logo">
                 <span>Jakarta Youth 2026</span>
             </a>
             <ul class="nav-links">
                 <li><a href="#about">Tentang Kami</a></li>
                 <li><a href="#timeline">Timeline</a></li>
                 <li><a href="#registration" class="nav-cta">Daftar Sekarang</a></li>
-=======
-    <nav>
-        <div class="container">
-            <div class="logo">
-                <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" style="height: 80px; width: auto; margin-right: 15px;" onerror="console.log('Logo failed to load'); this.style.border='2px solid red';">
-                Youth Generation
-            </div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#activities">Timeline</a></li>
-                <li><a href="#registration">Registration</a></li>
-            </ul>
-            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
-                <li><a href="#about" onclick="closeMobileMenu()">About Us</a></li>
-                <li><a href="#activities" onclick="closeMobileMenu()">Timeline</a></li>
-                <li><a href="#registration" onclick="closeMobileMenu()">Registration</a></li>
->>>>>>> 56106ae6b4e8a716e7b65705bd81b4f3bf2e7232
             </ul>
         </div>
     </nav>
@@ -819,13 +548,16 @@
     <!-- Hero Section -->
     <section class="hero">
         <!-- Floating Stars (element2) Decoration -->
-        <img src="{{ asset('icon/element2.png') }}" class="decoration-star" style="top: 15%; right: 10%; width: 100px;" alt="">
-        <img src="{{ asset('icon/element2.png') }}" class="decoration-star" style="bottom: 20%; left: 5%; width: 70px; animation-delay: 1s;" alt="">
-        
+        <img src="{{ asset('icon/element2.png') }}" class="decoration-star" style="top: 15%; right: 10%; width: 100px;"
+            alt="">
+        <img src="{{ asset('icon/element2.png') }}" class="decoration-star"
+            style="bottom: 20%; left: 5%; width: 70px; animation-delay: 1s;" alt="">
+
         <div class="hero-container">
             <div class="hero-text">
                 <h1>Apresiasi Prestasi <span>Muda Jakarta.</span></h1>
-                <p>Platform penganugerahan tertinggi bagi Ketua OSIS dan Organisasi Kepemudaan Inspiratif di lingkup DKI Jakarta.</p>
+                <p>Platform penganugerahan tertinggi bagi Ketua OSIS dan Organisasi Kepemudaan Inspiratif di lingkup DKI
+                    Jakarta.</p>
                 <div class="hero-btns">
                     <a href="#registration" class="btn-main">Mulai Registrasi</a>
                 </div>
@@ -839,16 +571,19 @@
     <!-- About Section -->
     <section id="about" class="about-section">
         <!-- Ondel-ondel (element1) Decoration LEFT -->
-        <img src="{{ asset('icon/element1.png') }}" class="decoration-ondel" style="bottom: -20px; left: -40px; transform: rotate(10deg);" alt="">
-        
+        <img src="{{ asset('icon/element1.png') }}" class="decoration-ondel"
+            style="bottom: -20px; left: -40px; transform: rotate(10deg);" alt="">
+
         <div class="about-container">
             <div class="logo-jyaa-wrap">
                 <img src="{{ asset('icon/logo jyaa.png') }}" alt="Logo JYAA 2026">
             </div>
             <div class="about-text">
                 <h2>Jakarta Youth Achievement Award</h2>
-                <p>Jakarta Youth Achievement Award (JYAA) merupakan ajang apresiasi bergengsi yang ditujukan bagi para pemimpin muda di lingkungan OSIS SMA/SMK sederajat di DKI Jakarta.</p>
-                <p>Kami merayakan inovasi, dedikasi, dan kontribusi nyata yang telah diberikan oleh para penggerak muda untuk menciptakan ekosistem sekolah yang lebih baik dan berdampak positif bagi masyarakat luas.</p>
+                <p>Jakarta Youth Achievement Award (JYAA) merupakan ajang apresiasi bergengsi yang ditujukan bagi para
+                    pemimpin muda di lingkungan OSIS SMA/SMK sederajat di DKI Jakarta.</p>
+                <p>Kami merayakan inovasi, dedikasi, dan kontribusi nyata yang telah diberikan oleh para penggerak muda
+                    untuk menciptakan ekosistem sekolah yang lebih baik dan berdampak positif bagi masyarakat luas.</p>
             </div>
         </div>
     </section>
@@ -856,16 +591,18 @@
     <!-- Timeline Section -->
     <section id="timeline" class="timeline-section">
         <!-- Prominent Star Decoration -->
-        <img src="{{ asset('icon/element2.png') }}" class="decoration-star" style="top: 50px; left: 10%; opacity: 0.3;" alt="">
+        <img src="{{ asset('icon/element2.png') }}" class="decoration-star" style="top: 50px; left: 10%; opacity: 0.3;"
+            alt="">
 
         <div class="section-header" style="text-align:center; margin-bottom: 80px;">
-            <p style="color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Agenda Kegiatan</p>
+            <p style="color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Agenda
+                Kegiatan</p>
             <h2 style="font-family: var(--font-heading); font-size: 3.5rem; font-weight: 900;">Jadwal Pelaksanaan</h2>
         </div>
 
         <div class="timeline-container">
             <div class="timeline-line"></div>
-            
+
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
@@ -880,7 +617,8 @@
                 <div class="timeline-content">
                     <span class="date">30 April 2026</span>
                     <h3>Penutupan Nominasi</h3>
-                    <p>Batas akhir pengunggahan seluruh berkas digital. Sistem akan menutup pendaftaran pukul 23:59 WIB.</p>
+                    <p>Batas akhir pengunggahan seluruh berkas digital. Sistem akan menutup pendaftaran pukul 23:59 WIB.
+                    </p>
                 </div>
             </div>
 
@@ -907,10 +645,12 @@
     <!-- Registration Section -->
     <section id="registration" class="registration-section">
         <!-- Ondel-ondel (element1) Decoration RIGHT -->
-        <img src="{{ asset('icon/element1.png') }}" class="decoration-ondel" style="bottom: -10px; right: -40px; transform: rotate(-10deg) scaleX(-1);" alt="">
+        <img src="{{ asset('icon/element1.png') }}" class="decoration-ondel"
+            style="bottom: -10px; right: -40px; transform: rotate(-10deg) scaleX(-1);" alt="">
 
         <div class="section-header" style="text-align:center; margin-bottom: 80px;">
-            <p style="color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Terbuka Untuk Jalur</p>
+            <p style="color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Terbuka
+                Untuk Jalur</p>
             <h2 style="font-family: var(--font-heading); font-size: 3.5rem; font-weight: 900;">Pilih Kategori Anda</h2>
         </div>
 
@@ -922,7 +662,7 @@
                 <a href="{{ route('register') }}?role=organisasi" class="btn-portal primary">Daftar Sekarang</a>
                 <a href="{{ route('login') }}" class="btn-portal secondary">Login Dashboard</a>
             </div>
-            
+
             <div class="portal-card">
                 <div class="portal-icon"><i data-feather="user" style="width: 45px; height: 45px;"></i></div>
                 <h3>Ketua OSIS</h3>
@@ -938,10 +678,14 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h4>Jakarta Youth Award 2026</h4>
-                <p>Memberikan pengakuan atas dedikasi dan kontribusi nyata para pemimpin muda Jakarta dalam membangun masa depan yang lebih inovatif dan kolaboratif.</p>
+                <p>Memberikan pengakuan atas dedikasi dan kontribusi nyata para pemimpin muda Jakarta dalam membangun
+                    masa depan yang lebih inovatif dan kolaboratif.</p>
                 <div style="margin-top: 30px; display: flex; align-items: center; gap: 20px;">
-                    <img src="{{ asset('icon/logo collab.png') }}" style="height: 50px; object-fit: contain; filter: grayscale(1) invert(1) brightness(1); mix-blend-mode: screen;" alt="Collaborator">
-                    <span style="font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.4);">Partnered with <br>Collaborators</span>
+                    <img src="{{ asset('icon/logo_collab.png') }}"
+                        style="height: 50px; object-fit: contain; filter: grayscale(1) invert(1) brightness(1); mix-blend-mode: screen;"
+                        alt="Collaborator">
+                    <span style="font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.4);">Partnered with
+                        <br>Collaborators</span>
                 </div>
             </div>
             <div class="footer-col">
@@ -962,7 +706,8 @@
             </div>
             <div class="footer-col">
                 <h5>Hubungi Kami</h5>
-                <p style="font-size: 0.9rem; margin-bottom: 10px;">Untuk pertanyaan lebih lanjut mengenai nominasi, hubungi kami:</p>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Untuk pertanyaan lebih lanjut mengenai nominasi,
+                    hubungi kami:</p>
                 <a href="#" style="color: white; font-weight: 700; text-decoration: none;">info@jakartayouth.com</a>
             </div>
         </div>
@@ -981,4 +726,5 @@
         });
     </script>
 </body>
+
 </html>

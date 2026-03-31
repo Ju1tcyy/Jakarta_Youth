@@ -1,34 +1,16 @@
 <x-guest-layout>
     <div class="text-center mb-10">
-        <h1 class="text-3xl font-black text-slate-800 font-outfit tracking-tight">Mulai Perjalanan Anda</h1>
-        <p class="text-slate-400 font-medium text-sm mt-2 tracking-wide">Pilih kategori pendaftaran untuk membuat akun.</p>
+        <h1 class="text-3xl font-black text-slate-800 font-outfit tracking-tight">
+            {{ request('role', old('role')) === 'organisasi' ? 'Registrasi Organisasi' : 'Registrasi Ketua OSIS' }}
+        </h1>
+        <p class="text-slate-400 font-medium text-sm mt-2 tracking-wide">Lengkapi data pendaftaran untuk membuat akun Anda.</p>
     </div>
 
     <form method="POST" action="{{ route('register') }}" class="space-y-6" id="registrationForm">
         @csrf
 
-        <!-- Role Selection -->
-        <div class="grid grid-cols-2 gap-4 mb-8">
-            <label class="relative cursor-pointer group">
-                <input type="radio" name="role" value="ketos" class="peer sr-only" {{ old('role') === 'ketos' ? 'checked' : '' }} onchange="toggleFields()">
-                <div class="p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-center transition-all peer-checked:border-blue-500 peer-checked:bg-blue-50 group-hover:border-slate-300">
-                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm group-hover:scale-110 transition-transform">
-                        <i data-feather="user" class="w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
-                    </div>
-                    <span class="block text-[10px] font-black text-slate-400 uppercase tracking-widest peer-checked:text-blue-600 transition-colors">Ketua OSIS</span>
-                </div>
-            </label>
-
-            <label class="relative cursor-pointer group">
-                <input type="radio" name="role" value="organisasi" class="peer sr-only" {{ old('role') === 'organisasi' ? 'checked' : '' }} onchange="toggleFields()">
-                <div class="p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-center transition-all peer-checked:border-blue-500 peer-checked:bg-blue-50 group-hover:border-slate-300">
-                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm group-hover:scale-110 transition-transform">
-                        <i data-feather="users" class="w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
-                    </div>
-                    <span class="block text-[10px] font-black text-slate-400 uppercase tracking-widest peer-checked:text-blue-600 transition-colors">Organisasi</span>
-                </div>
-            </label>
-        </div>
+        <!-- Role Selection (Hidden) -->
+        <input type="hidden" name="role" id="role_input" value="{{ request('role', old('role', 'ketos')) }}">
         <x-input-error :messages="$errors->get('role')" class="mt-2 text-center" />
 
         <!-- Common Fields (Email & Password) -->
@@ -203,7 +185,7 @@
 
     <script>
         function toggleFields() {
-            const role = document.querySelector('input[name="role"]:checked').value;
+            const role = document.getElementById('role_input').value;
             const ketosFields = document.getElementById('ketos_fields');
             const organisasiFields = document.getElementById('organisasi_fields');
             const submitContainer = document.getElementById('submit_container');
@@ -230,12 +212,9 @@
             feather.replace();
         }
 
-        // Initialize on load if old role exists
+        // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
-            const checkedRole = document.querySelector('input[name="role"]:checked');
-            if (checkedRole) {
-                toggleFields();
-            }
+            toggleFields();
         });
     </script>
 </x-guest-layout>
