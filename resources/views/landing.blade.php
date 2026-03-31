@@ -78,7 +78,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            height: 80px;
+            height: 120px; /* Increased to fit larger logo */
             display: flex;
             align-items: center;
             padding: 0 5%;
@@ -86,8 +86,8 @@
         }
 
         nav.scrolled {
-            height: 70px;
-            background: rgba(255, 255, 255, 0.9);
+            height: 85px; /* Increased from 70px */
+            background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
             backdrop-filter: blur(10px);
         }
@@ -113,10 +113,9 @@
         }
 
         .logo img {
-            height: 45px;
+            height: 90px; /* Greatly Increased from 65px */
             width: auto;
             object-fit: contain;
-            mix-blend-mode: multiply;
         }
 
         .nav-links {
@@ -533,9 +532,8 @@
     <!-- Navbar -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="{{ asset('icon/logo_collab.png') }}" alt="JYAA Logo">
-                <span>Jakarta Youth 2026</span>
+            <a href="#" class="logo flex items-center overflow-hidden" style="height: 60px;">
+                <img src="{{ asset('icon/logo_collab.png') }}" alt="JYAA Logo" style="width: 350px; height: auto; max-width: max-content; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));">
             </a>
             <ul class="nav-links">
                 <li><a href="#about">Tentang Kami</a></li>
@@ -680,12 +678,10 @@
                 <h4>Jakarta Youth Award 2026</h4>
                 <p>Memberikan pengakuan atas dedikasi dan kontribusi nyata para pemimpin muda Jakarta dalam membangun
                     masa depan yang lebih inovatif dan kolaboratif.</p>
-                <div style="margin-top: 30px; display: flex; align-items: center; gap: 20px;">
+                <div style="margin-top: 30px; display: flex; align-items: center; justify-content: flex-start; height: 80px; overflow: hidden; max-width: 500px;">
                     <img src="{{ asset('icon/logo_collab.png') }}"
-                        style="height: 50px; object-fit: contain; filter: grayscale(1) invert(1) brightness(1); mix-blend-mode: screen;"
+                        style="width: 100%; height: auto; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));"
                         alt="Collaborator">
-                    <span style="font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.4);">Partnered with
-                        <br>Collaborators</span>
                 </div>
             </div>
             <div class="footer-col">
@@ -701,7 +697,6 @@
                 <ul class="footer-links">
                     <li><a href="{{ route('login') }}">Portal Ketua OSIS</a></li>
                     <li><a href="{{ route('login') }}">Portal Organisasi</a></li>
-                    <li><a href="{{ route('login') }}" style="color: var(--primary);">Staff Access</a></li>
                 </ul>
             </div>
             <div class="footer-col">
