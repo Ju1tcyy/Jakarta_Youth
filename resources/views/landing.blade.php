@@ -61,6 +61,11 @@
 
         /* Navigation */
         nav {
+<<<<<<< HEAD
+=======
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+>>>>>>> 56106ae6b4e8a716e7b65705bd81b4f3bf2e7232
             position: fixed;
             top: 0;
             left: 0;
@@ -92,7 +97,34 @@
         .logo {
             display: flex;
             align-items: center;
+<<<<<<< HEAD
             gap: 12px;
+=======
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e53e3e;
+            min-height: 90px;
+        }
+        
+        nav .logo img {
+            height: 80px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            margin-right: 15px;
+            max-width: none;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+>>>>>>> 56106ae6b4e8a716e7b65705bd81b4f3bf2e7232
             text-decoration: none;
             color: var(--dark);
             font-family: var(--font-heading);
@@ -390,6 +422,7 @@
             position: relative;
             z-index: 10;
         }
+<<<<<<< HEAD
 
         .footer-grid {
             max-width: 1200px;
@@ -426,11 +459,323 @@
             .portals-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
             .decoration-ondel { width: 180px; }
+=======
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            /* Navigation */
+            nav {
+                padding: 0.5rem 3%;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            nav .container {
+                justify-content: space-between;
+            }
+            
+            nav .logo {
+                font-size: 1rem;
+            }
+            
+            nav .logo img {
+                height: 60px;
+                margin-right: 10px;
+            }
+            
+            /* Hero Section */
+            .hero {
+                padding: 100px 3% 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero::before,
+            .hero::after {
+                width: 60px;
+                height: 60px;
+                top: 10px;
+            }
+            
+            .hero::before {
+                left: 10px;
+            }
+            
+            .hero::after {
+                right: 10px;
+            }
+            
+            /* Sections */
+            section {
+                padding: 50px 3%;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* About Section */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .about-card {
+                padding: 1.5rem;
+            }
+            
+            /* Timeline */
+            .timeline-container {
+                padding-left: 30px;
+            }
+            
+            .timeline-container::before {
+                left: 15px;
+            }
+            
+            .timeline-item {
+                margin-left: 15px;
+                padding: 20px 20px;
+                margin-bottom: 30px;
+            }
+            
+            .timeline-item::before {
+                left: -30px;
+                width: 12px;
+                height: 12px;
+                top: 20px;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1.2rem;
+            }
+            
+            .timeline-date {
+                font-size: 0.9rem;
+            }
+            
+            .timeline-description {
+                font-size: 0.9rem;
+            }
+            
+            /* Registration */
+            .registration-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .registration-card {
+                max-width: 100%;
+            }
+            
+            .registration-image {
+                height: 200px;
+            }
+            
+            .registration-content {
+                padding: 1.5rem;
+            }
+            
+            .registration-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .registration-btn {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Navigation */
+            nav {
+                padding: 0.5rem 2%;
+            }
+            
+            nav .logo {
+                font-size: 0.9rem;
+            }
+            
+            nav .logo img {
+                height: 50px;
+                margin-right: 8px;
+            }
+            
+            nav ul {
+                gap: 0.8rem;
+            }
+            
+            nav ul li a {
+                font-size: 13px;
+            }
+            
+            /* Hero */
+            .hero {
+                padding: 90px 2% 50px;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+                line-height: 1.2;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            /* Sections */
+            section {
+                padding: 40px 2%;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            /* About */
+            .about-card {
+                padding: 1.2rem;
+            }
+            
+            .about-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            /* Timeline */
+            .timeline-container {
+                padding-left: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 12px;
+                width: 3px;
+            }
+            
+            .timeline-item {
+                margin-left: 12px;
+                padding: 15px;
+                margin-bottom: 25px;
+            }
+            
+            .timeline-item::before {
+                left: -27px;
+                width: 10px;
+                height: 10px;
+                top: 15px;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1.1rem;
+                margin-bottom: 6px;
+            }
+            
+            .timeline-date {
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+            
+            .timeline-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+            
+            .timeline-status {
+                font-size: 0.8rem;
+                padding: 4px 10px;
+            }
+            
+            /* Registration */
+            .registration-image {
+                height: 180px;
+            }
+            
+            .registration-content {
+                padding: 1.2rem;
+            }
+            
+            .registration-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .registration-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .registration-content p {
+                font-size: 0.9rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .registration-btn {
+                padding: 9px;
+                font-size: 13px;
+            }
+            
+            /* Footer */
+            footer {
+                padding: 1.5rem 2%;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 320px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            
+            .hero p {
+                font-size: 0.85rem;
+            }
+            
+            nav .logo {
+                font-size: 0.8rem;
+            }
+            
+            nav .logo img {
+                height: 45px;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .timeline-item h3 {
+                font-size: 1rem;
+            }
+            
+            .registration-content h3 {
+                font-size: 1.1rem;
+            }
+>>>>>>> 56106ae6b4e8a716e7b65705bd81b4f3bf2e7232
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
+<<<<<<< HEAD
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
@@ -441,6 +786,32 @@
                 <li><a href="#about">Tentang Kami</a></li>
                 <li><a href="#timeline">Timeline</a></li>
                 <li><a href="#registration" class="nav-cta">Daftar Sekarang</a></li>
+=======
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" style="height: 80px; width: auto; margin-right: 15px;" onerror="console.log('Logo failed to load'); this.style.border='2px solid red';">
+                Youth Generation
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#activities">Timeline</a></li>
+                <li><a href="#registration">Registration</a></li>
+            </ul>
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">About Us</a></li>
+                <li><a href="#activities" onclick="closeMobileMenu()">Timeline</a></li>
+                <li><a href="#registration" onclick="closeMobileMenu()">Registration</a></li>
+>>>>>>> 56106ae6b4e8a716e7b65705bd81b4f3bf2e7232
             </ul>
         </div>
     </nav>
