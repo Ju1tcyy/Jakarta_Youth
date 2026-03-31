@@ -171,7 +171,7 @@
             }
             
             .header .logo img {
-                height: 60px;
+                height: 80px;
                 margin-right: 10px;
             }
             
@@ -239,7 +239,7 @@
             }
             
             .header .logo img {
-                height: 50px;
+                height: 70px;
             }
             
             .sidebar-header {
@@ -332,7 +332,7 @@
         }
         
         .header .logo img {
-            height: 100px;
+            height: 120px;
             width: auto;
             margin-right: 20px;
         }
@@ -550,7 +550,7 @@
 <body>
     <div class="header">
         <div class="logo">
-            <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo">
+            <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo">
             <h1>Dashboard Ketos</h1>
         </div>
         <div class="user-info">

@@ -37,7 +37,7 @@
         }
         
         .logo img {
-            height: 120px;
+            height: 150px;
             width: auto;
             margin-bottom: 20px;
         }
@@ -131,7 +131,7 @@
             }
             
             .logo img {
-                height: 80px;
+                height: 100px;
                 margin-bottom: 15px;
             }
             
@@ -176,7 +176,7 @@
             }
             
             .logo img {
-                height: 70px;
+                height: 90px;
             }
             
             h1 {
@@ -215,7 +215,7 @@
 <body>
     <div class="container">
         <div class="logo">
-            <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo">
+            <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo">
         </div>
         
         <h1>Login Organisasi</h1>

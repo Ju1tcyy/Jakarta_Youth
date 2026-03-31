@@ -21,7 +21,7 @@
         /* Navbar */
         nav {
             background: rgba(255, 255, 255, 0.95);
-            padding: 0.5rem 5%;
+            padding: 1rem 5%;
             position: fixed;
             width: 100%;
             top: 0;
@@ -43,14 +43,18 @@
             font-size: 1.2rem;
             font-weight: bold;
             color: #e53e3e;
+            min-height: 90px;
         }
         
         nav .logo img {
-            height: 60px;
+            height: 80px;
             width: auto;
-            margin-right: 15px;
             display: block;
+            object-fit: contain;
+            margin-right: 15px;
             max-width: none;
+            opacity: 1;
+            visibility: visible;
         }
         
         nav ul {
@@ -525,7 +529,7 @@
             }
             
             nav .logo img {
-                height: 40px;
+                height: 60px;
                 margin-right: 10px;
             }
             
@@ -653,7 +657,7 @@
             }
             
             nav .logo img {
-                height: 35px;
+                height: 50px;
                 margin-right: 8px;
             }
             
@@ -795,7 +799,7 @@
             }
             
             nav .logo img {
-                height: 30px;
+                height: 45px;
             }
             
             h2 {
@@ -817,7 +821,7 @@
     <nav>
         <div class="container">
             <div class="logo">
-                <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo" style="height: 60px; width: auto; margin-right: 15px;">
+                <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" style="height: 80px; width: auto; margin-right: 15px;" onerror="console.log('Logo failed to load'); this.style.border='2px solid red';">
                 Youth Generation
             </div>
             <ul>
