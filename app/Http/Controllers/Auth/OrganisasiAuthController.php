@@ -26,8 +26,8 @@ class OrganisasiAuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             
-            // Check if user is organisasi
-            if ($user->role !== 'organisasi') {
+            // Check if user is pendaftar (organisasi)
+            if (!$user->isPendaftar()) {
                 Auth::logout();
                 throw ValidationException::withMessages([
                     'email' => 'Akses ditolak. Anda tidak terdaftar sebagai organisasi.',

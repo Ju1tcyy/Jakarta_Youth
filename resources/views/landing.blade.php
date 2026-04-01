@@ -303,7 +303,7 @@
 
                 <div class="relative hidden lg:block animate-fade-up delay-500">
                     <div class="absolute -inset-4 bg-accent/20 rounded-[3rem] blur-3xl"></div>
-                    <img src="{{ asset('icon/hero_jyaa.png') }}" alt="Hero image"
+                    <img src="{{ asset('icon/poster.jpeg') }}" alt="Hero image"
                         class="relative z-10 w-full h-auto rounded-[3rem] shadow-2xl border border-white/10 transition-all duration-700">
 
                     <!-- Floating Badge -->
@@ -455,7 +455,7 @@
                             <div class="space-y-2">
                                 <h3
                                     class="text-3xl font-black text-primary italic underline decoration-accent decoration-4 underline-offset-8 transition-all hover:decoration-primary">
-                                    Awarding Night</h3>
+                                    Awarding</h3>
                                 <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">22 Mei 2026</p>
                                 <p class="text-slate-500 font-medium leading-relaxed max-w-md pt-2">Malam puncak
                                     penganugerahan bagi setiap pemimpin muda terbaik Jakarta.</p>

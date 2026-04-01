@@ -492,19 +492,19 @@
                             </div>
                         </div>
 
-                        <div class="document-card {{ $organisasi->bukti_share_ig ? 'completed' : '' }}">
+                        <div class="document-card {{ $organisasi->buktishare ? 'completed' : '' }}">
                             <h4>Bukti Share IG Story</h4>
                             <div class="document-status">
-                                <div class="status-icon {{ $organisasi->bukti_share_ig ? 'completed' : 'pending' }}"></div>
-                                <span>{{ $organisasi->bukti_share_ig ? 'Sudah diupload' : 'Belum diupload' }}</span>
+                                <div class="status-icon {{ $organisasi->buktishare ? 'completed' : 'pending' }}"></div>
+                                <span>{{ $organisasi->buktishare ? 'Sudah diupload' : 'Belum diupload' }}</span>
                             </div>
                         </div>
 
-                        <div class="document-card {{ $organisasi->bukti_repost_ig ? 'completed' : '' }}">
+                        <div class="document-card {{ $organisasi->buktirepost ? 'completed' : '' }}">
                             <h4>Bukti Repost IG Feeds</h4>
                             <div class="document-status">
-                                <div class="status-icon {{ $organisasi->bukti_repost_ig ? 'completed' : 'pending' }}"></div>
-                                <span>{{ $organisasi->bukti_repost_ig ? 'Sudah diupload' : 'Belum diupload' }}</span>
+                                <div class="status-icon {{ $organisasi->buktirepost ? 'completed' : 'pending' }}"></div>
+                                <span>{{ $organisasi->buktirepost ? 'Sudah diupload' : 'Belum diupload' }}</span>
                             </div>
                         </div>
                     </div>
@@ -578,51 +578,51 @@
                             </div>
 
                             <!-- Bukti Share IG -->
-                            <div class="document-card {{ $organisasi->bukti_share_ig ? 'completed' : '' }}">
+                            <div class="document-card {{ $organisasi->buktishare ? 'completed' : '' }}">
                                 <h4>Screenshot Share IG Story</h4>
-                                <div class="document-status {{ $organisasi->bukti_share_ig ? 'completed' : 'pending' }}">
-                                    <i data-feather="{{ $organisasi->bukti_share_ig ? 'check-circle' : 'clock' }}"></i>
-                                    <span>{{ $organisasi->bukti_share_ig ? 'Selesai' : 'Belum diupload' }}</span>
+                                <div class="document-status {{ $organisasi->buktishare ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->buktishare ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->buktishare ? 'Selesai' : 'Belum diupload' }}</span>
                                 </div>
                                 
-                                @if($organisasi->bukti_share_ig)
-                                    <a href="{{ Storage::url($organisasi->bukti_share_ig) }}" target="_blank" class="file-link">
+                                @if($organisasi->buktishare)
+                                    <a href="{{ Storage::url($organisasi->buktishare) }}" target="_blank" class="file-link">
                                         <i data-feather="image" style="width:16px;"></i> Lihat gambar tersimpan
                                     </a>
                                 @endif
                                 
                                 <div class="form-group" style="margin-top: 10px;">
-                                    <label for="bukti_share_ig">Upload Gambar JPG/PNG:</label>
+                                    <label for="buktishare">Upload Gambar JPG/PNG:</label>
                                     <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
                                         <strong>Catatan Penting:</strong><br>
                                         Screenshot menampilkan nama akun dan postingan secara jelas serta masih tersedia (belum dihapus)
                                     </div>
-                                    <input type="file" id="bukti_share_ig" name="bukti_share_ig" accept=".jpg,.jpeg,.png">
+                                    <input type="file" id="buktishare" name="buktishare" accept=".jpg,.jpeg,.png">
                                     <small>Format: JPG/PNG, Maks 2MB</small>
                                 </div>
                             </div>
 
                             <!-- Bukti Repost IG -->
-                            <div class="document-card {{ $organisasi->bukti_repost_ig ? 'completed' : '' }}">
+                            <div class="document-card {{ $organisasi->buktirepost ? 'completed' : '' }}">
                                 <h4>Screenshot Repost IG Feeds</h4>
-                                <div class="document-status {{ $organisasi->bukti_repost_ig ? 'completed' : 'pending' }}">
-                                    <i data-feather="{{ $organisasi->bukti_repost_ig ? 'check-circle' : 'clock' }}"></i>
-                                    <span>{{ $organisasi->bukti_repost_ig ? 'Selesai' : 'Belum diupload' }}</span>
+                                <div class="document-status {{ $organisasi->buktirepost ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->buktirepost ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->buktirepost ? 'Selesai' : 'Belum diupload' }}</span>
                                 </div>
                                 
-                                @if($organisasi->bukti_repost_ig)
-                                    <a href="{{ Storage::url($organisasi->bukti_repost_ig) }}" target="_blank" class="file-link">
+                                @if($organisasi->buktirepost)
+                                    <a href="{{ Storage::url($organisasi->buktirepost) }}" target="_blank" class="file-link">
                                         <i data-feather="image" style="width:16px;"></i> Lihat gambar tersimpan
                                     </a>
                                 @endif
                                 
                                 <div class="form-group" style="margin-top: 10px;">
-                                    <label for="bukti_repost_ig">Upload Gambar JPG/PNG:</label>
+                                    <label for="buktirepost">Upload Gambar JPG/PNG:</label>
                                     <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
                                         <strong>Catatan Penting:</strong><br>
                                         Screenshot menampilkan nama akun dan postingan secara jelas serta masih tersedia (belum dihapus)
                                     </div>
-                                    <input type="file" id="bukti_repost_ig" name="bukti_repost_ig" accept=".jpg,.jpeg,.png">
+                                    <input type="file" id="buktirepost" name="buktirepost" accept=".jpg,.jpeg,.png">
                                     <small>Format: JPG/PNG, Maks 2MB</small>
                                 </div>
                             </div>
