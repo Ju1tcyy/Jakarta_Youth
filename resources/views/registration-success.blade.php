@@ -239,11 +239,7 @@
         </div>
 
         <div class="action-buttons">
-            @if($role === 'ketos')
-                <a href="{{ route('ketos.dashboard') }}" class="btn btn-primary">Masuk ke Dashboard Ketos</a>
-            @elseif($role === 'organisasi')
-                <a href="{{ route('organisasi.dashboard') }}" class="btn btn-primary">Masuk ke Dashboard Organisasi</a>
-            @endif
+            <a href="{{ route('organisasi.dashboard') }}" class="btn btn-primary">Masuk ke Dashboard Organisasi</a>
             <a href="{{ route('home') }}" class="btn btn-secondary">Kembali ke Beranda</a>
         </div>
     </div>

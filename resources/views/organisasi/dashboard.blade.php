@@ -412,7 +412,7 @@
 <body>
     <div class="header">
         <div class="logo">
-            <img src="{{ asset('icon/logo collab.png') }}" alt="Youth Generation Logo">
+            <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo">
             <h1>Dashboard Organisasi</h1>
         </div>
         <div class="user-info">
@@ -440,7 +440,7 @@
                         <div class="name">{{ $organisasi->nama_organisasi }}</div>
                         <div class="school">{{ $organisasi->nama_sekolah }}</div>
                     </div>
-                    <form action="{{ route('organisasi.logout') }}" method="POST" style="display: inline;">
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit" class="btn-logout-sidebar" title="Logout" style="border: none; background: none; cursor: pointer;">
                             <i data-feather="log-out" style="width:16px;"></i>
@@ -462,7 +462,7 @@
                 </div>
                 
                 @if(session('success'))
-                    <div class="alert">
+                    <div class="alert" style="display: block !important; background: #dcfce7; color: #15803d; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #86efac;">
                         {{ session('success') }}
                     </div>
                 @endif
@@ -650,7 +650,7 @@
                             </div>
                             <div style="margin-bottom: 15px;">
                                 <strong>Email:</strong><br>
-                                {{ $organisasi->email }}
+                                {{ $organisasi->user->email }}
                             </div>
                             <div style="margin-bottom: 15px;">
                                 <strong>Nama Sekolah:</strong><br>
