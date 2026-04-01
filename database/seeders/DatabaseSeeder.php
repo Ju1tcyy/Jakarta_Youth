@@ -17,12 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         // Menyemai akun Admin dengan password
         User::updateOrCreate(
-            ['email' => 'admin@gmail.com'], // Ganti dengan email asli admin jika ada
-            [
-                'name' => 'Administrator',
-                'password' => bcrypt('admin123'), // Ini adalah password admin
-                'role' => 'admin', // Sesuai dengan default role
-            ]
+        ['email' => 'admin@gmail.com'], // Ganti dengan email asli admin jika ada
+        [
+            'name' => 'Administrator',
+            'password' => bcrypt('admin123'), // Ini adalah password admin
+            'role' => 'admin', // Sesuai dengan default role
+        ]
         );
     }
 }
