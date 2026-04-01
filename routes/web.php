@@ -14,12 +14,14 @@ Route::get('/tata-cara-pendaftaran', function () {
     return view('tata-cara-pendaftaran');
 })->name('tata-cara-pendaftaran');
 
-Route::get('/portal', function () {
-    return view('portal-selection');
-})->name('portal.selection');
+Route::get('/portal', fn() => redirect()->route('login'))->name('portal.selection');
 
 // Auth routes from Breeze
 require __DIR__.'/auth.php';
+
+// Login Aliases for Portal Selection
+Route::get('/admin/login', fn() => redirect()->route('login'))->name('admin.login');
+Route::get('/organisasi/login', fn() => redirect()->route('login'))->name('organisasi.login');
 
 // Registration
 Route::get('/register', [UnifiedRegistrationController::class, 'showRegistrationForm'])->name('register');
@@ -32,11 +34,10 @@ Route::get('/registration-success', function () {
 })->name('registration.success');
 
 // Pendaftar Dashboard
-Route::middleware(['auth'])->group(function () {
-    Route::get('/organisasi/dashboard', [App\Http\Controllers\OrganisasiAuthController::class, 'dashboard'])->name('organisasi.dashboard');
-    Route::post('/organisasi/upload', [App\Http\Controllers\OrganisasiAuthController::class, 'uploadDocuments'])->name('organisasi.upload');
-    Route::post('/organisasi/upload-nomination', [App\Http\Controllers\OrganisasiAuthController::class, 'uploadNomination'])->name('organisasi.upload.nomination');
-    Route::post('/organisasi/logout', [App\Http\Controllers\OrganisasiAuthController::class, 'logout'])->name('organisasi.logout');
+Route::middleware(['auth'])->prefix('organisasi')->group(function () {
+    Route::get('/dashboard', [PendaftarDashboardController::class, 'index'])->name('organisasi.dashboard');
+    Route::post('/upload', [PendaftarDashboardController::class, 'uploadDocuments'])->name('organisasi.upload');
+    Route::post('/upload-nomination', [PendaftarDashboardController::class, 'uploadNomination'])->name('organisasi.upload.nomination');
 });
 
 // Admin Dashboard (Protected by auth and AdminMiddleware)

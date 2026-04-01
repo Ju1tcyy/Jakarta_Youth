@@ -199,10 +199,10 @@
 
             <!-- Mobile Footer Links -->
             <div class="mt-auto pt-8 border-t border-white/20">
-                <a @click="mobileMenu = false" href="{{ route('portal.selection') }}"
-                    class="block text-center text-white/80 hover:text-white text-sm font-medium transition-colors">
-                    Portal Login
-                </a>
+                    <a @click="mobileMenu = false" href="{{ route('login') }}"
+                        class="block text-center text-white/80 hover:text-white text-sm font-medium transition-colors">
+                        Portal Login
+                    </a>
             </div>
         </div>
     </div>
@@ -584,7 +584,7 @@
                     <div class="space-y-8">
                         <h5 class="text-accent font-black text-xs uppercase tracking-[0.5em]">Layanan</h5>
                         <ul class="space-y-5 text-slate-400 font-bold text-sm tracking-wide">
-                            <li><a href="{{ route('portal.selection') }}"
+                            <li><a href="{{ route('login') }}"
                                     class="hover:text-accent transition-all">Portal Login</a></li>
                             <li><a href="#" class="hover:text-accent transition-all">Bantuan Registrasi</a></li>
                         </ul>

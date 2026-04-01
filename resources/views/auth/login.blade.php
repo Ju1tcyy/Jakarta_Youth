@@ -14,7 +14,7 @@
             <div class="space-y-4 group">
                 <label for="email" class="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] ml-1 group-focus-within:text-primary transition-colors">Email Akun</label>
                 <div class="relative">
-                    <input id="email" type="email" name="email" :value="old('email')" required autofocus 
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus 
                         class="w-full px-14 py-6 bg-slate-50 border-2 border-slate-100 rounded-3xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all text-sm font-black text-primary placeholder:text-slate-300" 
                         placeholder="nama@email.com">
                     <div class="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
