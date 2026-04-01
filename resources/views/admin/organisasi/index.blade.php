@@ -37,7 +37,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <p class="text-xs font-bold text-slate-600 leading-tight">{{ $item->email_organisasi }}</p>
+                            <p class="text-xs font-bold text-slate-600 leading-tight">{{ $item->user->email }}</p>
                             <div class="flex items-center mt-1 text-slate-400">
                                 <i data-feather="phone" class="w-3 h-3 mr-1"></i>
                                 <span class="text-[10px] font-bold">{{ $item->nomor_wa }}</span>

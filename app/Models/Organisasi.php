@@ -17,6 +17,11 @@ class Organisasi extends Model
         'buktishare',
         'buktirepost',
         'nilai',
+        'nilai_innovation',
+        'nilai_social_impact',
+        'nilai_media',
+        'nilai_video_reels',
+        'nilai_president',
         // Nomination fields
         'portofolio_program_kerja',
         'google_form_kepuasan',

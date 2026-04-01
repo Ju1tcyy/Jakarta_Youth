@@ -45,8 +45,8 @@
                             <i data-feather="mail" class="w-4 h-4"></i>
                         </div>
                         <div class="overflow-hidden">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Email Organisasi</p>
-                            <p class="text-xs font-bold text-slate-700 truncate">{{ $organisasi->email_organisasi }}</p>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Email</p>
+                            <p class="text-xs font-bold text-slate-700 truncate">{{ $organisasi->user->email }}</p>
                         </div>
                     </div>
                     <div class="flex items-center">
@@ -101,11 +101,117 @@
             </h3>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Use same doc-item partial -->
-                @include('admin.ketos.partials.doc-item', ['label' => 'Surat Rekomendasi Sekolah', 'file' => $organisasi->surat_rekomendasi])
-                @include('admin.ketos.partials.doc-item', ['label' => 'Struktur Kepengurusan', 'file' => $organisasi->struktur_kepengurusan])
-                @include('admin.ketos.partials.doc-item', ['label' => 'Bukti Share IG Story', 'file' => $organisasi->bukti_share_ig])
-                @include('admin.ketos.partials.doc-item', ['label' => 'Bukti Repost IG Feeds', 'file' => $organisasi->bukti_repost_ig])
+                <!-- Surat Rekomendasi Sekolah -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-blue-200 transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                                <i data-feather="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-black text-slate-800">Surat Rekomendasi Sekolah</h4>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Dokumen PDF</p>
+                            </div>
+                        </div>
+                        @if($organisasi->surat_rekomendasi)
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-black uppercase tracking-widest">Tersedia</span>
+                        @else
+                            <span class="px-3 py-1 bg-slate-200 text-slate-500 rounded-full text-[10px] font-black uppercase tracking-widest">Kosong</span>
+                        @endif
+                    </div>
+                    @if($organisasi->surat_rekomendasi)
+                        <a href="{{ Storage::url($organisasi->surat_rekomendasi) }}" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                            <i data-feather="external-link" class="w-3 h-3 mr-1"></i>
+                            Lihat Dokumen
+                        </a>
+                    @else
+                        <p class="text-xs text-slate-400 italic">Belum diupload</p>
+                    @endif
+                </div>
+
+                <!-- Struktur Kepengurusan -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-blue-200 transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                                <i data-feather="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-black text-slate-800">Struktur Kepengurusan</h4>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Dokumen PDF</p>
+                            </div>
+                        </div>
+                        @if($organisasi->struktur_kepengurusan)
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-black uppercase tracking-widest">Tersedia</span>
+                        @else
+                            <span class="px-3 py-1 bg-slate-200 text-slate-500 rounded-full text-[10px] font-black uppercase tracking-widest">Kosong</span>
+                        @endif
+                    </div>
+                    @if($organisasi->struktur_kepengurusan)
+                        <a href="{{ Storage::url($organisasi->struktur_kepengurusan) }}" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                            <i data-feather="external-link" class="w-3 h-3 mr-1"></i>
+                            Lihat Dokumen
+                        </a>
+                    @else
+                        <p class="text-xs text-slate-400 italic">Belum diupload</p>
+                    @endif
+                </div>
+
+                <!-- Bukti Share IG Story -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-blue-200 transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                                <i data-feather="image" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-black text-slate-800">Bukti Share IG Story</h4>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Screenshot</p>
+                            </div>
+                        </div>
+                        @if($organisasi->buktishare)
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-black uppercase tracking-widest">Tersedia</span>
+                        @else
+                            <span class="px-3 py-1 bg-slate-200 text-slate-500 rounded-full text-[10px] font-black uppercase tracking-widest">Kosong</span>
+                        @endif
+                    </div>
+                    @if($organisasi->buktishare)
+                        <a href="{{ Storage::url($organisasi->buktishare) }}" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                            <i data-feather="external-link" class="w-3 h-3 mr-1"></i>
+                            Lihat Gambar
+                        </a>
+                    @else
+                        <p class="text-xs text-slate-400 italic">Belum diupload</p>
+                    @endif
+                </div>
+
+                <!-- Bukti Repost IG Feeds -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-blue-200 transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                                <i data-feather="image" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-black text-slate-800">Bukti Repost IG Feeds</h4>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Screenshot</p>
+                            </div>
+                        </div>
+                        @if($organisasi->buktirepost)
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-black uppercase tracking-widest">Tersedia</span>
+                        @else
+                            <span class="px-3 py-1 bg-slate-200 text-slate-500 rounded-full text-[10px] font-black uppercase tracking-widest">Kosong</span>
+                        @endif
+                    </div>
+                    @if($organisasi->buktirepost)
+                        <a href="{{ Storage::url($organisasi->buktirepost) }}" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                            <i data-feather="external-link" class="w-3 h-3 mr-1"></i>
+                            Lihat Gambar
+                        </a>
+                    @else
+                        <p class="text-xs text-slate-400 italic">Belum diupload</p>
+                    @endif
+                </div>
             </div>
             
             <div class="mt-12 p-8 bg-slate-50 rounded-[30px] border border-dashed border-slate-200 text-center">

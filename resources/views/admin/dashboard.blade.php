@@ -104,6 +104,85 @@
     </div>
 </div>
 
+<!-- Nomination Categories Section -->
+<div class="mb-10">
+    <div class="flex items-center mb-8 ml-1">
+        <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center text-white mr-4 shadow-lg shadow-purple-200">
+            <i data-feather="award" class="w-5 h-5"></i>
+        </div>
+        <h2 class="text-2xl font-black text-slate-800 tracking-tight">Kategori Nominasi</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach($nominationStats as $key => $nomination)
+            <div class="bg-white rounded-[30px] p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <div class="text-3xl mr-4 group-hover:scale-125 transition-transform duration-500">{{ $nomination['icon'] }}</div>
+                        <div>
+                            <h3 class="font-black text-slate-800 text-sm leading-tight uppercase tracking-wide">{{ $nomination['name'] }}</h3>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-blue-500 group-hover:bg-blue-50 transition-colors">
+                        <i data-feather="chevron-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-2xl">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Lengkap</span>
+                        <div class="flex items-center">
+                            <span class="text-xl font-black text-green-600">{{ $nomination['total'] }}</span>
+                            <span class="text-[10px] font-bold text-slate-400 ml-1 uppercase">Peserta</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center p-3">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Belum Lengkap</span>
+                        <div class="flex items-center">
+                            <span class="text-xl font-black text-orange-500">{{ $nomination['pending'] }}</span>
+                            <span class="text-[10px] font-bold text-slate-400 ml-1 uppercase">Peserta</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center p-3">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Sudah Dinilai</span>
+                        <div class="flex items-center">
+                            <span class="text-xl font-black text-blue-600">{{ $nomination['scored'] }}</span>
+                            <span class="text-[10px] font-bold text-slate-400 ml-1 uppercase">Peserta</span>
+                        </div>
+                    </div>
+                    
+                    @if($nomination['avg_score'])
+                        <div class="flex justify-between items-center bg-purple-50 p-3 rounded-2xl">
+                            <span class="text-xs font-bold text-purple-600 uppercase tracking-wider font-outfit">Rata-rata Nilai</span>
+                            <div class="flex items-center">
+                                <span class="text-xl font-black text-purple-700">{{ number_format($nomination['avg_score'], 1) }}</span>
+                                <span class="text-[10px] font-bold text-purple-400 ml-1">/100</span>
+                            </div>
+                        </div>
+                    @endif
+                    
+                    <!-- Progress Bar -->
+                    <div class="pt-2">
+                        @php
+                            $total = $nomination['total'] + $nomination['pending'];
+                            $percentage = $total > 0 ? ($nomination['total'] / $total) * 100 : 0;
+                        @endphp
+                        <div class="flex justify-between items-end mb-2">
+                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Progress</span>
+                            <span class="text-sm font-black text-slate-800">{{ number_format($percentage, 0) }}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden p-1">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-full rounded-full transition-all duration-1000" style="width: {{ $percentage }}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
     <!-- Analitik Pendaftaran -->
     <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100">
