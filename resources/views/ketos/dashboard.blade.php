@@ -579,6 +579,13 @@
         <div class="content-area">
             <!-- Dashboard Section -->
             <div id="dashboard" class="content-section active">
+                <!-- Logo Section -->
+                <div class="text-center mb-6">
+                    <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" style="height: 60px; width: auto; margin: 0 auto 15px;">
+                    <h2 style="color: #e53e3e; font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">Dashboard Ketos</h2>
+                    <p style="color: #666; font-size: 0.9rem;">Jakarta Youth Achievement Award 2026</p>
+                </div>
+                
                 <div class="info-grid">
                     <div class="info-card">
                         <h4>Ringkasan Nominasi</h4>
@@ -832,7 +839,7 @@
                                 <p>✅ Portofolio Program Kerja OSIS: <a href="{{ asset('storage/' . $ketos->portofolio_program_kerja) }}" target="_blank">Lihat File</a></p>
                             @endif
                             @if($ketos->google_form_kepuasan)
-                                <p>✅ Google Form Kepuasan OSIS: <a href="{{ $ketos->google_form_kepuasan }}" target="_blank">Lihat Link</a></p>
+                                <p>✅ Google Form Kepuasan OSIS: Sudah diisi</p>
                             @endif
                         </div>
                     @endif
@@ -880,9 +887,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="google_form_kepuasan">Link Google Form Kepuasan OSIS (3 Pihak):</label>
-                            <input type="url" id="google_form_kepuasan" name="google_form_kepuasan" placeholder="https://forms.google.com/...">
-                            <div class="file-info">Masukkan link Google Form yang sudah disebarkan kepada 3 kelompok responden</div>
+                            <label>
+                                <input type="checkbox" id="google_form_kepuasan" name="google_form_kepuasan" value="1" {{ $ketos->google_form_kepuasan ? 'checked' : '' }}>
+                                Saya telah mengisi Google Form Kepuasan OSIS (3 Pihak)
+                            </label>
+                            <div class="file-info">
+                                <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; text-decoration: underline;">
+                                    Klik di sini untuk mengisi Google Form
+                                </a>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn-upload">Upload Berkas</button>
@@ -908,7 +921,7 @@
                                 <p>✅ Portofolio Kegiatan Sosial OSIS: <a href="{{ asset('storage/' . $ketos->portofolio_kegiatan_sosial) }}" target="_blank">Lihat File</a></p>
                             @endif
                             @if($ketos->google_form_kepuasan_sosial)
-                                <p>✅ Google Form Kepuasan OSIS (3 Pihak): <a href="{{ $ketos->google_form_kepuasan_sosial }}" target="_blank">Lihat Link</a></p>
+                                <p>✅ Google Form Kepuasan OSIS (3 Pihak): Sudah diisi</p>
                             @endif
                         </div>
                     @endif
@@ -961,9 +974,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="google_form_kepuasan_sosial">Link Google Form Kepuasan OSIS (3 Pihak):</label>
-                            <input type="url" id="google_form_kepuasan_sosial" name="google_form_kepuasan_sosial" placeholder="https://forms.google.com/...">
-                            <div class="file-info">Masukkan link Google Form yang sudah disebarkan kepada 3 kelompok responden</div>
+                            <label>
+                                <input type="checkbox" id="google_form_kepuasan_sosial" name="google_form_kepuasan_sosial" value="1" {{ $ketos->google_form_kepuasan_sosial ? 'checked' : '' }}>
+                                Saya telah mengisi Google Form Kepuasan OSIS (3 Pihak)
+                            </label>
+                            <div class="file-info">
+                                <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; text-decoration: underline;">
+                                    Klik di sini untuk mengisi Google Form
+                                </a>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn-upload">Upload Berkas</button>
@@ -989,7 +1008,7 @@
                                 <p>✅ Portofolio Sosial Media: <a href="{{ asset('storage/' . $ketos->portofolio_sosial_media) }}" target="_blank">Lihat File</a></p>
                             @endif
                             @if($ketos->google_form_kepuasan_media)
-                                <p>✅ Google Form Kepuasan OSIS (3 Pihak): <a href="{{ $ketos->google_form_kepuasan_media }}" target="_blank">Lihat Link</a></p>
+                                <p>✅ Google Form Kepuasan OSIS (3 Pihak): Sudah diisi</p>
                             @endif
                         </div>
                     @endif
@@ -1041,9 +1060,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="google_form_kepuasan_media">Link Google Form Kepuasan OSIS (3 Pihak):</label>
-                            <input type="url" id="google_form_kepuasan_media" name="google_form_kepuasan_media" placeholder="https://forms.google.com/...">
-                            <div class="file-info">Masukkan link Google Form yang sudah disebarkan kepada 3 kelompok responden</div>
+                            <label>
+                                <input type="checkbox" id="google_form_kepuasan_media" name="google_form_kepuasan_media" value="1" {{ $ketos->google_form_kepuasan_media ? 'checked' : '' }}>
+                                Saya telah mengisi Google Form Kepuasan OSIS (3 Pihak)
+                            </label>
+                            <div class="file-info">
+                                <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; text-decoration: underline;">
+                                    Klik di sini untuk mengisi Google Form
+                                </a>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn-upload">Upload Berkas</button>
@@ -1054,7 +1079,7 @@
             <!-- Nominasi 4: Video IG Reels -->
             <div id="nominasi4" class="content-section">
                 <div class="nomination-section">
-                    <h2 class="nomination-title">Video IG Reels</h2>
+                    <h2 class="nomination-title"> People's Choice Student Council - DKI Jakarta</h2>
 
                     @if(session('success'))
                         <div class="alert alert-success">
@@ -1069,13 +1094,13 @@
                                 <p>✅ Link Instagram Reels: <a href="{{ $ketos->link_instagram_reels }}" target="_blank">Lihat Video</a></p>
                             @endif
                             @if($ketos->google_form_kepuasan_reels)
-                                <p>✅ Google Form Kepuasan OSIS (3 Pihak): <a href="{{ $ketos->google_form_kepuasan_reels }}" target="_blank">Lihat Link</a></p>
+                                <p>✅ Google Form Kepuasan OSIS (3 Pihak): Sudah diisi</p>
                             @endif
                         </div>
                     @endif
 
                     <div class="requirements-section">
-                        <h4>Ketentuan Video IG Reels:</h4>
+                        <h4>Ketentuan  People's Choice Student Council - DKI Jakarta:</h4>
                         <div class="requirements-list">
                             <ul>
                                 <li>Peserta diwajibkan membuat video berdurasi maksimal 3 menit yang menampilkan profil dan kegiatan OSIS</li>
@@ -1106,7 +1131,7 @@
                         <h4>Ketentuan Penilaian dan Voting:</h4>
                         <div class="requirements-list">
                             <ul>
-                                <li>Periode penilaian (voting) berlangsung hingga <strong>10 April 2026</strong></li>
+                                <li>Periode penilaian (voting) berlangsung hingga <strong>30 April 2026</strong></li>
                                 <li>Pemenang ditentukan berdasarkan jumlah likes dan komentar terbanyak (organik) pada postingan video</li>
                                 <li>Segala bentuk kecurangan, termasuk pembelian likes, komentar, atau penggunaan bot, akan berakibat diskualifikasi</li>
                                 <li>Peserta diperbolehkan mengajak dukungan dari siswa, alumni, maupun masyarakat secara wajar dan organik</li>
@@ -1139,9 +1164,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="google_form_kepuasan_reels">Link Google Form Kepuasan OSIS (3 Pihak):</label>
-                            <input type="url" id="google_form_kepuasan_reels" name="google_form_kepuasan_reels" placeholder="https://forms.google.com/...">
-                            <div class="file-info">Masukkan link Google Form yang sudah disebarkan kepada 3 kelompok responden</div>
+                            <label>
+                                <input type="checkbox" id="google_form_kepuasan_reels" name="google_form_kepuasan_reels" value="1" {{ $ketos->google_form_kepuasan_reels ? 'checked' : '' }}>
+                                Saya telah mengisi Google Form Kepuasan OSIS (3 Pihak)
+                            </label>
+                            <div class="file-info">
+                                <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; text-decoration: underline;">
+                                    Klik di sini untuk mengisi Google Form
+                                </a>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn-upload">Upload Berkas</button>
@@ -1182,7 +1213,7 @@
                                 <p>✅ Esai Solusi Kepemimpinan: <a href="{{ asset('storage/' . $ketos->esai_solusi_kepemimpinan) }}" target="_blank">Lihat File</a></p>
                             @endif
                             @if($ketos->google_form_kepuasan_president)
-                                <p>✅ Google Form Kepuasan OSIS (3 Pihak): <a href="{{ $ketos->google_form_kepuasan_president }}" target="_blank">Lihat Link</a></p>
+                                <p>✅ Google Form Kepuasan OSIS (3 Pihak): Sudah diisi</p>
                             @endif
                             @if($ketos->surat_pernyataan_kedisiplinan)
                                 <p>✅ Surat Pernyataan Kedisiplinan: <a href="{{ asset('storage/' . $ketos->surat_pernyataan_kedisiplinan) }}" target="_blank">Lihat File</a></p>
@@ -1321,9 +1352,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="google_form_kepuasan_president">Link Google Form Kepuasan OSIS (3 Pihak):</label>
-                            <input type="url" id="google_form_kepuasan_president" name="google_form_kepuasan_president" placeholder="https://forms.google.com/...">
-                            <div class="file-info">Masukkan link Google Form yang sudah disebarkan kepada 3 kelompok responden</div>
+                            <label>
+                                <input type="checkbox" id="google_form_kepuasan_president" name="google_form_kepuasan_president" value="1" {{ $ketos->google_form_kepuasan_president ? 'checked' : '' }}>
+                                Saya telah mengisi Google Form Kepuasan OSIS (3 Pihak)
+                            </label>
+                            <div class="file-info">
+                                <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; text-decoration: underline;">
+                                    Klik di sini untuk mengisi Google Form
+                                </a>
+                            </div>
                         </div>
 
                         <div class="form-group">

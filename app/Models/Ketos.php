@@ -46,6 +46,11 @@ class Ketos extends Authenticatable
 
     protected $casts = [
         'tanggal_lahir' => 'date',
+        'google_form_kepuasan' => 'boolean',
+        'google_form_kepuasan_sosial' => 'boolean',
+        'google_form_kepuasan_media' => 'boolean',
+        'google_form_kepuasan_reels' => 'boolean',
+        'google_form_kepuasan_president' => 'boolean',
     ];
 
     public function setPasswordAttribute($value)

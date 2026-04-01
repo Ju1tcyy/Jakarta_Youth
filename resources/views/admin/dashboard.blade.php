@@ -4,6 +4,13 @@
 @section('page-title', 'Overview')
 
 @section('content')
+<!-- Logo Section -->
+<div class="text-center mb-8">
+    <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" class="mx-auto h-20 w-auto mb-3">
+    <h1 class="text-2xl font-bold text-gray-800 mb-1">Admin Dashboard</h1>
+    <p class="text-gray-600 text-sm">Jakarta Youth Achievement Award 2026</p>
+</div>
+
 <p class="text-slate-500 mb-8 font-medium ml-1">Pantau statistik pendaftar, verifikasi berkas, dan kelola seleksi dalam satu panel terintegrasi.</p>
 
 <!-- Statistics Cards -->

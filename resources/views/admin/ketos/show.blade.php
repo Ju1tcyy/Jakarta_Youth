@@ -136,7 +136,7 @@
                     <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Nominasi Innovation</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @include('admin.ketos.partials.doc-item', ['label' => 'Portofolio Program Kerja', 'file' => $ketos->portofolio_program_kerja])
-                        @include('admin.ketos.partials.doc-item', ['label' => 'Link Google Form Kepuasan', 'url' => $ketos->google_form_kepuasan])
+                        @include('admin.ketos.partials.doc-item', ['label' => 'Google Form Kepuasan', 'status' => $ketos->google_form_kepuasan ? 'Sudah diisi' : 'Belum diisi'])
                     </div>
                 </div>
 
@@ -145,7 +145,7 @@
                     <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Nominasi Social Impact</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @include('admin.ketos.partials.doc-item', ['label' => 'Portofolio Kegiatan Sosial', 'file' => $ketos->portofolio_kegiatan_sosial])
-                        @include('admin.ketos.partials.doc-item', ['label' => 'Link Google Form Kepuasan', 'url' => $ketos->google_form_kepuasan_sosial])
+                        @include('admin.ketos.partials.doc-item', ['label' => 'Google Form Kepuasan', 'status' => $ketos->google_form_kepuasan_sosial ? 'Sudah diisi' : 'Belum diisi'])
                     </div>
                 </div>
 

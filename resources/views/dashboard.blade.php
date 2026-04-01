@@ -7,6 +7,13 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <!-- Logo Section -->
+            <div class="text-center mb-12">
+                <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" class="mx-auto h-24 w-auto mb-4">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Youth Generation Community</h1>
+                <p class="text-gray-600">Jakarta Youth Achievement Award 2026</p>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <!-- Card Ketos -->
                 <a href="{{ route('ketos.index') }}" class="group block">

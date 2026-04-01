@@ -451,6 +451,13 @@
         <div class="content-area">
             <!-- Dashboard Section -->
             <div id="dashboard" class="content-section active">
+                <!-- Logo Section -->
+                <div class="text-center mb-6">
+                    <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" style="height: 60px; width: auto; margin: 0 auto 15px;">
+                    <h2 style="color: #e53e3e; font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">Dashboard Organisasi</h2>
+                    <p style="color: #666; font-size: 0.9rem;">Jakarta Youth Achievement Award 2026</p>
+                </div>
+                
                 @if(session('success'))
                     <div class="alert">
                         {{ session('success') }}
@@ -533,6 +540,10 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="surat_rekomendasi">Upload Dokumen PDF:</label>
+                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
+                                        <strong>Catatan Penting:</strong><br>
+                                        Surat menggunakan kop surat resmi sekolah, dilengkapi tanda tangan kepala sekolah serta cap/stempel sekolah
+                                    </div>
                                     <input type="file" id="surat_rekomendasi" name="surat_rekomendasi" accept=".pdf">
                                     <small>Format: PDF, Maks 2MB</small>
                                 </div>
@@ -554,6 +565,10 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="struktur_kepengurusan">Upload Dokumen PDF:</label>
+                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
+                                        <strong>Catatan Penting:</strong><br>
+                                        Surat menggunakan kop surat resmi sekolah, dilengkapi tanda tangan kepala sekolah serta cap/stempel sekolah
+                                    </div>
                                     <input type="file" id="struktur_kepengurusan" name="struktur_kepengurusan" accept=".pdf">
                                     <small>Format: PDF, Maks 2MB</small>
                                 </div>
@@ -575,6 +590,10 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="bukti_share_ig">Upload Gambar JPG/PNG:</label>
+                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
+                                        <strong>Catatan Penting:</strong><br>
+                                        Screenshot menampilkan nama akun dan postingan secara jelas serta masih tersedia (belum dihapus)
+                                    </div>
                                     <input type="file" id="bukti_share_ig" name="bukti_share_ig" accept=".jpg,.jpeg,.png">
                                     <small>Format: JPG/PNG, Maks 2MB</small>
                                 </div>
@@ -596,6 +615,10 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="bukti_repost_ig">Upload Gambar JPG/PNG:</label>
+                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
+                                        <strong>Catatan Penting:</strong><br>
+                                        Screenshot menampilkan nama akun dan postingan secara jelas serta masih tersedia (belum dihapus)
+                                    </div>
                                     <input type="file" id="bukti_repost_ig" name="bukti_repost_ig" accept=".jpg,.jpeg,.png">
                                     <small>Format: JPG/PNG, Maks 2MB</small>
                                 </div>

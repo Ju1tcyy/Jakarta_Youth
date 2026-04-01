@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,20 +29,20 @@ class KetosAuthController extends Controller
         $validated = $request->validate([
             'nomination_type' => 'required|string|in:innovation,social_impact,media,video_reels,president',
             'portofolio_program_kerja' => 'nullable|file|mimes:pdf|max:5120',
-            'google_form_kepuasan' => 'nullable|url',
+            'google_form_kepuasan' => 'nullable|boolean',
             'portofolio_kegiatan_sosial' => 'nullable|file|mimes:pdf|max:5120',
-            'google_form_kepuasan_sosial' => 'nullable|url',
+            'google_form_kepuasan_sosial' => 'nullable|boolean',
             'portofolio_sosial_media' => 'nullable|file|mimes:pdf|max:5120',
-            'google_form_kepuasan_media' => 'nullable|url',
+            'google_form_kepuasan_media' => 'nullable|boolean',
             'link_instagram_reels' => 'nullable|url',
-            'google_form_kepuasan_reels' => 'nullable|url',
+            'google_form_kepuasan_reels' => 'nullable|boolean',
             'pas_foto_formal' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
             'curriculum_vitae' => 'nullable|file|mimes:pdf|max:5120',
             'fotokopi_rapor' => 'nullable|file|mimes:pdf|max:5120',
             'video_profil_jakarta' => 'nullable|url',
             'portofolio_inovasi' => 'nullable|file|mimes:pdf|max:5120',
             'esai_solusi_kepemimpinan' => 'nullable|file|mimes:pdf|max:5120',
-            'google_form_kepuasan_president' => 'nullable|url',
+            'google_form_kepuasan_president' => 'nullable|boolean',
             'surat_pernyataan_kedisiplinan' => 'nullable|file|mimes:pdf|max:5120',
         ]);
 
@@ -55,8 +54,8 @@ class KetosAuthController extends Controller
                 $updateData['portofolio_program_kerja'] = $request->file('portofolio_program_kerja')->store('nominations/ketos', 'public');
             }
             
-            if ($request->filled('google_form_kepuasan')) {
-                $updateData['google_form_kepuasan'] = $validated['google_form_kepuasan'];
+            if ($request->has('google_form_kepuasan')) {
+                $updateData['google_form_kepuasan'] = $request->google_form_kepuasan ? 1 : 0;
             }
         }
 
@@ -66,8 +65,8 @@ class KetosAuthController extends Controller
                 $updateData['portofolio_kegiatan_sosial'] = $request->file('portofolio_kegiatan_sosial')->store('nominations/ketos', 'public');
             }
             
-            if ($request->filled('google_form_kepuasan_sosial')) {
-                $updateData['google_form_kepuasan_sosial'] = $validated['google_form_kepuasan_sosial'];
+            if ($request->has('google_form_kepuasan_sosial')) {
+                $updateData['google_form_kepuasan_sosial'] = $request->google_form_kepuasan_sosial ? 1 : 0;
             }
         }
 
@@ -77,8 +76,8 @@ class KetosAuthController extends Controller
                 $updateData['portofolio_sosial_media'] = $request->file('portofolio_sosial_media')->store('nominations/ketos', 'public');
             }
             
-            if ($request->filled('google_form_kepuasan_media')) {
-                $updateData['google_form_kepuasan_media'] = $validated['google_form_kepuasan_media'];
+            if ($request->has('google_form_kepuasan_media')) {
+                $updateData['google_form_kepuasan_media'] = $request->google_form_kepuasan_media ? 1 : 0;
             }
         }
 
@@ -88,8 +87,8 @@ class KetosAuthController extends Controller
                 $updateData['link_instagram_reels'] = $validated['link_instagram_reels'];
             }
             
-            if ($request->filled('google_form_kepuasan_reels')) {
-                $updateData['google_form_kepuasan_reels'] = $validated['google_form_kepuasan_reels'];
+            if ($request->has('google_form_kepuasan_reels')) {
+                $updateData['google_form_kepuasan_reels'] = $request->google_form_kepuasan_reels ? 1 : 0;
             }
         }
 
@@ -119,8 +118,8 @@ class KetosAuthController extends Controller
                 $updateData['esai_solusi_kepemimpinan'] = $request->file('esai_solusi_kepemimpinan')->store('nominations/ketos', 'public');
             }
             
-            if ($request->filled('google_form_kepuasan_president')) {
-                $updateData['google_form_kepuasan_president'] = $validated['google_form_kepuasan_president'];
+            if ($request->has('google_form_kepuasan_president')) {
+                $updateData['google_form_kepuasan_president'] = $request->google_form_kepuasan_president ? 1 : 0;
             }
             
             if ($request->hasFile('surat_pernyataan_kedisiplinan')) {
