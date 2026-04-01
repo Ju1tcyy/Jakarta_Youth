@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex items-center space-x-3 group">
-                        <img src="{{ asset('icon/logo collab.png') }}" alt="Logo" class="h-10 w-auto group-hover:scale-105 transition-transform duration-300">
+                        <img src="{{ asset('icon/logo collab.png') }}" alt="Logo" class="h-24 w-auto group-hover:scale-105 transition-transform duration-300">
                         <div class="hidden md:block">
                             <span class="block text-sm font-black text-slate-800 leading-tight uppercase tracking-tighter">Jakarta Youth</span>
                             <span class="block text-[10px] font-bold text-blue-600 uppercase tracking-widest leading-none">Achievement Award</span>

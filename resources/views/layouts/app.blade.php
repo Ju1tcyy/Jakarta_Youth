@@ -16,15 +16,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root {
-            --primary: #00529b; /* MNC Blue */
-            --secondary: #003d73;
-            --accent: #38bdf8;
+            --primary: #e11d48; /* Red */
+            --secondary: #be123c;
+            --accent: #f97316; /* Orange */
             --dark: #0f172a;
-            --light: #f8fafc;
+            --light: #fafafa;
         }
-        body { font-family: 'Inter', sans-serif; background-color: var(--light); color: #334155; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--light); color: #334155; -webkit-font-smoothing: antialiased; }
         .font-outfit { font-family: 'Outfit', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #00529b 0%, #003d73 100%); }
+        .gradient-bg { background: linear-gradient(135deg, #e11d48 0%, #f97316 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
     </style>
 </head>
 <body class="font-sans antialiased bg-slate-50">

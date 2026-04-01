@@ -7,20 +7,23 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <!-- Card Ketos -->
-                <a href="{{ route('ketos.index') }}" class="block">
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg hover:shadow-lg transition">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
-                                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                                    </svg>
+                <a href="{{ route('ketos.index') }}" class="group block">
+                    <div class="glass-card overflow-hidden shadow-sm sm:rounded-[32px] hover:shadow-2xl hover:shadow-rose-900/10 transition-all duration-500 hover:-translate-y-2">
+                        <div class="p-10">
+                            <div class="flex items-center gap-6">
+                                <div class="flex-shrink-0 bg-rose-500 text-white rounded-2xl p-5 shadow-lg shadow-rose-900/20 group-hover:rotate-12 transition-transform">
+                                    <i data-feather="user" class="w-8 h-8"></i>
                                 </div>
-                                <div class="ml-4">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Data Ketos</h3>
-                                    <p class="text-gray-600 dark:text-gray-400">Lihat pendaftaran Ketua OSIS</p>
+                                <div>
+                                    <h3 class="text-2xl font-black text-slate-900 font-outfit uppercase tracking-tight italic">Registrasi Ketos</h3>
+                                    <p class="text-slate-500 font-medium text-sm mt-1 uppercase tracking-widest">Portal Pendaftaran Ketua OSIS</p>
+                                </div>
+                            </div>
+                            <div class="mt-8 flex items-center justify-end">
+                                <div class="p-3 bg-slate-50 rounded-full group-hover:bg-rose-50 group-hover:text-rose-600 transition-colors">
+                                    <i data-feather="arrow-right" class="w-5 h-5"></i>
                                 </div>
                             </div>
                         </div>
@@ -28,18 +31,21 @@
                 </a>
 
                 <!-- Card Organisasi -->
-                <a href="{{ route('sekolah.index') }}" class="block">
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg hover:shadow-lg transition">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
-                                    <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                    </svg>
+                <a href="{{ route('sekolah.index') }}" class="group block">
+                    <div class="glass-card overflow-hidden shadow-sm sm:rounded-[32px] hover:shadow-2xl hover:shadow-orange-900/10 transition-all duration-500 hover:-translate-y-2">
+                        <div class="p-10">
+                            <div class="flex items-center gap-6">
+                                <div class="flex-shrink-0 bg-orange-500 text-white rounded-2xl p-5 shadow-lg shadow-orange-900/20 group-hover:-rotate-12 transition-transform">
+                                    <i data-feather="users" class="w-8 h-8"></i>
                                 </div>
-                                <div class="ml-4">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Data Organisasi</h3>
-                                    <p class="text-gray-600 dark:text-gray-400">Lihat pendaftaran Organisasi</p>
+                                <div>
+                                    <h3 class="text-2xl font-black text-slate-900 font-outfit uppercase tracking-tight italic">Registrasi Sekolah</h3>
+                                    <p class="text-slate-500 font-medium text-sm mt-1 uppercase tracking-widest">Portal Organisasi & Sekolah</p>
+                                </div>
+                            </div>
+                            <div class="mt-8 flex items-center justify-end">
+                                <div class="p-3 bg-slate-50 rounded-full group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
+                                    <i data-feather="arrow-right" class="w-5 h-5"></i>
                                 </div>
                             </div>
                         </div>
