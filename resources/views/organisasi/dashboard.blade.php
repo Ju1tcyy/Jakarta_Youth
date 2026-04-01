@@ -328,7 +328,7 @@
             font-weight: 500;
         }
 
-        input[type="file"] {
+        input[type="file"], input[type="url"], input[type="text"] {
             width: 100%;
             padding: 10px;
             border: 2px dashed #cbd5e1;
@@ -338,9 +338,36 @@
             transition: var(--transition);
         }
 
-        input[type="file"]:hover {
+        input[type="file"]:hover, input[type="url"]:hover, input[type="text"]:hover {
             border-color: var(--primary);
             background: rgba(229, 62, 62, 0.02);
+        }
+
+        input[type="url"], input[type="text"] {
+            border-style: solid;
+            cursor: text;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f0f9ff;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            font-size: 0.9rem;
         }
 
         .btn {
@@ -391,9 +418,12 @@
             margin-top: 6px;
         }
 
-        /* Notice banner removal */
-        .alert {
-            display: none !important; 
+        .note-box {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border-left: 4px solid #e53e3e;
         }
 
         @media (max-width: 768px) {
@@ -430,7 +460,8 @@
             <ul class="sidebar-menu">
                 <li><a href="#" onclick="showSection('dashboard')" class="menu-item active" data-section="dashboard"><i data-feather="grid"></i> Dashboard</a></li>
                 <li><a href="#" onclick="showSection('documents')" class="menu-item" data-section="documents"><i data-feather="upload-cloud"></i> Upload Dokumen</a></li>
-                <li><a href="#" onclick="showSection('profile')" class="menu-item" data-section="profile"><i data-feather="info"></i> Informasi Organisasi</a></li>
+                <li><a href="#" onclick="showSection('nominations')" class="menu-item" data-section="nominations"><i data-feather="award"></i> Nominasi</a></li>
+                <li><a href="#" onclick="showSection('profile')" class="menu-item" data-section="profile"><i data-feather="info"></i> Informasi</a></li>
             </ul>
             
             <!-- Sidebar Footer with User Profile and Logout -->
@@ -440,7 +471,7 @@
                         <div class="name">{{ $organisasi->nama_organisasi }}</div>
                         <div class="school">{{ $organisasi->nama_sekolah }}</div>
                     </div>
-                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    <form action="{{ route('organisasi.logout') }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit" class="btn-logout-sidebar" title="Logout" style="border: none; background: none; cursor: pointer;">
                             <i data-feather="log-out" style="width:16px;"></i>
@@ -460,12 +491,6 @@
                     <h2 style="color: #e53e3e; font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">Dashboard Organisasi</h2>
                     <p style="color: #666; font-size: 0.9rem;">Jakarta Youth Achievement Award 2026</p>
                 </div>
-                
-                @if(session('success'))
-                    <div class="alert" style="display: block !important; background: #dcfce7; color: #15803d; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #86efac;">
-                        {{ session('success') }}
-                    </div>
-                @endif
 
                 <div class="welcome-card">
                     <h2>Selamat Datang, {{ $organisasi->nama_organisasi }}!</h2>
@@ -478,33 +503,89 @@
                         <!-- Status Cards -->
                         <div class="document-card {{ $organisasi->surat_rekomendasi ? 'completed' : '' }}">
                             <h4>Surat Rekomendasi Sekolah</h4>
-                            <div class="document-status">
-                                <div class="status-icon {{ $organisasi->surat_rekomendasi ? 'completed' : 'pending' }}"></div>
+                            <div class="document-status {{ $organisasi->surat_rekomendasi ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ $organisasi->surat_rekomendasi ? 'check-circle' : 'clock' }}"></i>
                                 <span>{{ $organisasi->surat_rekomendasi ? 'Sudah diupload' : 'Belum diupload' }}</span>
                             </div>
                         </div>
 
                         <div class="document-card {{ $organisasi->struktur_kepengurusan ? 'completed' : '' }}">
                             <h4>Struktur Kepengurusan</h4>
-                            <div class="document-status">
-                                <div class="status-icon {{ $organisasi->struktur_kepengurusan ? 'completed' : 'pending' }}"></div>
+                            <div class="document-status {{ $organisasi->struktur_kepengurusan ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ $organisasi->struktur_kepengurusan ? 'check-circle' : 'clock' }}"></i>
                                 <span>{{ $organisasi->struktur_kepengurusan ? 'Sudah diupload' : 'Belum diupload' }}</span>
                             </div>
                         </div>
 
                         <div class="document-card {{ $organisasi->buktishare ? 'completed' : '' }}">
                             <h4>Bukti Share IG Story</h4>
-                            <div class="document-status">
-                                <div class="status-icon {{ $organisasi->buktishare ? 'completed' : 'pending' }}"></div>
+                            <div class="document-status {{ $organisasi->buktishare ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ $organisasi->buktishare ? 'check-circle' : 'clock' }}"></i>
                                 <span>{{ $organisasi->buktishare ? 'Sudah diupload' : 'Belum diupload' }}</span>
                             </div>
                         </div>
 
                         <div class="document-card {{ $organisasi->buktirepost ? 'completed' : '' }}">
                             <h4>Bukti Repost IG Feeds</h4>
-                            <div class="document-status">
-                                <div class="status-icon {{ $organisasi->buktirepost ? 'completed' : 'pending' }}"></div>
+                            <div class="document-status {{ $organisasi->buktirepost ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ $organisasi->buktirepost ? 'check-circle' : 'clock' }}"></i>
                                 <span>{{ $organisasi->buktirepost ? 'Sudah diupload' : 'Belum diupload' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nomination Status -->
+                <div class="documents-section">
+                    <h3>Status Nominasi</h3>
+                    <div class="documents-grid">
+                        <div class="document-card {{ ($organisasi->portofolio_program_kerja && $organisasi->google_form_kepuasan) ? 'completed' : '' }}">
+                            <h4>🏆 Innovation</h4>
+                            <div class="document-status {{ ($organisasi->portofolio_program_kerja && $organisasi->google_form_kepuasan) ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ ($organisasi->portofolio_program_kerja && $organisasi->google_form_kepuasan) ? 'check-circle' : 'clock' }}"></i>
+                                <span>{{ ($organisasi->portofolio_program_kerja && $organisasi->google_form_kepuasan) ? 'Lengkap' : 'Belum lengkap' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="document-card {{ ($organisasi->portofolio_kegiatan_sosial && $organisasi->google_form_kepuasan_sosial) ? 'completed' : '' }}">
+                            <h4>🤝 Social Impact</h4>
+                            <div class="document-status {{ ($organisasi->portofolio_kegiatan_sosial && $organisasi->google_form_kepuasan_sosial) ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ ($organisasi->portofolio_kegiatan_sosial && $organisasi->google_form_kepuasan_sosial) ? 'check-circle' : 'clock' }}"></i>
+                                <span>{{ ($organisasi->portofolio_kegiatan_sosial && $organisasi->google_form_kepuasan_sosial) ? 'Lengkap' : 'Belum lengkap' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="document-card {{ ($organisasi->portofolio_sosial_media && $organisasi->google_form_kepuasan_media) ? 'completed' : '' }}">
+                            <h4>📱 Media</h4>
+                            <div class="document-status {{ ($organisasi->portofolio_sosial_media && $organisasi->google_form_kepuasan_media) ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ ($organisasi->portofolio_sosial_media && $organisasi->google_form_kepuasan_media) ? 'check-circle' : 'clock' }}"></i>
+                                <span>{{ ($organisasi->portofolio_sosial_media && $organisasi->google_form_kepuasan_media) ? 'Lengkap' : 'Belum lengkap' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="document-card {{ ($organisasi->link_instagram_reels && $organisasi->google_form_kepuasan_reels) ? 'completed' : '' }}">
+                            <h4>🎬 Video Reels</h4>
+                            <div class="document-status {{ ($organisasi->link_instagram_reels && $organisasi->google_form_kepuasan_reels) ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ ($organisasi->link_instagram_reels && $organisasi->google_form_kepuasan_reels) ? 'check-circle' : 'clock' }}"></i>
+                                <span>{{ ($organisasi->link_instagram_reels && $organisasi->google_form_kepuasan_reels) ? 'Lengkap' : 'Belum lengkap' }}</span>
+                            </div>
+                        </div>
+
+                        @php
+                            $presidentComplete = $organisasi->pas_foto_formal && 
+                                                $organisasi->curriculum_vitae && 
+                                                $organisasi->fotokopi_rapor && 
+                                                $organisasi->video_profil_jakarta && 
+                                                $organisasi->portofolio_inovasi && 
+                                                $organisasi->esai_solusi_kepemimpinan && 
+                                                $organisasi->surat_pernyataan_kedisiplinan && 
+                                                $organisasi->google_form_kepuasan_president;
+                        @endphp
+                        <div class="document-card {{ $presidentComplete ? 'completed' : '' }}">
+                            <h4>👑 President</h4>
+                            <div class="document-status {{ $presidentComplete ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ $presidentComplete ? 'check-circle' : 'clock' }}"></i>
+                                <span>{{ $presidentComplete ? 'Lengkap' : 'Belum lengkap' }}</span>
                             </div>
                         </div>
                     </div>
@@ -513,12 +594,6 @@
 
             <!-- Documents Section -->
             <div id="documents" class="content-section">
-                @if(session('success'))
-                    <div class="alert">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <div class="documents-section">
                     <h3>Upload Dokumen</h3>
                     <p style="margin-bottom: 20px;">Silakan lengkapi dokumen-dokumen berikut untuk melengkapi pendaftaran Anda.</p>
@@ -543,7 +618,7 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="surat_rekomendasi">Upload Dokumen PDF:</label>
-                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
+                                    <div class="note-box">
                                         <strong>Catatan Penting:</strong><br>
                                         Surat menggunakan kop surat resmi sekolah, dilengkapi tanda tangan kepala sekolah serta cap/stempel sekolah
                                     </div>
@@ -568,7 +643,7 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="struktur_kepengurusan">Upload Dokumen PDF:</label>
-                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
+                                    <div class="note-box">
                                         <strong>Catatan Penting:</strong><br>
                                         Surat menggunakan kop surat resmi sekolah, dilengkapi tanda tangan kepala sekolah serta cap/stempel sekolah
                                     </div>
@@ -593,7 +668,7 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="buktishare">Upload Gambar JPG/PNG:</label>
-                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
+                                    <div class="note-box">
                                         <strong>Catatan Penting:</strong><br>
                                         Screenshot menampilkan nama akun dan postingan secara jelas serta masih tersedia (belum dihapus)
                                     </div>
@@ -618,7 +693,7 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="buktirepost">Upload Gambar JPG/PNG:</label>
-                                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #e53e3e;">
+                                    <div class="note-box">
                                         <strong>Catatan Penting:</strong><br>
                                         Screenshot menampilkan nama akun dan postingan secara jelas serta masih tersedia (belum dihapus)
                                     </div>
@@ -635,6 +710,334 @@
                         </div>
                     </form>
                 </div>
+            </div>
+
+            <!-- Nominations Section -->
+            <div id="nominations" class="content-section">
+                <div class="welcome-card">
+                    <h2>Kategori Nominasi</h2>
+                    <p>Pilih dan lengkapi kategori nominasi yang ingin Anda ikuti. Setiap kategori memiliki persyaratan dokumen yang berbeda.</p>
+                </div>
+
+                <form action="{{ route('organisasi.upload.nomination') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <!-- Category 1: Innovation -->
+                    <div class="documents-section">
+                        <h3>🏆 Outstanding Student Council Innovation</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan program kerja inovatif dan berdampak.</p>
+                        
+                        <div class="documents-grid">
+                            <div class="document-card {{ $organisasi->portofolio_program_kerja ? 'completed' : '' }}">
+                                <h4>Portofolio Program Kerja</h4>
+                                <div class="document-status {{ $organisasi->portofolio_program_kerja ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->portofolio_program_kerja ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->portofolio_program_kerja ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->portofolio_program_kerja)
+                                    <a href="{{ Storage::url($organisasi->portofolio_program_kerja) }}" target="_blank" class="file-link">
+                                        <i data-feather="file-text" style="width:16px;"></i> Lihat dokumen tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="portofolio_program_kerja">Upload Portofolio PDF:</label>
+                                    <input type="file" id="portofolio_program_kerja" name="portofolio_program_kerja" accept=".pdf">
+                                    <small>Format: PDF, Maks 5MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card">
+                                <h4>Form Kepuasan OSIS</h4>
+                                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Isi form kepuasan untuk kategori ini</p>
+                                
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="google_form_kepuasan" name="google_form_kepuasan" value="1" {{ $organisasi->google_form_kepuasan ? 'checked' : '' }}>
+                                    <label for="google_form_kepuasan">Saya sudah mengisi <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; font-weight: 600;">Form Kepuasan OSIS</a></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Social Impact -->
+                    <div class="documents-section">
+                        <h3>🤝 Leading Student Council Social Impact</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan kegiatan sosial yang berdampak luas.</p>
+                        
+                        <div class="documents-grid">
+                            <div class="document-card {{ $organisasi->portofolio_kegiatan_sosial ? 'completed' : '' }}">
+                                <h4>Portofolio Kegiatan Sosial</h4>
+                                <div class="document-status {{ $organisasi->portofolio_kegiatan_sosial ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->portofolio_kegiatan_sosial ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->portofolio_kegiatan_sosial ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->portofolio_kegiatan_sosial)
+                                    <a href="{{ Storage::url($organisasi->portofolio_kegiatan_sosial) }}" target="_blank" class="file-link">
+                                        <i data-feather="file-text" style="width:16px;"></i> Lihat dokumen tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="portofolio_kegiatan_sosial">Upload Portofolio PDF:</label>
+                                    <input type="file" id="portofolio_kegiatan_sosial" name="portofolio_kegiatan_sosial" accept=".pdf">
+                                    <small>Format: PDF, Maks 5MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card">
+                                <h4>Form Kepuasan OSIS</h4>
+                                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Isi form kepuasan untuk kategori ini</p>
+                                
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="google_form_kepuasan_sosial" name="google_form_kepuasan_sosial" value="1" {{ $organisasi->google_form_kepuasan_sosial ? 'checked' : '' }}>
+                                    <label for="google_form_kepuasan_sosial">Saya sudah mengisi <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; font-weight: 600;">Form Kepuasan OSIS</a></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Media -->
+                    <div class="documents-section">
+                        <h3>📱 Next-Level Student Council Media</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan pengelolaan media sosial yang kreatif.</p>
+                        
+                        <div class="documents-grid">
+                            <div class="document-card {{ $organisasi->portofolio_sosial_media ? 'completed' : '' }}">
+                                <h4>Portofolio Sosial Media</h4>
+                                <div class="document-status {{ $organisasi->portofolio_sosial_media ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->portofolio_sosial_media ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->portofolio_sosial_media ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->portofolio_sosial_media)
+                                    <a href="{{ Storage::url($organisasi->portofolio_sosial_media) }}" target="_blank" class="file-link">
+                                        <i data-feather="file-text" style="width:16px;"></i> Lihat dokumen tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="portofolio_sosial_media">Upload Portofolio PDF:</label>
+                                    <input type="file" id="portofolio_sosial_media" name="portofolio_sosial_media" accept=".pdf">
+                                    <small>Format: PDF, Maks 5MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card">
+                                <h4>Form Kepuasan OSIS</h4>
+                                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Isi form kepuasan untuk kategori ini</p>
+                                
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="google_form_kepuasan_media" name="google_form_kepuasan_media" value="1" {{ $organisasi->google_form_kepuasan_media ? 'checked' : '' }}>
+                                    <label for="google_form_kepuasan_media">Saya sudah mengisi <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; font-weight: 600;">Form Kepuasan OSIS</a></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Video Reels -->
+                    <div class="documents-section">
+                        <h3>🎬 Video IG Reels</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk video Instagram Reels terbaik.</p>
+                        
+                        <div class="documents-grid">
+                            <div class="document-card {{ $organisasi->link_instagram_reels ? 'completed' : '' }}">
+                                <h4>Link Instagram Reels</h4>
+                                <div class="document-status {{ $organisasi->link_instagram_reels ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->link_instagram_reels ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->link_instagram_reels ? 'Selesai' : 'Belum diisi' }}</span>
+                                </div>
+                                
+                                @if($organisasi->link_instagram_reels)
+                                    <a href="{{ $organisasi->link_instagram_reels }}" target="_blank" class="file-link">
+                                        <i data-feather="link" style="width:16px;"></i> Lihat link tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="link_instagram_reels">Link Instagram Reels:</label>
+                                    <input type="url" id="link_instagram_reels" name="link_instagram_reels" value="{{ $organisasi->link_instagram_reels }}" placeholder="https://instagram.com/...">
+                                    <small>Masukkan link Instagram Reels yang valid</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card">
+                                <h4>Form Kepuasan OSIS</h4>
+                                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Isi form kepuasan untuk kategori ini</p>
+                                
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="google_form_kepuasan_reels" name="google_form_kepuasan_reels" value="1" {{ $organisasi->google_form_kepuasan_reels ? 'checked' : '' }}>
+                                    <label for="google_form_kepuasan_reels">Saya sudah mengisi <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; font-weight: 600;">Form Kepuasan OSIS</a></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 5: President -->
+                    <div class="documents-section">
+                        <h3>👑 Student Council President of the Year 2026</h3>
+                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk Ketua OSIS terbaik tahun 2026.</p>
+                        
+                        <div class="documents-grid">
+                            <div class="document-card {{ $organisasi->pas_foto_formal ? 'completed' : '' }}">
+                                <h4>Pas Foto Formal</h4>
+                                <div class="document-status {{ $organisasi->pas_foto_formal ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->pas_foto_formal ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->pas_foto_formal ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->pas_foto_formal)
+                                    <a href="{{ Storage::url($organisasi->pas_foto_formal) }}" target="_blank" class="file-link">
+                                        <i data-feather="image" style="width:16px;"></i> Lihat foto tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="pas_foto_formal">Upload Pas Foto:</label>
+                                    <input type="file" id="pas_foto_formal" name="pas_foto_formal" accept=".jpg,.jpeg,.png">
+                                    <small>Format: JPG/PNG, Maks 2MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card {{ $organisasi->curriculum_vitae ? 'completed' : '' }}">
+                                <h4>Curriculum Vitae (CV)</h4>
+                                <div class="document-status {{ $organisasi->curriculum_vitae ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->curriculum_vitae ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->curriculum_vitae ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->curriculum_vitae)
+                                    <a href="{{ Storage::url($organisasi->curriculum_vitae) }}" target="_blank" class="file-link">
+                                        <i data-feather="file-text" style="width:16px;"></i> Lihat CV tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="curriculum_vitae">Upload CV PDF:</label>
+                                    <input type="file" id="curriculum_vitae" name="curriculum_vitae" accept=".pdf">
+                                    <small>Format: PDF, Maks 2MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card {{ $organisasi->fotokopi_rapor ? 'completed' : '' }}">
+                                <h4>Fotokopi Rapor</h4>
+                                <div class="document-status {{ $organisasi->fotokopi_rapor ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->fotokopi_rapor ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->fotokopi_rapor ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->fotokopi_rapor)
+                                    <a href="{{ Storage::url($organisasi->fotokopi_rapor) }}" target="_blank" class="file-link">
+                                        <i data-feather="file-text" style="width:16px;"></i> Lihat rapor tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="fotokopi_rapor">Upload Rapor PDF:</label>
+                                    <input type="file" id="fotokopi_rapor" name="fotokopi_rapor" accept=".pdf">
+                                    <small>Format: PDF, Maks 2MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card {{ $organisasi->video_profil_jakarta ? 'completed' : '' }}">
+                                <h4>Video Profil Jakarta</h4>
+                                <div class="document-status {{ $organisasi->video_profil_jakarta ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->video_profil_jakarta ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->video_profil_jakarta ? 'Selesai' : 'Belum diisi' }}</span>
+                                </div>
+                                
+                                @if($organisasi->video_profil_jakarta)
+                                    <a href="{{ $organisasi->video_profil_jakarta }}" target="_blank" class="file-link">
+                                        <i data-feather="link" style="width:16px;"></i> Lihat link tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="video_profil_jakarta">Link Video:</label>
+                                    <input type="url" id="video_profil_jakarta" name="video_profil_jakarta" value="{{ $organisasi->video_profil_jakarta }}" placeholder="https://youtube.com/...">
+                                    <small>Masukkan link video YouTube/Drive</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card {{ $organisasi->portofolio_inovasi ? 'completed' : '' }}">
+                                <h4>Portofolio Inovasi</h4>
+                                <div class="document-status {{ $organisasi->portofolio_inovasi ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->portofolio_inovasi ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->portofolio_inovasi ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->portofolio_inovasi)
+                                    <a href="{{ Storage::url($organisasi->portofolio_inovasi) }}" target="_blank" class="file-link">
+                                        <i data-feather="file-text" style="width:16px;"></i> Lihat portofolio tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="portofolio_inovasi">Upload Portofolio PDF:</label>
+                                    <input type="file" id="portofolio_inovasi" name="portofolio_inovasi" accept=".pdf">
+                                    <small>Format: PDF, Maks 5MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card {{ $organisasi->esai_solusi_kepemimpinan ? 'completed' : '' }}">
+                                <h4>Esai Solusi Kepemimpinan</h4>
+                                <div class="document-status {{ $organisasi->esai_solusi_kepemimpinan ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->esai_solusi_kepemimpinan ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->esai_solusi_kepemimpinan ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->esai_solusi_kepemimpinan)
+                                    <a href="{{ Storage::url($organisasi->esai_solusi_kepemimpinan) }}" target="_blank" class="file-link">
+                                        <i data-feather="file-text" style="width:16px;"></i> Lihat esai tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="esai_solusi_kepemimpinan">Upload Esai PDF:</label>
+                                    <input type="file" id="esai_solusi_kepemimpinan" name="esai_solusi_kepemimpinan" accept=".pdf">
+                                    <small>Format: PDF, Maks 2MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card {{ $organisasi->surat_pernyataan_kedisiplinan ? 'completed' : '' }}">
+                                <h4>Surat Pernyataan Kedisiplinan</h4>
+                                <div class="document-status {{ $organisasi->surat_pernyataan_kedisiplinan ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $organisasi->surat_pernyataan_kedisiplinan ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $organisasi->surat_pernyataan_kedisiplinan ? 'Selesai' : 'Belum diupload' }}</span>
+                                </div>
+                                
+                                @if($organisasi->surat_pernyataan_kedisiplinan)
+                                    <a href="{{ Storage::url($organisasi->surat_pernyataan_kedisiplinan) }}" target="_blank" class="file-link">
+                                        <i data-feather="file-text" style="width:16px;"></i> Lihat surat tersimpan
+                                    </a>
+                                @endif
+                                
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <label for="surat_pernyataan_kedisiplinan">Upload Surat PDF:</label>
+                                    <input type="file" id="surat_pernyataan_kedisiplinan" name="surat_pernyataan_kedisiplinan" accept=".pdf">
+                                    <small>Format: PDF, Maks 2MB</small>
+                                </div>
+                            </div>
+
+                            <div class="document-card">
+                                <h4>Form Kepuasan OSIS</h4>
+                                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Isi form kepuasan untuk kategori ini</p>
+                                
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="google_form_kepuasan_president" name="google_form_kepuasan_president" value="1" {{ $organisasi->google_form_kepuasan_president ? 'checked' : '' }}>
+                                    <label for="google_form_kepuasan_president">Saya sudah mengisi <a href="https://forms.gle/3Wt8MmfSke3x8hj6A" target="_blank" style="color: #e53e3e; font-weight: 600;">Form Kepuasan OSIS</a></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: right; margin-top: 30px;">
+                        <button type="submit" class="btn">
+                            <i data-feather="upload-cloud"></i> Simpan Data Nominasi
+                        </button>
+                    </div>
+                </form>
             </div>
 
             <!-- Profile Section -->

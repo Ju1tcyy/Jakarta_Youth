@@ -33,8 +33,10 @@ Route::get('/registration-success', function () {
 
 // Pendaftar Dashboard
 Route::middleware(['auth'])->group(function () {
-    Route::get('/organisasi/dashboard', [PendaftarDashboardController::class, 'index'])->name('organisasi.dashboard');
-    Route::post('/organisasi/upload', [PendaftarDashboardController::class, 'uploadDocuments'])->name('organisasi.upload');
+    Route::get('/organisasi/dashboard', [App\Http\Controllers\OrganisasiAuthController::class, 'dashboard'])->name('organisasi.dashboard');
+    Route::post('/organisasi/upload', [App\Http\Controllers\OrganisasiAuthController::class, 'uploadDocuments'])->name('organisasi.upload');
+    Route::post('/organisasi/upload-nomination', [App\Http\Controllers\OrganisasiAuthController::class, 'uploadNomination'])->name('organisasi.upload.nomination');
+    Route::post('/organisasi/logout', [App\Http\Controllers\OrganisasiAuthController::class, 'logout'])->name('organisasi.logout');
 });
 
 // Admin Dashboard (Protected by auth and AdminMiddleware)

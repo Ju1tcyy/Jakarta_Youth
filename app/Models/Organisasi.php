@@ -17,6 +17,31 @@ class Organisasi extends Model
         'buktishare',
         'buktirepost',
         'nilai',
+        // Nomination fields
+        'portofolio_program_kerja',
+        'google_form_kepuasan',
+        'portofolio_kegiatan_sosial',
+        'google_form_kepuasan_sosial',
+        'portofolio_sosial_media',
+        'google_form_kepuasan_media',
+        'link_instagram_reels',
+        'google_form_kepuasan_reels',
+        'pas_foto_formal',
+        'curriculum_vitae',
+        'fotokopi_rapor',
+        'video_profil_jakarta',
+        'portofolio_inovasi',
+        'esai_solusi_kepemimpinan',
+        'surat_pernyataan_kedisiplinan',
+        'google_form_kepuasan_president',
+    ];
+
+    protected $casts = [
+        'google_form_kepuasan' => 'boolean',
+        'google_form_kepuasan_sosial' => 'boolean',
+        'google_form_kepuasan_media' => 'boolean',
+        'google_form_kepuasan_reels' => 'boolean',
+        'google_form_kepuasan_president' => 'boolean',
     ];
 
     public function user()

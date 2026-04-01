@@ -54,6 +54,9 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .portal-card {
@@ -87,15 +90,6 @@
         .portal-card.organisasi:hover {
             border-color: #e53e3e;
             box-shadow: 0 20px 40px rgba(229, 62, 62, 0.2);
-        }
-
-        .portal-card.ketos {
-            border-color: #667eea;
-        }
-
-        .portal-card.ketos:hover {
-            border-color: #667eea;
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
         }
 
         .portal-icon {
@@ -134,11 +128,6 @@
 
         .portal-btn.organisasi {
             background: linear-gradient(135deg, #e53e3e 0%, #dd6b20 100%);
-            color: white;
-        }
-
-        .portal-btn.ketos {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
 
@@ -224,16 +213,6 @@
                 <p>Portal untuk sekolah dan organisasi. Upload dokumen persyaratan dan kelola data organisasi OSIS.</p>
                 <a href="{{ route('organisasi.login') }}" class="portal-btn organisasi">
                     Masuk ke Portal Organisasi
-                </a>
-            </div>
-
-            <!-- Ketos Portal -->
-            <div class="portal-card ketos">
-                <div class="portal-icon">👨‍🎓</div>
-                <h3>Portal Ketos</h3>
-                <p>Portal khusus untuk Ketua OSIS. Daftar nominasi, upload berkas kompetisi, dan pantau status penilaian.</p>
-                <a href="{{ route('ketos.login') }}" class="portal-btn ketos">
-                    Masuk ke Portal Ketos
                 </a>
             </div>
         </div>
