@@ -16,33 +16,35 @@
 <!-- Statistics Cards -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
     <!-- Total Pendaftar -->
-    <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
-        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:scale-110 transition-transform duration-500 text-blue-600">
-            <i data-feather="users" class="w-24 h-24"></i>
+    <div class="bg-gradient-to-br from-indigo-600 to-indigo-900 rounded-[30px] p-8 shadow-xl shadow-indigo-200 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group text-white">
+        <div class="absolute -right-6 -top-6 p-4 opacity-10 group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 text-white">
+            <i data-feather="users" class="w-40 h-40"></i>
         </div>
-        <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500/30 rounded-full blur-3xl"></div>
+        <div class="flex items-center justify-between mb-4 relative z-10">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white border border-white/30 shadow-lg">
                 <i data-feather="user-plus" class="w-6 h-6"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Total</span>
+            <span class="text-[10px] font-bold text-indigo-200 tracking-widest uppercase bg-black/20 px-3 py-1 rounded-full">Total</span>
         </div>
-        <h3 class="text-4xl font-black text-slate-800 tracking-tight">{{ $totalPendaftar }}</h3>
-        <p class="text-sm font-semibold text-slate-500 mt-1">Pendaftar Terdaftar</p>
+        <h3 class="text-5xl font-black text-white tracking-tight relative z-10 mb-1">{{ $totalPendaftar }}</h3>
+        <p class="text-sm font-semibold text-indigo-200 relative z-10">Pendaftar Terdaftar</p>
     </div>
 
     <!-- Data Organisasi -->
-    <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
-        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:scale-110 transition-transform duration-500 text-green-600">
-            <i data-feather="briefcase" class="w-24 h-24"></i>
+    <div class="bg-gradient-to-br from-emerald-500 to-emerald-800 rounded-[30px] p-8 shadow-xl shadow-emerald-200 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group text-white">
+        <div class="absolute -right-6 -top-6 p-4 opacity-10 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 text-white">
+            <i data-feather="briefcase" class="w-40 h-40"></i>
         </div>
-        <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-600">
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-400/30 rounded-full blur-3xl"></div>
+        <div class="flex items-center justify-between mb-4 relative z-10">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white border border-white/30 shadow-lg">
                 <i data-feather="home" class="w-6 h-6"></i>
             </div>
-            <span class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Organisasi</span>
+            <span class="text-[10px] font-bold text-emerald-200 tracking-widest uppercase bg-black/20 px-3 py-1 rounded-full">Organisasi</span>
         </div>
-        <h3 class="text-4xl font-black text-slate-800 tracking-tight">{{ $totalOrganisasi }}</h3>
-        <p class="text-sm font-semibold text-slate-500 mt-1">Data Organisasi</p>
+        <h3 class="text-5xl font-black text-white tracking-tight relative z-10 mb-1">{{ $totalOrganisasi }}</h3>
+        <p class="text-sm font-semibold text-emerald-200 relative z-10">Data Organisasi Lengkap</p>
     </div>
 </div>
 

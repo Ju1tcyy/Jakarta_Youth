@@ -4,7 +4,7 @@
 @section('page-title', 'Profil Organisasi')
 
 @section('content')
-<div class="mb-8 flex items-center justify-between">
+<div class="mb-8 flex items-center justify-between pt-6 relative z-10">
     <a href="{{ route('sekolah.index') }}" class="inline-flex items-center text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors">
         <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
         Kembali ke Daftar
@@ -217,12 +217,26 @@
             <div class="mt-12 p-8 bg-slate-50 rounded-[30px] border border-dashed border-slate-200 text-center">
                 <h4 class="text-sm font-black text-slate-800 uppercase tracking-widest mb-2">Instruksi Verifikasi</h4>
                 <p class="text-xs text-slate-500 leading-relaxed max-w-lg mx-auto font-medium">
-                    Mohon periksa keaslian dokumen di atas sebelum memberikan skor. Klik tombol <span class="text-blue-600 font-bold">"Beri Penilaian"</span> di atas untuk menginput hasil evaluasi.
+                    Mohon periksa keaslian dokumen di atas sebelum memberikan skor. Isi form penilaian di bawah.
                 </p>
             </div>
         </div>
     </div>
 </div>
+
+{{-- SCORING FORM --}}
+<div class="mt-8">
+    @php
+        $penilaian = \App\Models\Penilaian::where('organisasi_id', $organisasi->id)
+            ->where('juri_id', auth()->id())
+            ->first();
+    @endphp
+    @include('juri._scoring_form', [
+        'formAction' => route('sekolah.nilai', $organisasi->id),
+        'backUrl'    => route('sekolah.show', $organisasi->id),
+    ])
+</div>
+
 
 <script>
     document.getElementById('delete-btn').addEventListener('click', function() {

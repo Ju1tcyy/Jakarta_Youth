@@ -41,8 +41,8 @@ return new class extends Migration
                    alamat, 
                    surat_rekomendasi, 
                    struktur_kepengurusan, 
-                   bukti_share_ig as buktishare, 
-                   bukti_repost_ig as buktirepost, 
+                   buktishare, 
+                   buktirepost, 
                    nilai, 
                    created_at, 
                    updated_at

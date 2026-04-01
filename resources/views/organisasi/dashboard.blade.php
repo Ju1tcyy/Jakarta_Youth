@@ -8,433 +8,466 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
         :root {
             --primary: #e53e3e;
             --secondary: #dd6b20;
+            --accent: #f6ad55;
             --dark: #0f172a;
-            --light: #f8fafc;
+            --dark2: #1e293b;
+            --light: #f1f5f9;
             --white: #ffffff;
             --text-main: #334155;
             --text-muted: #64748b;
             --font-heading: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --sidebar-bg: #0f172a;
+            --sidebar-active: rgba(229,62,62,0.15);
+            --sidebar-hover: rgba(255,255,255,0.06);
+            --glass-bg: rgba(255,255,255,0.95);
+            --card-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: var(--font-body);
-            background: radial-gradient(circle at top right, rgba(229, 62, 62, 0.05), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(221, 107, 32, 0.05), transparent 40%);
-            background-color: var(--light);
+            background: #f1f5f9;
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            color: var(--dark);
-        }
+        h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); color: var(--dark); }
 
+        /* ── TOP HEADER ── */
         .header {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 15px 5%;
+            background: var(--dark);
+            padding: 0 32px;
+            height: 64px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: var(--glass-shadow);
             position: sticky;
             top: 0;
             z-index: 50;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
-
         .header .logo {
             display: flex;
             align-items: center;
+            gap: 12px;
         }
-
-        .header .logo img {
-            height: 60px;
-            width: auto;
-            margin-right: 15px;
-        }
-
+        .header .logo img { height: 38px; width: auto; }
         .header h1 {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(120deg,#f87171,#fb923c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .header .user-info {
-            text-align: right;
-            border-left: 2px solid #e2e8f0;
-            padding-left: 15px;
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
-
-        .header .user-info p:first-child {
+        .header-badge {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50px;
+            padding: 6px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .header-badge .name {
+            font-size: 0.875rem;
             font-weight: 600;
-            color: var(--dark);
+            color: #fff;
+            font-family: var(--font-heading);
+        }
+        .header-badge .school {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.5);
         }
 
-        .header .user-info p:last-child {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
+        /* ── MAIN LAYOUT ── */
         .main-container {
             display: flex;
             flex: 1;
         }
 
+        /* ── SIDEBAR ── */
         .sidebar {
-            width: 280px;
-            background: var(--white);
-            box-shadow: 2px 0 10px rgba(0,0,0,0.03);
+            width: 260px;
+            background: var(--sidebar-bg);
             display: flex;
             flex-direction: column;
-            z-index: 10;
+            position: sticky;
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
         }
-
         .sidebar-header {
-            padding: 25px;
+            padding: 28px 24px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
-
         .sidebar-header h3 {
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.35);
             font-weight: 700;
         }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex: 1;
-        }
-
+        .sidebar-menu { list-style: none; padding: 12px 0; flex: 1; }
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            padding: 18px 25px;
-            color: var(--text-main);
+            gap: 12px;
+            padding: 13px 24px;
+            color: rgba(255,255,255,0.6);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 0;
             transition: var(--transition);
-            border-left: 4px solid transparent;
+            border-left: 3px solid transparent;
+            margin-bottom: 2px;
         }
-
-        .sidebar-menu a i {
-            margin-right: 15px;
-            width: 20px;
-            height: 20px;
-            color: var(--text-muted);
-            transition: var(--transition);
-        }
-
+        .sidebar-menu a i { width: 18px; height: 18px; flex-shrink: 0; }
         .sidebar-menu a:hover {
-            background: rgba(229, 62, 62, 0.05);
-            color: var(--primary);
+            background: var(--sidebar-hover);
+            color: #fff;
         }
-
-        .sidebar-menu a:hover i {
-            color: var(--primary);
-        }
-
         .sidebar-menu a.active {
-            background: rgba(229, 62, 62, 0.08);
-            color: var(--primary);
-            border-left: 4px solid var(--primary);
+            background: var(--sidebar-active);
+            color: #f87171;
+            border-left-color: #f87171;
             font-weight: 600;
         }
-        
-        .sidebar-menu a.active i {
-            color: var(--primary);
-        }
-
+        .sidebar-menu a.active i { color: #f87171; }
         .sidebar-footer {
-            padding: 20px;
-            background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
-
         .user-profile {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        
         .user-info-sidebar .name {
             font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--dark);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.85);
         }
-        
         .user-info-sidebar .school {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
         }
-
         .btn-logout-sidebar {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
-            background: #fee2e2;
-            color: var(--primary);
+            background: rgba(239,68,68,0.15);
+            color: #f87171;
             transition: var(--transition);
         }
-        
         .btn-logout-sidebar:hover {
-            background: var(--primary);
-            color: var(--white);
+            background: #ef4444;
+            color: #fff;
             transform: scale(1.05);
         }
 
+        /* ── CONTENT ── */
         .content-area {
             flex: 1;
-            padding: 40px;
-            max-width: calc(100vw - 280px);
+            padding: 36px;
+            max-width: calc(100vw - 260px);
+            overflow-x: hidden;
         }
-
-        .content-section {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
+        .content-section { display: none; animation: fadeIn 0.35s ease forwards; }
+        .content-section.active { display: block; }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .welcome-card {
-            background: var(--white);
-            padding: 35px;
+        /* ── HERO BANNER ── */
+        .hero-banner {
+            background: linear-gradient(135deg,#1e293b 0%,#7f1d1d 50%,#c2410c 100%);
             border-radius: 20px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            border: 1px solid rgba(0,0,0,0.02);
+            padding: 36px 40px;
+            margin-bottom: 28px;
             position: relative;
             overflow: hidden;
+            color: #fff;
         }
-
-        .welcome-card::before {
+        .hero-banner::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            top: -60px; right: -60px;
+            width: 250px; height: 250px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -40px;
+            width: 300px; height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+        .hero-banner h2 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .hero-banner h2 span { color: #fb923c; }
+        .hero-banner p { color: rgba(255,255,255,0.65); font-size: 0.95rem; }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(251,146,60,0.2);
+            border: 1px solid rgba(251,146,60,0.3);
+            color: #fb923c;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
+        /* ── STAT CARDS ── */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+        .stat-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 22px 24px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .stat-icon.red { background: #fee2e2; color: #ef4444; }
+        .stat-icon.orange { background: #ffedd5; color: #f97316; }
+        .stat-icon.green { background: #dcfce7; color: #22c55e; }
+        .stat-icon i { width: 22px; height: 22px; }
+        .stat-info .label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; margin-bottom: 3px; }
+        .stat-info .value { font-size: 1.5rem; font-weight: 800; color: var(--dark); font-family: var(--font-heading); }
+        .stat-info .sub { font-size: 0.75rem; color: #22c55e; font-weight: 500; }
+
+        /* ── SECTION CARDS ── */
+        .section-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            margin-bottom: 24px;
+        }
+        .section-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .section-card-header .icon-wrap {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg,#fee2e2,#ffedd5);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ef4444;
+        }
+        .section-card-header .icon-wrap i { width: 18px; height: 18px; }
+        .section-card-header h3 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+        .section-card-header p { font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0; }
+
+        /* ── DOCUMENT CARDS ── */
         .documents-section {
             background: var(--white);
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.02);
-            margin-bottom: 30px;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            margin-bottom: 24px;
         }
-
+        .documents-section h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
         .documents-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+            gap: 18px;
+            margin-top: 20px;
         }
-
         .document-card {
-            background: var(--light);
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 22px;
             transition: var(--transition);
         }
-
         .document-card:hover {
-            border-color: rgba(229, 62, 62, 0.3);
-            box-shadow: 0 5px 15px -5px rgba(229, 62, 62, 0.1);
+            border-color: rgba(229,62,62,0.25);
+            box-shadow: 0 4px 18px rgba(229,62,62,0.08);
             transform: translateY(-2px);
         }
-
         .document-card.completed {
             border-color: #86efac;
-            background: #f0fdf4;
+            background: linear-gradient(135deg,#f0fdf4,#f8fafc);
         }
-
-        .document-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-        }
-
+        .document-card h4 { font-size: 1rem; margin-bottom: 10px; }
         .document-status {
             display: inline-flex;
             align-items: center;
-            padding: 6px 12px;
+            gap: 6px;
+            padding: 5px 12px;
             border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 18px;
         }
+        .document-status.pending { background: #fef3c7; color: #b45309; }
+        .document-status.completed { background: #dcfce7; color: #15803d; }
+        .document-status i { width: 13px; height: 13px; }
 
-        .document-status.pending {
-            background: #fef3c7;
-            color: #b45309;
-        }
-
-        .document-status.completed {
-            background: #dcfce7;
-            color: #15803d;
-        }
-
-        .document-status i {
-            width: 14px;
-            height: 14px;
-            margin-right: 6px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
+        /* ── FORM ELEMENTS ── */
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 7px; color: var(--text-main); font-weight: 500; font-size: 0.875rem; }
         input[type="file"], input[type="url"], input[type="text"] {
             width: 100%;
-            padding: 10px;
+            padding: 10px 14px;
             border: 2px dashed #cbd5e1;
             border-radius: 10px;
             background: var(--white);
             cursor: pointer;
             transition: var(--transition);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
         }
-
-        input[type="file"]:hover, input[type="url"]:hover, input[type="text"]:hover {
-            border-color: var(--primary);
-            background: rgba(229, 62, 62, 0.02);
-        }
-
-        input[type="url"], input[type="text"] {
-            border-style: solid;
-            cursor: text;
-        }
-
+        input[type="file"]:hover, input[type="url"]:hover, input[type="text"]:hover { border-color: #f87171; }
+        input[type="url"], input[type="text"] { border-style: solid; cursor: text; }
         .checkbox-group {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 12px;
-            background: #f0f9ff;
-            border-radius: 8px;
+            padding: 12px 14px;
+            background: #eff6ff;
+            border-radius: 10px;
+            border: 1px solid #dbeafe;
             margin-top: 10px;
         }
+        .checkbox-group input[type="checkbox"] { width: 18px; height: 18px; accent-color: #ef4444; cursor: pointer; }
+        .checkbox-group label { margin: 0; cursor: pointer; font-size: 0.875rem; }
 
-        .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .checkbox-group label {
-            margin: 0;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
+        /* ── BUTTONS ── */
         .btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg,#e53e3e 0%,#dd6b20 100%);
             color: white;
             border: none;
-            padding: 14px 32px;
+            padding: 12px 28px;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             transition: var(--transition);
             font-family: var(--font-heading);
-            font-size: 1rem;
-            box-shadow: 0 4px 14px 0 rgba(229, 62, 62, 0.25);
+            font-size: 0.95rem;
+            box-shadow: 0 4px 14px rgba(229,62,62,0.3);
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px 0 rgba(229, 62, 62, 0.4);
-        }
-        
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,62,62,0.45); }
         .file-link {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: var(--primary);
+            color: #ef4444;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            margin-bottom: 15px;
-            padding: 8px 12px;
-            background: rgba(229, 62, 62, 0.05);
+            margin-bottom: 12px;
+            padding: 7px 12px;
+            background: #fee2e2;
             border-radius: 8px;
             transition: var(--transition);
         }
-        
-        .file-link:hover {
-            background: rgba(229, 62, 62, 0.1);
-        }
-
-        small {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 6px;
-        }
-
+        .file-link:hover { background: #fecaca; }
+        small { display: block; color: var(--text-muted); font-size: 0.76rem; margin-top: 5px; }
         .note-box {
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            border-left: 4px solid #e53e3e;
+            background: #fff7ed;
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #f97316;
+            font-size: 0.85rem;
+            color: #7c3a00;
+        }
+        .welcome-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 24px;
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(to bottom,#ef4444,#f97316);
         }
 
+        @media (max-width: 900px) {
+            .stats-row { grid-template-columns: 1fr 1fr; }
+        }
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; display: flex; flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: auto; }
             .sidebar-menu { display: flex; overflow-x: auto; scrollbar-width: none; }
-            .sidebar-menu a { padding: 15px; border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
-            .sidebar-menu a.active { border-left: none; border-bottom: 3px solid var(--primary); }
+            .sidebar-menu a { padding: 12px 16px; border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+            .sidebar-menu a.active { border-left: none; border-bottom-color: #f87171; }
             .content-area { padding: 20px; max-width: 100%; }
-            .header { flex-direction: column; gap: 15px; text-align: center; }
-            .header .user-info { border-left: none; padding-left: 0; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px; }
+            .header { padding: 0 20px; }
+            .stats-row { grid-template-columns: 1fr; }
             .documents-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -442,12 +475,14 @@
 <body>
     <div class="header">
         <div class="logo">
-            <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo">
-            <h1>Dashboard Organisasi</h1>
+            <img src="{{ asset('icon/logo_collab.png') }}" alt="Logo">
+            <h1>Jakarta Youth</h1>
         </div>
-        <div class="user-info">
-            <p>{{ $organisasi->nama_organisasi }}</p>
-            <p style="font-size: 14px; opacity: 0.8;">{{ $organisasi->nama_sekolah }}</p>
+        <div class="header-right">
+            <div class="header-badge">
+                <span class="name">{{ $organisasi->nama_organisasi }}</span>
+                <span class="school">{{ $organisasi->nama_sekolah }}</span>
+            </div>
         </div>
     </div>
 
@@ -485,16 +520,43 @@
         <div class="content-area">
             <!-- Dashboard Section -->
             <div id="dashboard" class="content-section active">
-                <!-- Logo Section -->
-                <div class="text-center mb-6">
-                    <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" style="height: 60px; width: auto; margin: 0 auto 15px;">
-                    <h2 style="color: #e53e3e; font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">Dashboard Organisasi</h2>
-                    <p style="color: #666; font-size: 0.9rem;">Jakarta Youth Achievement Award 2026</p>
+                <!-- Hero Banner -->
+                <div class="hero-banner">
+                    <div class="hero-tag"><i data-feather="award" style="width:12px;height:12px;"></i> Jakarta Youth Achievement Award 2026</div>
+                    <h2>Selamat Datang, <span>{{ $organisasi->nama_organisasi }}!</span></h2>
+                    <p>Pantau kelengkapan dokumen dan status nominasi Anda melalui dashboard ini.</p>
                 </div>
 
-                <div class="welcome-card">
-                    <h2>Selamat Datang, {{ $organisasi->nama_organisasi }}!</h2>
-                    <p>Dashboard ini menampilkan informasi organisasi dan status kelengkapan dokumen Anda.</p>
+                @php
+                    $docsTotal = 4;
+                    $docsDone = ($organisasi->surat_rekomendasi ? 1 : 0) + ($organisasi->struktur_kepengurusan ? 1 : 0) + ($organisasi->buktishare ? 1 : 0) + ($organisasi->buktirepost ? 1 : 0);
+                @endphp
+                <!-- Stat Cards -->
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-icon red"><i data-feather="file-text"></i></div>
+                        <div class="stat-info">
+                            <div class="label">Dokumen Lengkap</div>
+                            <div class="value">{{ $docsDone }}/{{ $docsTotal }}</div>
+                            <div class="sub">{{ $docsDone == $docsTotal ? '✓ Semua lengkap!' : ($docsTotal - $docsDone).' lagi kurang' }}</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i data-feather="award"></i></div>
+                        <div class="stat-info">
+                            <div class="label">Status Nominasi</div>
+                            <div class="value">{{ $organisasi->nilai ?? 0 }}</div>
+                            <div class="sub">Poin sementara</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i data-feather="calendar"></i></div>
+                        <div class="stat-info">
+                            <div class="label">Terdaftar Sejak</div>
+                            <div class="value" style="font-size:1.1rem;">{{ $organisasi->created_at->format('d M') }}</div>
+                            <div class="sub">{{ $organisasi->created_at->format('Y') }}</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="documents-section">
@@ -722,8 +784,80 @@
                 <form action="{{ route('organisasi.upload.nomination') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
+                    <!-- Logic to determine if user already picked a category -->
+                    @php
+                        $lockedCategory = '';
+                        if ($organisasi->portofolio_program_kerja || $organisasi->google_form_kepuasan) {
+                            $lockedCategory = 'cat1';
+                        } elseif ($organisasi->portofolio_kegiatan_sosial || $organisasi->google_form_kepuasan_sosial) {
+                            $lockedCategory = 'cat2';
+                        } elseif ($organisasi->portofolio_sosial_media || $organisasi->google_form_kepuasan_media) {
+                            $lockedCategory = 'cat3';
+                        } elseif ($organisasi->link_instagram_reels || $organisasi->google_form_kepuasan_reels) {
+                            $lockedCategory = 'cat4';
+                        } elseif ($organisasi->pas_foto_formal || $organisasi->curriculum_vitae || $organisasi->fotokopi_rapor || $organisasi->video_profil_jakarta || $organisasi->portofolio_inovasi || $organisasi->esai_solusi_kepemimpinan || $organisasi->surat_pernyataan_kedisiplinan || $organisasi->google_form_kepuasan_president) {
+                            $lockedCategory = 'cat5';
+                        }
+                    @endphp
+
+                    <!-- Category Selector Dropdown -->
+                    <div class="welcome-card" style="padding: 25px; margin-bottom: 25px;">
+                        <label for="category_selector" style="font-size: 1.1rem; color: #0f172a; margin-bottom: 12px; font-weight: 600; display: block;">Pilih Kategori Nominasi yang Ingin Diikuti:</label>
+                        <select id="category_selector" onchange="filterCategory(this.value)" style="width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; background: #f8fafc; font-size: 1rem; color: #334155; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23334155%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 15px top 50%; background-size: 12px auto; outline: none;" {{ $lockedCategory ? 'disabled' : '' }}>
+                            <option value="" disabled {{ !$lockedCategory ? 'selected' : '' }}>-- Pilih Kategori Nominasi --</option>
+                            <option value="cat1" {{ $lockedCategory == 'cat1' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🏆 Outstanding Student Council Innovation</option>
+                            <option value="cat2" {{ $lockedCategory == 'cat2' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🤝 Leading Student Council Social Impact</option>
+                            <option value="cat3" {{ $lockedCategory == 'cat3' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>📱 Next-Level Student Council Media</option>
+                            <option value="cat4" {{ $lockedCategory == 'cat4' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🎬 Video IG Reels</option>
+                            <option value="cat5" {{ $lockedCategory == 'cat5' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>👑 Student Council President of the Year 2026</option>
+                        </select>
+                        
+                        @if($lockedCategory)
+                            <div class="note-box" style="margin-top: 15px; border-left-width: 6px; background: #fff5f5;">
+                                <strong>Peringatan:</strong><br>
+                                Anda hanya bisa mengikuti 1 kategori nominasi. Karena Anda sudah mengunggah persyaratan di kategori ini, kategori lainnya ditutup secara otomatis untuk akun Anda.
+                            </div>
+                        @endif
+                    </div>
+
+                    <script>
+                        function clearCategoryInputs(catId) {
+                            const section = document.getElementById(catId);
+                            if (!section) return;
+                            
+                            // Kosongkan file & url agar tidak tersubmit ganda
+                            const inputs = section.querySelectorAll('input[type="file"], input[type="url"]');
+                            inputs.forEach(input => input.value = '');
+                            
+                            const checkboxes = section.querySelectorAll('input[type="checkbox"]');
+                            checkboxes.forEach(input => input.checked = false);
+                        }
+
+                        function filterCategory(catId) {
+                            for(let i = 1; i <= 5; i++) {
+                                const id = 'cat' + i;
+                                const el = document.getElementById(id);
+                                if(el) {
+                                    el.style.display = 'none';
+                                    if(id !== catId) {
+                                        clearCategoryInputs(id);
+                                    }
+                                }
+                            }
+                            if(catId) {
+                                document.getElementById(catId).style.display = 'block';
+                            }
+                        }
+
+                        document.addEventListener('DOMContentLoaded', function() {
+                            @if($lockedCategory)
+                                filterCategory('{{ $lockedCategory }}');
+                            @endif
+                        });
+                    </script>
+
                     <!-- Category 1: Innovation -->
-                    <div class="documents-section">
+                    <div class="documents-section" id="cat1" style="display: none;">
                         <h3>🏆 Outstanding Student Council Innovation</h3>
                         <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan program kerja inovatif dan berdampak.</p>
                         
@@ -761,7 +895,7 @@
                     </div>
 
                     <!-- Category 2: Social Impact -->
-                    <div class="documents-section">
+                    <div class="documents-section" id="cat2" style="display: none;">
                         <h3>🤝 Leading Student Council Social Impact</h3>
                         <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan kegiatan sosial yang berdampak luas.</p>
                         
@@ -799,7 +933,7 @@
                     </div>
 
                     <!-- Category 3: Media -->
-                    <div class="documents-section">
+                    <div class="documents-section" id="cat3" style="display: none;">
                         <h3>📱 Next-Level Student Council Media</h3>
                         <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan pengelolaan media sosial yang kreatif.</p>
                         
@@ -837,7 +971,7 @@
                     </div>
 
                     <!-- Category 4: Video Reels -->
-                    <div class="documents-section">
+                    <div class="documents-section" id="cat4" style="display: none;">
                         <h3>🎬 Video IG Reels</h3>
                         <p style="margin-bottom: 20px; color: #666;">Kategori untuk video Instagram Reels terbaik.</p>
                         
@@ -875,7 +1009,7 @@
                     </div>
 
                     <!-- Category 5: President -->
-                    <div class="documents-section">
+                    <div class="documents-section" id="cat5" style="display: none;">
                         <h3>👑 Student Council President of the Year 2026</h3>
                         <p style="margin-bottom: 20px; color: #666;">Kategori untuk Ketua OSIS terbaik tahun 2026.</p>
                         

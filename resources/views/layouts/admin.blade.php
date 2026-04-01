@@ -40,24 +40,34 @@
         }
 
         .sidebar-item-active {
-            background: rgba(0, 82, 155, 0.08); /* Light MNC Blue */
-            color: var(--primary);
-            border-left: 4px solid var(--primary);
-            font-weight: 600;
+            background: linear-gradient(90deg, rgba(79,70,229,0.1) 0%, rgba(255,255,255,0) 100%);
+            color: #4f46e5;
+            border-left: 4px solid #4f46e5;
+            font-weight: 700;
         }
 
         .gradient-header {
-            background: linear-gradient(135deg, #00529b 0%, #003d73 100%);
+            background: linear-gradient(-45deg, #00529b, #1e3a8a, #003d73, #312e81);
+            background-size: 400% 400%;
+            animation: gradientAnim 15s ease infinite;
+        }
+
+        @keyframes gradientAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, #00529b, #1e3a8a);
             color: white;
+            box-shadow: 0 4px 15px rgba(0,82,155,0.3);
             transition: all 0.3s;
         }
         .btn-primary:hover {
-            background: var(--secondary);
-            transform: translateY(-1px);
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,82,155,0.4);
         }
 
         /* Custom Scrollbar */
@@ -102,19 +112,57 @@
             <nav class="p-4 flex-1 overflow-y-auto mobile-nav flex flex-col">
                 <div class="mb-6 mobile-nav-group">
                     <p class="text-[10px] font-black text-slate-300 mb-3 px-4 tracking-widest uppercase mobile-sidebar-header">Utama</p>
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 mb-2 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.dashboard') ? 'sidebar-item-active' : 'text-slate-500 hover:bg-slate-50' }}">
+                    <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('juri.dashboard') }}" class="flex items-center px-4 py-3 mb-2 rounded-xl transition-all duration-200 {{ request()->routeIs('*.dashboard') ? 'sidebar-item-active' : 'text-slate-500 hover:bg-slate-50' }}">
                         <i data-feather="grid" class="w-5 h-5 mr-3"></i>
                         <span>Dashboard</span>
                     </a>
                 </div>
 
+                @if(Auth::user()->role === 'admin')
                 <div class="mb-6 mobile-nav-group">
                     <p class="text-[10px] font-black text-slate-300 mb-3 px-4 tracking-widest uppercase mobile-sidebar-header">Database</p>
-                    <a href="{{ route('sekolah.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-xl transition-all duration-200 {{ request()->routeIs('sekolah.*') ? 'sidebar-item-active' : 'text-slate-500 hover:bg-slate-50' }}">
+                    <a href="{{ route('sekolah.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-xl transition-all duration-200 {{ request()->routeIs('sekolah.*') ? 'sidebar-item-active border-indigo-600 bg-indigo-50 text-indigo-600' : 'text-slate-500 hover:bg-slate-50' }}">
                         <i data-feather="award" class="w-5 h-5 mr-3"></i>
                         <span>Data Pendaftar</span>
                     </a>
+
+                    <!-- Dropdown Leaderboard Penilaian -->
+                    <div class="mb-2">
+                        <button onclick="toggleLeaderboard()" class="w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.leaderboard.*') ? 'sidebar-item-active bg-indigo-50 text-indigo-600' : 'text-slate-500 hover:bg-slate-50' }}">
+                            <div class="flex items-center">
+                                <i data-feather="bar-chart-2" class="w-5 h-5 mr-3"></i>
+                                <span>Leaderboard</span>
+                            </div>
+                            <i data-feather="chevron-down" id="lb-chevron" class="w-4 h-4 transition-transform duration-200 {{ request()->routeIs('admin.leaderboard.*') ? 'rotate-180' : '' }}"></i>
+                        </button>
+                        <div id="lb-menu" class="pl-12 pr-4 pt-2 pb-2 space-y-1 {{ request()->routeIs('admin.leaderboard.*') ? 'block' : 'hidden' }}">
+                            <a href="{{ route('admin.leaderboard', 'innovation') }}" class="block px-3 py-2 rounded-lg text-sm {{ request()->is('admin/leaderboard/innovation') ? 'text-indigo-600 font-bold bg-white' : 'text-slate-500 hover:text-indigo-600 hover:bg-white' }}">
+                                Innovation
+                            </a>
+                            <a href="{{ route('admin.leaderboard', 'social_impact') }}" class="block px-3 py-2 rounded-lg text-sm {{ request()->is('admin/leaderboard/social_impact') ? 'text-indigo-600 font-bold bg-white' : 'text-slate-500 hover:text-indigo-600 hover:bg-white' }}">
+                                Social Impact
+                            </a>
+                            <a href="{{ route('admin.leaderboard', 'media') }}" class="block px-3 py-2 rounded-lg text-sm {{ request()->is('admin/leaderboard/media') ? 'text-indigo-600 font-bold bg-white' : 'text-slate-500 hover:text-indigo-600 hover:bg-white' }}">
+                                Media
+                            </a>
+                            <a href="{{ route('admin.leaderboard', 'video_reels') }}" class="block px-3 py-2 rounded-lg text-sm {{ request()->is('admin/leaderboard/video_reels') ? 'text-indigo-600 font-bold bg-white' : 'text-slate-500 hover:text-indigo-600 hover:bg-white' }}">
+                                Video Reels
+                            </a>
+                            <a href="{{ route('admin.leaderboard', 'president') }}" class="block px-3 py-2 rounded-lg text-sm {{ request()->is('admin/leaderboard/president') ? 'text-indigo-600 font-bold bg-white' : 'text-slate-500 hover:text-indigo-600 hover:bg-white' }}">
+                                President
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="mb-6 mobile-nav-group">
+                    <p class="text-[10px] font-black text-slate-300 mb-3 px-4 tracking-widest uppercase mobile-sidebar-header">Pengaturan</p>
+                    <a href="{{ route('admin.juri.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-xl transition-all duration-200 {{ request()->routeIs('admin.juri.*') ? 'sidebar-item-active' : 'text-slate-500 hover:bg-slate-50' }}">
+                        <i data-feather="users" class="w-5 h-5 mr-3"></i>
+                        <span>Manajemen Juri</span>
+                    </a>
+                </div>
+                @endif
             </nav>
 
             <!-- User Profile -->
@@ -171,8 +219,25 @@
         </main>
     </div>
 
+    <!-- Toggle Menu Script -->
     <script>
-        feather.replace();
+        function toggleLeaderboard() {
+            const menu = document.getElementById('lb-menu');
+            const chevron = document.getElementById('lb-chevron');
+            if(menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('block');
+                chevron.classList.add('rotate-180');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('block');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+        });
 
         @if(session('success'))
             Swal.fire({

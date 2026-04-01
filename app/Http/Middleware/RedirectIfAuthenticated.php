@@ -29,6 +29,10 @@ class RedirectIfAuthenticated
                     return redirect()->route('organisasi.dashboard');
                 }
 
+                if ($user->role === 'juri') {
+                    return redirect()->route('juri.dashboard');
+                }
+
                 return redirect('/');
             }
         }

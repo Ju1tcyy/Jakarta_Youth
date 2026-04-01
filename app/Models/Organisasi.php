@@ -53,4 +53,24 @@ class Organisasi extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function penilaians()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
+
+    public function penilaianByJuri()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
+
+    public function getDeterminedKategoriAttribute(): string
+    {
+        if ($this->portofolio_program_kerja || $this->google_form_kepuasan) return 'innovation';
+        if ($this->portofolio_kegiatan_sosial || $this->google_form_kepuasan_sosial) return 'social_impact';
+        if ($this->portofolio_sosial_media || $this->google_form_kepuasan_media) return 'media';
+        if ($this->link_instagram_reels || $this->google_form_kepuasan_reels) return 'video_reels';
+        if ($this->pas_foto_formal || $this->curriculum_vitae) return 'president';
+        return '';
+    }
 }

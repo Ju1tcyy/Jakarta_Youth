@@ -52,8 +52,18 @@ class User extends Authenticatable
         return $this->role === 'pendaftar';
     }
 
+    public function isJuri()
+    {
+        return $this->role === 'juri';
+    }
+
     public function organisasi()
     {
         return $this->hasOne(Organisasi::class);
+    }
+
+    public function penilaians()
+    {
+        return $this->hasMany(\App\Models\Penilaian::class, 'juri_id');
     }
 }
