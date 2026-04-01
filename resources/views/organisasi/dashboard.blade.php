@@ -440,9 +440,12 @@
                         <div class="name">{{ $organisasi->nama_organisasi }}</div>
                         <div class="school">{{ $organisasi->nama_sekolah }}</div>
                     </div>
-                    <a href="{{ route('organisasi.logout') }}" class="btn-logout-sidebar" title="Logout">
-                        <i data-feather="log-out" style="width:16px;"></i>
-                    </a>
+                    <form action="{{ route('organisasi.logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn-logout-sidebar" title="Logout" style="border: none; background: none; cursor: pointer;">
+                            <i data-feather="log-out" style="width:16px;"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

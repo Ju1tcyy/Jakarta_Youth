@@ -156,6 +156,7 @@
             <div class="space-y-10">
                 <a @click="mobileMenu = false" href="#about" class="block text-4xl font-black text-white italic">Tentang</a>
                 <a @click="mobileMenu = false" href="#timeline" class="block text-4xl font-black text-white italic">Timeline</a>
+                <a @click="mobileMenu = false" href="{{ route('tata-cara-pendaftaran') }}" class="block text-4xl font-black text-white italic">Tata Cara</a>
                 <a @click="mobileMenu = false" href="#registration" class="block text-4xl font-black text-accent italic underline decoration-4 underline-offset-8">Daftar</a>
             </div>
         </div>
@@ -175,6 +176,7 @@
                 <div class="flex items-center gap-10">
                     <a href="#about" class="text-sm font-bold transition-colors tracking-wide uppercase text-slate-200 hover:text-accent">Tentang</a>
                     <a href="#timeline" class="text-sm font-bold transition-colors tracking-wide uppercase text-slate-200 hover:text-accent">Timeline</a>
+                    <a href="{{ route('tata-cara-pendaftaran') }}" class="text-sm font-bold transition-colors tracking-wide uppercase text-slate-200 hover:text-accent">Tata Cara</a>
                 </div>
                 <a href="#registration" class="bg-accent hover:bg-accent-600 text-primary-600 px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all">Daftar Sekarang</a>
             </div>
@@ -473,7 +475,7 @@
                     <div class="space-y-8">
                         <h5 class="text-accent font-black text-xs uppercase tracking-[0.5em]">Layanan</h5>
                         <ul class="space-y-5 text-slate-400 font-bold text-sm tracking-wide">
-                            <li><a href="{{ route('login') }}" class="hover:text-accent transition-all">Dashboard Siswa</a></li>
+                            <li><a href="{{ route('portal.selection') }}" class="hover:text-accent transition-all">Portal Login</a></li>
                             <li><a href="#" class="hover:text-accent transition-all">Bantuan Registrasi</a></li>
                         </ul>
                     </div>

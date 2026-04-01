@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     
-                    <form method="POST" action="{{ route('logout') }}" class="shrink-0 ml-2">
+                    <form method="POST" action="{{ route('admin.logout') }}" class="shrink-0 ml-2">
                         @csrf
                         <button type="submit" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200" title="Log Out">
                             <i data-feather="log-out" class="w-5 h-5"></i>

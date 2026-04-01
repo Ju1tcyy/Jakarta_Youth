@@ -568,9 +568,12 @@
                         <div class="name">{{ $ketos->nama }}</div>
                         <div class="school">{{ $ketos->asal_sekolah }}</div>
                     </div>
-                    <a href="{{ route('ketos.logout') }}" class="btn-logout-sidebar" title="Logout">
-                        <i data-feather="log-out" style="width:16px;"></i>
-                    </a>
+                    <form action="{{ route('ketos.logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="btn-logout-sidebar" title="Logout" style="border: none; background: none; cursor: pointer;">
+                            <i data-feather="log-out" style="width:16px;"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -638,7 +641,7 @@
                             <div class="info-value">10 Mei 2026</div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">Awarding Night:</div>
+                            <div class="info-label">Awarding:</div>
                             <div class="info-value">22 Mei 2026</div>
                         </div>
                     </div>
