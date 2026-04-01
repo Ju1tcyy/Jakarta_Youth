@@ -16,39 +16,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // admin, ketos, organisasi
-        'nomor_wa',
-        'asal_sekolah',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'portofolio_program_kerja',
-        'google_form_kepuasan',
-        'portofolio_kegiatan_sosial',
-        'google_form_kepuasan_sosial',
-        'portofolio_sosial_media',
-        'google_form_kepuasan_media',
-        'link_instagram_reels',
-        'google_form_kepuasan_reels',
-        'pas_foto_formal',
-        'curriculum_vitae',
-        'fotokopi_rapor',
-        'video_profil_jakarta',
-        'portofolio_inovasi',
-        'esai_solusi_kepemimpinan',
-        'google_form_kepuasan_president',
-        'surat_pernyataan_kedisiplinan',
-        'nilai',
-        'nilai_innovation',
-        'nilai_social_impact',
-        'nilai_media',
-        'nilai_video_reels',
-        'nilai_president',
-        'nama_organisasi',
-        'alamat',
-        'surat_rekomendasi',
-        'struktur_kepengurusan',
-        'bukti_share_ig',
-        'bukti_repost_ig',
+        'role',
     ];
 
     /**
@@ -71,7 +39,6 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'tanggal_lahir' => 'date',
         ];
     }
 
@@ -80,13 +47,13 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
-    public function isKetos()
+    public function isPendaftar()
     {
-        return $this->role === 'ketos';
+        return $this->role === 'pendaftar';
     }
 
-    public function isOrganisasi()
+    public function organisasi()
     {
-        return $this->role === 'organisasi';
+        return $this->hasOne(Organisasi::class);
     }
 }
