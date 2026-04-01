@@ -94,13 +94,7 @@ class UnifiedRegistrationController extends Controller
 
         Auth::login($user);
 
-        if ($user->role === 'ketos') {
-            return redirect()->route('ketos.dashboard');
-        } elseif ($user->role === 'organisasi') {
-            return redirect()->route('organisasi.dashboard');
-        }
-
-        return redirect()->route('login')
-            ->with('success', 'Pendaftaran berhasil! Silakan login.');
+        // Redirect to success page with WhatsApp group link
+        return view('registration-success', ['role' => $user->role]);
     }
 }

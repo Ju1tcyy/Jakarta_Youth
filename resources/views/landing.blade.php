@@ -148,48 +148,80 @@
 
     <!-- Mobile Nav Overlay -->
     <div x-show="mobileMenu" x-cloak class="fixed inset-0 z-[200] bg-primary/95 backdrop-blur-xl transition-all" x-transition>
-        <div class="p-10 flex flex-col h-full">
-            <div class="flex justify-between items-center mb-16">
-                <img src="{{ asset('icon/logo_collab.png') }}" class="h-20 w-auto" alt="JYAA Logo">
-                <button @click="mobileMenu = false" class="text-white"><i data-feather="x" class="w-8 h-8"></i></button>
+        <div class="p-6 sm:p-8 lg:p-10 flex flex-col h-full">
+            <div class="flex justify-between items-center mb-12 sm:mb-16">
+                <img src="{{ asset('icon/logo_collab.png') }}" class="h-12 sm:h-16 lg:h-20 w-auto" alt="JYAA Logo">
+                <button @click="mobileMenu = false" class="text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
+                    <i data-feather="x" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+                </button>
             </div>
-            <div class="space-y-10">
-                <a @click="mobileMenu = false" href="#about" class="block text-4xl font-black text-white italic">Tentang</a>
-                <a @click="mobileMenu = false" href="#timeline" class="block text-4xl font-black text-white italic">Timeline</a>
-                <a @click="mobileMenu = false" href="{{ route('tata-cara-pendaftaran') }}" class="block text-4xl font-black text-white italic">Tata Cara</a>
-                <a @click="mobileMenu = false" href="#registration" class="block text-4xl font-black text-accent italic underline decoration-4 underline-offset-8">Daftar</a>
+            <div class="space-y-6 sm:space-y-8 lg:space-y-10">
+                <a @click="mobileMenu = false" href="#about" 
+                   class="block text-2xl sm:text-3xl lg:text-4xl font-black text-white italic hover:text-accent transition-colors">
+                   Tentang
+                </a>
+                <a @click="mobileMenu = false" href="#timeline" 
+                   class="block text-2xl sm:text-3xl lg:text-4xl font-black text-white italic hover:text-accent transition-colors">
+                   Timeline
+                </a>
+                <a @click="mobileMenu = false" href="{{ route('tata-cara-pendaftaran') }}" 
+                   class="block text-2xl sm:text-3xl lg:text-4xl font-black text-white italic hover:text-accent transition-colors">
+                   Tata Cara
+                </a>
+                <a @click="mobileMenu = false" href="#registration" 
+                   class="block text-2xl sm:text-3xl lg:text-4xl font-black text-accent italic underline decoration-4 underline-offset-8 hover:text-accent-600 transition-colors">
+                   Daftar
+                </a>
+            </div>
+            
+            <!-- Mobile Footer Links -->
+            <div class="mt-auto pt-8 border-t border-white/20">
+                <a @click="mobileMenu = false" href="{{ route('portal.selection') }}" 
+                   class="block text-center text-white/80 hover:text-white text-sm font-medium transition-colors">
+                   Portal Login
+                </a>
             </div>
         </div>
     </div>
 
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 py-8 bg-transparent">
-        <div class="container mx-auto px-10 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-4">
-                <div class="h-44 flex items-center">
-                    <img src="{{ asset('icon/logo_collab.png') }}" alt="JYAA Logo" class="h-full w-auto object-contain">
+    <nav class="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 py-4 bg-transparent" 
+         :class="scrolled ? 'py-2 bg-white/95 backdrop-blur-md shadow-lg' : 'py-4 bg-transparent'">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="h-12 sm:h-16 lg:h-20 flex items-center" 
+                     :class="scrolled ? 'h-10 sm:h-12 lg:h-14' : 'h-12 sm:h-16 lg:h-20'">
+                    <img src="{{ asset('icon/logo_collab.png') }}" alt="JYAA Logo" 
+                         class="h-full w-auto object-contain transition-all duration-300">
                 </div>
             </a>
 
             <!-- Desktop Nav -->
-            <div class="hidden lg:flex items-center gap-10">
-                <div class="flex items-center gap-10">
-                    <a href="#about" class="text-sm font-bold transition-colors tracking-wide uppercase text-slate-200 hover:text-accent">Tentang</a>
-                    <a href="#timeline" class="text-sm font-bold transition-colors tracking-wide uppercase text-slate-200 hover:text-accent">Timeline</a>
-                    <a href="{{ route('tata-cara-pendaftaran') }}" class="text-sm font-bold transition-colors tracking-wide uppercase text-slate-200 hover:text-accent">Tata Cara</a>
+            <div class="hidden lg:flex items-center gap-6 xl:gap-10">
+                <div class="flex items-center gap-6 xl:gap-8">
+                    <a href="#about" class="text-xs xl:text-sm font-bold transition-colors tracking-wide uppercase hover:text-accent"
+                       :class="scrolled ? 'text-slate-700' : 'text-slate-200'">Tentang</a>
+                    <a href="#timeline" class="text-xs xl:text-sm font-bold transition-colors tracking-wide uppercase hover:text-accent"
+                       :class="scrolled ? 'text-slate-700' : 'text-slate-200'">Timeline</a>
+                    <a href="{{ route('tata-cara-pendaftaran') }}" class="text-xs xl:text-sm font-bold transition-colors tracking-wide uppercase hover:text-accent"
+                       :class="scrolled ? 'text-slate-700' : 'text-slate-200'">Tata Cara</a>
                 </div>
-                <a href="#registration" class="bg-accent hover:bg-accent-600 text-primary-600 px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all">Daftar Sekarang</a>
+                <a href="#registration" class="bg-accent hover:bg-accent-600 text-primary-600 px-4 xl:px-6 py-2 xl:py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all">
+                    Daftar Sekarang
+                </a>
             </div>
 
             <!-- Mobile Toggle -->
-            <button class="lg:hidden" :class="scrolled ? 'text-slate-900' : 'text-white'" @click="mobileMenu = true">
-                <i data-feather="menu" class="w-6 h-6"></i>
+            <button class="lg:hidden p-2 rounded-lg transition-colors" 
+                    :class="scrolled ? 'text-slate-700 hover:bg-slate-100' : 'text-white hover:bg-white/10'" 
+                    @click="mobileMenu = true">
+                <i data-feather="menu" class="w-5 h-5 sm:w-6 sm:h-6"></i>
             </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-32 pb-20 bg-primary bg-grid-navy overflow-hidden">
+    <section class="relative min-h-screen flex items-center pt-20 sm:pt-24 lg:pt-28 pb-20 bg-primary bg-grid-navy overflow-hidden">
         <!-- Floating Decoration / Watermark -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
             <span class="text-[30rem] font-black text-white select-none whitespace-nowrap">JYAA</span>
@@ -203,8 +235,8 @@
             <img src="{{ asset('icon/element2.png') }}" alt="Star" class="w-full h-auto">
         </div>
 
-        <div class="container mx-auto px-10 relative z-10">
-            <div class="max-w-[1300px] mx-auto grid lg:grid-cols-2 gap-24 items-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
+            <div class="max-w-[1300px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <div class="text-center lg:text-left space-y-12">
                     <div class="space-y-6">
                         <span class="human-accent text-3xl tracking-wide animate-fade-up">Selamat Datang di</span>
