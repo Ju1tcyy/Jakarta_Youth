@@ -551,7 +551,7 @@
                         <i data-feather="instagram" class="w-8 h-8"></i>
                     </div>
                     <h3 class="text-2xl font-black capitalize text-slate-900 mb-2">Instagram</h3>
-                    <p class="text-primary font-black text-lg mb-4">@beasiswamncu</p>
+                    <p class="text-primary font-black text-lg mb-4"></p>
                     <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Update & Berita Terbaru</p>
                 </a>
             </div>
