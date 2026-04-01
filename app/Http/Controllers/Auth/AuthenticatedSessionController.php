@@ -32,13 +32,11 @@ class AuthenticatedSessionController extends Controller
 
         if ($user->role === 'admin') {
             return redirect()->intended(route('admin.dashboard', absolute: false));
-        } elseif ($user->role === 'ketos') {
-            return redirect()->intended(route('ketos.dashboard', absolute: false));
-        } elseif ($user->role === 'organisasi') {
+        } elseif ($user->role === 'pendaftar') {
             return redirect()->intended(route('organisasi.dashboard', absolute: false));
         }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('home', absolute: false));
     }
 
     /**

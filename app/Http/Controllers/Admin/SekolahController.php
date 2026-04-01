@@ -10,19 +10,19 @@ class SekolahController extends Controller
 {
     public function index()
     {
-        $organisasi = Organisasi::latest()->paginate(10);
+        $organisasi = Organisasi::with('user')->latest()->paginate(10);
         return view('admin.organisasi.index', compact('organisasi'));
     }
 
     public function show($id)
     {
-        $organisasi = Organisasi::findOrFail($id);
+        $organisasi = Organisasi::with('user')->findOrFail($id);
         return view('admin.organisasi.show', compact('organisasi'));
     }
 
     public function edit($id)
     {
-        $organisasi = Organisasi::findOrFail($id);
+        $organisasi = Organisasi::with('user')->findOrFail($id);
         return view('admin.organisasi.edit', compact('organisasi'));
     }
 
