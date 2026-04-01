@@ -40,8 +40,8 @@ Route::middleware(['auth'])->prefix('organisasi')->group(function () {
     Route::post('/upload-nomination', [PendaftarDashboardController::class, 'uploadNomination'])->name('organisasi.upload.nomination');
 });
 
-// Admin Dashboard (Protected by auth and AdminMiddleware)
-Route::middleware(['auth', 'App\Http\Middleware\AdminMiddleware'])->prefix('admin')->group(function () {
+// Admin Dashboard (Protected by auth and admin alias)
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard', [DashboardController::class, 'index']);
     

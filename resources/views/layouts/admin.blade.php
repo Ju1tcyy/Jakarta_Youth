@@ -110,13 +110,9 @@
 
                 <div class="mb-6 mobile-nav-group">
                     <p class="text-[10px] font-black text-slate-300 mb-3 px-4 tracking-widest uppercase mobile-sidebar-header">Database</p>
-                    <a href="{{ route('ketos.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-xl transition-all duration-200 {{ request()->routeIs('ketos.*') ? 'sidebar-item-active' : 'text-slate-500 hover:bg-slate-50' }}">
-                        <i data-feather="users" class="w-5 h-5 mr-3"></i>
-                        <span>Selection Peserta</span>
-                    </a>
                     <a href="{{ route('sekolah.index') }}" class="flex items-center px-4 py-3 mb-2 rounded-xl transition-all duration-200 {{ request()->routeIs('sekolah.*') ? 'sidebar-item-active' : 'text-slate-500 hover:bg-slate-50' }}">
                         <i data-feather="award" class="w-5 h-5 mr-3"></i>
-                        <span>Selection Sekolah</span>
+                        <span>Data Pendaftar</span>
                     </a>
                 </div>
             </nav>
@@ -134,7 +130,7 @@
                         </div>
                     </div>
                     
-                    <form method="POST" action="{{ route('admin.logout') }}" class="shrink-0 ml-2">
+                    <form method="POST" action="{{ route('logout') }}" class="shrink-0 ml-2">
                         @csrf
                         <button type="submit" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-200" title="Log Out">
                             <i data-feather="log-out" class="w-5 h-5"></i>
