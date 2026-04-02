@@ -910,12 +910,20 @@
                         <h3>🏆 Outstanding Student Council Innovation</h3>
                         <p style="margin-bottom: 15px; color: #666;">Kategori untuk organisasi dengan program kerja inovatif dan berdampak.</p>
                         
-                        <div class="note-box" style="margin-bottom: 20px;">
-                            <strong>Ketentuan Kategori:</strong><br>
-                            • Portofolio program kerja yang telah dilaksanakan selama periode kepengurusan<br>
-                            • Program kerja harus menunjukkan inovasi dan kreativitas<br>
-                            • Dokumentasi lengkap pelaksanaan program (foto, video, laporan)<br>
-                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        <div class="note-box" style="margin-bottom: 20px; font-size: 0.8rem; line-height: 1.6;">
+                            <strong>Kriteria Penilaian:</strong><br>
+                            <strong>1. Portofolio Program Kerja OSIS</strong><br>
+                            • Portofolio dikumpulkan dalam bentuk file PDF dengan susunan materi yang sistematis dan mudah dipahami<br>
+                            • Memuat Program Kerja Inovatif OSIS, baik jangka pendek maupun jangka panjang<br>
+                            • Setiap program kerja mencakup latar belakang, sasaran kegiatan, dampak/hasil (disertai data/nominal), serta dokumentasi kegiatan<br>
+                            • Menjelaskan unsur inovasi dan nilai kebaruan (perbandingan dengan program umum/sebelumnya)<br>
+                            • Menunjukkan proses pengembangan ide (problem &rarr; solusi &rarr; implementasi)<br>
+                            • Menyertakan bukti keberlanjutan dan mencantumkan periode pelaksanaan kegiatan<br>
+                            • Minimal 5 halaman dan maksimal 10 halaman<br><br>
+                            <strong>2. Google Form Kepuasan OSIS (3 Pihak)</strong><br>
+                            • Wajib mengisi dan menyebarkan Google Form resmi untuk mengukur tingkat kepuasan dan dampak kepemimpinan OSIS<br>
+                            • Survei ditujukan kepada 3 kelompok: siswa umum, anggota OSIS, dan pihak eksternal<br>
+                            • Seluruh respons harus bersifat organik, jujur, dan tidak direkayasa
                         </div>
                         
                         <div class="documents-grid">
@@ -956,12 +964,20 @@
                         <h3>🤝 Leading Student Council Social Impact</h3>
                         <p style="margin-bottom: 15px; color: #666;">Kategori untuk organisasi dengan kegiatan sosial yang berdampak luas.</p>
                         
-                        <div class="note-box" style="margin-bottom: 20px;">
-                            <strong>Ketentuan Kategori:</strong><br>
-                            • Portofolio kegiatan sosial yang telah dilaksanakan<br>
-                            • Kegiatan harus memberikan dampak positif bagi masyarakat<br>
-                            • Dokumentasi lengkap kegiatan sosial (foto, video, testimoni)<br>
-                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        <div class="note-box" style="margin-bottom: 20px; font-size: 0.8rem; line-height: 1.6;">
+                            <strong>Kriteria Penilaian:</strong><br>
+                            <strong>1. Portofolio Kegiatan Sosial OSIS</strong><br>
+                            • Portofolio memuat kegiatan sosial yang telah dilaksanakan secara sistematis<br>
+                            • Mencantumkan latar belakang, tujuan, dan sasaran kegiatan secara jelas<br>
+                            • Menampilkan dampak kegiatan secara terukur dan spesifik (jumlah penerima manfaat, bentuk manfaat, persentase perubahan)<br>
+                            • Menguraikan bidang dampak (pendidikan, sosial, lingkungan, dll) dan jangkauan (terbatas/luas)<br>
+                            • Menyertakan data kuantitatif, bukti dokumentasi/testimoni, dan bentuk kerja sama mitra/sponsor<br>
+                            • Menjelaskan keberlanjutan program dan perubahan sebelum/sesudah kegiatan<br>
+                            • Minimal 5 halaman dan maksimal 10 halaman<br><br>
+                            <strong>2. Google Form Kepuasan OSIS (3 Pihak)</strong><br>
+                            • Wajib mengisi dan menyebarkan Google Form resmi dari panitia<br>
+                            • Survei ditujukan kepada 3 kelompok: siswa umum, anggota OSIS, dan pihak eksternal<br>
+                            • Seluruh respons harus bersifat organik, jujur, dan tidak direkayasa
                         </div>
                         
                         <div class="documents-grid">
@@ -1002,12 +1018,19 @@
                         <h3>📱 Next-Level Student Council Media</h3>
                         <p style="margin-bottom: 15px; color: #666;">Kategori untuk organisasi dengan pengelolaan media sosial yang kreatif.</p>
                         
-                        <div class="note-box" style="margin-bottom: 20px;">
-                            <strong>Ketentuan Kategori:</strong><br>
-                            • Portofolio pengelolaan media sosial organisasi<br>
-                            • Konten media sosial harus kreatif dan engaging<br>
-                            • Dokumentasi statistik engagement (likes, comments, shares)<br>
-                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        <div class="note-box" style="margin-bottom: 20px; font-size: 0.8rem; line-height: 1.6;">
+                            <strong>Kriteria Penilaian:</strong><br>
+                            <strong>1. Portofolio Sosial Media</strong><br>
+                            • Memuat identitas akun (username, platform, periode) dan ringkasan performa (followers, views, likes, comments)<br>
+                            • Menampilkan data jangkauan & engagement (beserta bukti screenshot insights/analytics)<br>
+                            • Menampilkan highlight/sorotan akun dan tampilan feed keseluruhan (grid layout) untuk konsistensi visual<br>
+                            • Menjelaskan konsep visual, branding, frekuensi unggahan, dan interaksi audiens (reels, poll, Q&A)<br>
+                            • Menunjukkan kelengkapan profil akun (foto profil, bio, dll)<br>
+                            • Minimal 6 slide dan maksimal 12 slide<br><br>
+                            <strong>2. Google Form Kepuasan OSIS (3 Pihak)</strong><br>
+                            • Wajib mengisi dan menyebarkan Google Form resmi dari panitia<br>
+                            • Survei ditujukan kepada 3 kelompok: siswa umum, anggota OSIS, dan pihak eksternal<br>
+                            • Seluruh respons harus bersifat organik, jujur, dan tidak direkayasa
                         </div>
                         
                         <div class="documents-grid">
@@ -1048,13 +1071,19 @@
                         <h3>🎬 People's Choice Student Council - DKI Jakarta</h3>
                         <p style="margin-bottom: 15px; color: #666;">Kategori untuk video Instagram Reels terbaik.</p>
                         
-                        <div class="note-box" style="margin-bottom: 20px;">
-                            <strong>Ketentuan Kategori:</strong><br>
-                            • Video Instagram Reels yang menarik dan kreatif<br>
-                            • Durasi video maksimal 90 detik<br>
-                            • Konten harus relevan dengan kegiatan OSIS<br>
-                            • Link Instagram Reels harus dapat diakses publik<br>
-                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        <div class="note-box" style="margin-bottom: 20px; font-size: 0.8rem; line-height: 1.6;">
+                            <strong>Kriteria Penilaian:</strong><br>
+                            <strong>1. Video IG Reels</strong><br>
+                            • Berdurasi maksimal 3 menit dengan tema: <em>"Dari Siswa, Untuk Siswa: Lebih dari Sekadar Organisasi"</em><br>
+                            • Video memuat unsur utama: OSIS, sekolah, dan siswa sebagai narasi yang konsisten<br>
+                            • Menjelaskan visi dan misi OSIS dikemas berupa dokumentasi/aktivitas kreatif siswa<br>
+                            • Diunggah dengan caption deskripsi singkat dan hashtag wajib (serta tag ke @direktorat.sma & @mncuiversity)<br>
+                            • Pemenang ditentukan dari likes/comments organik (dilarang bot/manipulasi)<br>
+                            • Orisinil dan tidak melanggar hak cipta<br><br>
+                            <strong>2. Google Form Kepuasan OSIS (3 Pihak)</strong><br>
+                            • Wajib mengisi dan menyebarkan Google Form resmi dari panitia<br>
+                            • Survei ditujukan kepada 3 kelompok: siswa umum, anggota OSIS, pihak eksternal<br>
+                            • Seluruh respons harus bersifat organik, jujur, dan tidak direkayasa
                         </div>
                         
                         <div class="documents-grid">
@@ -1095,16 +1124,22 @@
                         <h3>👑 Student Council President of the Year 2026</h3>
                         <p style="margin-bottom: 15px; color: #666;">Kategori untuk Ketua OSIS terbaik tahun 2026.</p>
                         
-                        <div class="note-box" style="margin-bottom: 20px;">
-                            <strong>Ketentuan Kategori:</strong><br>
-                            • Pas foto formal dengan latar belakang merah/biru (ukuran 4x6)<br>
-                            • Curriculum Vitae (CV) lengkap dengan prestasi dan pengalaman organisasi<br>
-                            • Fotokopi rapor semester terakhir (minimal rata-rata 75)<br>
-                            • Video profil tentang Jakarta (durasi 2-3 menit)<br>
-                            • Portofolio inovasi dan program kerja yang telah dilaksanakan<br>
-                            • Esai solusi kepemimpinan (500-1000 kata)<br>
-                            • Surat pernyataan kedisiplinan dari sekolah<br>
-                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        <div class="note-box" style="margin-bottom: 20px; font-size: 0.8rem; line-height: 1.6; max-height: 300px; overflow-y: auto;">
+                            <strong>Kriteria Penilaian:</strong><br>
+                            <strong>1. Pas Foto Formal & CV</strong><br>
+                            • Foto resmi jas OSIS/seragam. CV profesional riwayat & prestasi.<br><br>
+                            <strong>2. Fotokopi Rapor</strong><br>
+                            • Rapor 1 tahun terakhir, resmi dengan TTD/Stempel sekolah.<br><br>
+                            <strong>3. Video Profil "Empowering Student Voices..."</strong><br>
+                            • Max 3 menit (.MP4/1080p). Memuat pengenalan, visi misi, dan bukti aksi nyata.<br>
+                            • Terstruktur (pembukaan - narasi - penutup) berupa storytelling.<br>
+                            • Diunggah di sosmed pribadi (IG/TikTok), wajib gunakan caption, tag dan hashtag.<br><br>
+                            <strong>4. Portofolio Inovasi (3-5 halaman)</strong><br>
+                            • Memuat proker unggulan (latar belakang, konsep, pelaksanaan, dokumentasi, dampak terukur, testimoni eksternal).<br><br>
+                            <strong>5. Esai Solusi Kepemimpinan (500 - 1.000 kata)</strong><br>
+                            • Tema: "Mewujudkan OSIS yang Inklusif: Menghapus Budaya Eksklusivitas dan Circle..." (memuat latar belakang, masalah, solusi, implementasi).<br><br>
+                            <strong>6. Google Form Kepuasan & Surat Kedisiplinan</strong><br>
+                            • Form Google untuk 3 target. Surat kedisiplinan menyatakan peserta bebas pelanggaran.
                         </div>
                         
                         <div class="documents-grid">
