@@ -75,6 +75,35 @@ class PendaftarDashboardController extends Controller
             return back()->withErrors(['error' => 'Data organisasi tidak ditemukan.']);
         }
 
+        // Count how many nominations are currently selected
+        $currentNominations = 0;
+        if ($organisasi->portofolio_program_kerja || $organisasi->google_form_kepuasan) $currentNominations++;
+        if ($organisasi->portofolio_kegiatan_sosial || $organisasi->google_form_kepuasan_sosial) $currentNominations++;
+        if ($organisasi->portofolio_sosial_media || $organisasi->google_form_kepuasan_media) $currentNominations++;
+        if ($organisasi->link_instagram_reels || $organisasi->google_form_kepuasan_reels) $currentNominations++;
+        if ($organisasi->pas_foto_formal || $organisasi->curriculum_vitae || $organisasi->fotokopi_rapor || 
+            $organisasi->video_profil_jakarta || $organisasi->portofolio_inovasi || $organisasi->esai_solusi_kepemimpinan || 
+            $organisasi->surat_pernyataan_kedisiplinan || $organisasi->google_form_kepuasan_president) $currentNominations++;
+
+        // Count how many nominations are being submitted
+        $newNominations = 0;
+        if ($request->hasFile('portofolio_program_kerja') || $request->has('google_form_kepuasan')) $newNominations++;
+        if ($request->hasFile('portofolio_kegiatan_sosial') || $request->has('google_form_kepuasan_sosial')) $newNominations++;
+        if ($request->hasFile('portofolio_sosial_media') || $request->has('google_form_kepuasan_media')) $newNominations++;
+        if ($request->filled('link_instagram_reels') || $request->has('google_form_kepuasan_reels')) $newNominations++;
+        if ($request->hasFile('pas_foto_formal') || $request->hasFile('curriculum_vitae') || $request->hasFile('fotokopi_rapor') || 
+            $request->filled('video_profil_jakarta') || $request->hasFile('portofolio_inovasi') || $request->hasFile('esai_solusi_kepemimpinan') || 
+            $request->hasFile('surat_pernyataan_kedisiplinan') || $request->has('google_form_kepuasan_president')) $newNominations++;
+
+        // Validate min 1 max 5 nominations
+        $totalNominations = max($currentNominations, $newNominations);
+        if ($totalNominations < 1) {
+            return back()->withErrors(['error' => 'Anda harus memilih minimal 1 kategori nominasi.'])->withInput();
+        }
+        if ($totalNominations > 5) {
+            return back()->withErrors(['error' => 'Anda hanya dapat memilih maksimal 5 kategori nominasi.'])->withInput();
+        }
+
         $request->validate([
             // Innovation
             'portofolio_program_kerja' => 'nullable|file|mimes:pdf|max:5120',

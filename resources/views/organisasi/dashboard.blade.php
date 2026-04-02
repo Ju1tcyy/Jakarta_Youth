@@ -781,78 +781,127 @@
                     <p>Pilih dan lengkapi kategori nominasi yang ingin Anda ikuti. Setiap kategori memiliki persyaratan dokumen yang berbeda.</p>
                 </div>
 
-                <form action="{{ route('organisasi.upload.nomination') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('organisasi.upload.nomination') }}" method="POST" enctype="multipart/form-data" id="nominationForm">
                     @csrf
 
-                    <!-- Logic to determine if user already picked a category -->
                     @php
-                        $lockedCategory = '';
-                        if ($organisasi->portofolio_program_kerja || $organisasi->google_form_kepuasan) {
-                            $lockedCategory = 'cat1';
-                        } elseif ($organisasi->portofolio_kegiatan_sosial || $organisasi->google_form_kepuasan_sosial) {
-                            $lockedCategory = 'cat2';
-                        } elseif ($organisasi->portofolio_sosial_media || $organisasi->google_form_kepuasan_media) {
-                            $lockedCategory = 'cat3';
-                        } elseif ($organisasi->link_instagram_reels || $organisasi->google_form_kepuasan_reels) {
-                            $lockedCategory = 'cat4';
-                        } elseif ($organisasi->pas_foto_formal || $organisasi->curriculum_vitae || $organisasi->fotokopi_rapor || $organisasi->video_profil_jakarta || $organisasi->portofolio_inovasi || $organisasi->esai_solusi_kepemimpinan || $organisasi->surat_pernyataan_kedisiplinan || $organisasi->google_form_kepuasan_president) {
-                            $lockedCategory = 'cat5';
-                        }
+                        $selectedCategories = [];
+                        if ($organisasi->portofolio_program_kerja || $organisasi->google_form_kepuasan) $selectedCategories[] = 'cat1';
+                        if ($organisasi->portofolio_kegiatan_sosial || $organisasi->google_form_kepuasan_sosial) $selectedCategories[] = 'cat2';
+                        if ($organisasi->portofolio_sosial_media || $organisasi->google_form_kepuasan_media) $selectedCategories[] = 'cat3';
+                        if ($organisasi->link_instagram_reels || $organisasi->google_form_kepuasan_reels) $selectedCategories[] = 'cat4';
+                        if ($organisasi->pas_foto_formal || $organisasi->curriculum_vitae || $organisasi->fotokopi_rapor || 
+                            $organisasi->video_profil_jakarta || $organisasi->portofolio_inovasi || $organisasi->esai_solusi_kepemimpinan || 
+                            $organisasi->surat_pernyataan_kedisiplinan || $organisasi->google_form_kepuasan_president) $selectedCategories[] = 'cat5';
+                        $selectedCount = count($selectedCategories);
                     @endphp
 
-                    <!-- Category Selector Dropdown -->
+                    <!-- Category Selector with Checkboxes -->
                     <div class="welcome-card" style="padding: 25px; margin-bottom: 25px;">
-                        <label for="category_selector" style="font-size: 1.1rem; color: #0f172a; margin-bottom: 12px; font-weight: 600; display: block;">Pilih Kategori Nominasi yang Ingin Diikuti:</label>
-                        <select id="category_selector" onchange="filterCategory(this.value)" style="width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; background: #f8fafc; font-size: 1rem; color: #334155; cursor: pointer; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23334155%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 15px top 50%; background-size: 12px auto; outline: none;" {{ $lockedCategory ? 'disabled' : '' }}>
-                            <option value="" disabled {{ !$lockedCategory ? 'selected' : '' }}>-- Pilih Kategori Nominasi --</option>
-                            <option value="cat1" {{ $lockedCategory == 'cat1' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🏆 Outstanding Student Council Innovation</option>
-                            <option value="cat2" {{ $lockedCategory == 'cat2' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🤝 Leading Student Council Social Impact</option>
-                            <option value="cat3" {{ $lockedCategory == 'cat3' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>📱 Next-Level Student Council Media</option>
-                            <option value="cat4" {{ $lockedCategory == 'cat4' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🎬 People's Choice Student Council - DKI Jakarta</option>
-                            <option value="cat5" {{ $lockedCategory == 'cat5' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>👑 Student Council President of the Year 2026</option>
-                        </select>
+                        <h3 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 8px; font-weight: 600;">Pilih Kategori Nominasi (Min 1, Maks 5)</h3>
+                        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Anda dapat memilih minimal 1 dan maksimal 5 kategori nominasi yang ingin diikuti.</p>
                         
-                        @if($lockedCategory)
-                            <div class="note-box" style="margin-top: 15px; border-left-width: 6px; background: #fff5f5;">
-                                <strong>Peringatan:</strong><br>
-                                Anda hanya bisa mengikuti 1 kategori nominasi. Karena Anda sudah mengunggah persyaratan di kategori ini, kategori lainnya ditutup secara otomatis untuk akun Anda.
+                        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 2px solid #e2e8f0;">
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: white; border-radius: 8px; cursor: pointer; border: 2px solid #e2e8f0; transition: all 0.3s;" class="category-checkbox">
+                                    <input type="checkbox" class="nomination-checkbox" data-category="cat1" {{ in_array('cat1', $selectedCategories) ? 'checked' : '' }} style="width: 20px; height: 20px; accent-color: #ef4444;">
+                                    <span style="font-weight: 600; color: #334155;">🏆 Outstanding Student Council Innovation</span>
+                                </label>
+                                
+                                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: white; border-radius: 8px; cursor: pointer; border: 2px solid #e2e8f0; transition: all 0.3s;" class="category-checkbox">
+                                    <input type="checkbox" class="nomination-checkbox" data-category="cat2" {{ in_array('cat2', $selectedCategories) ? 'checked' : '' }} style="width: 20px; height: 20px; accent-color: #ef4444;">
+                                    <span style="font-weight: 600; color: #334155;">🤝 Leading Student Council Social Impact</span>
+                                </label>
+                                
+                                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: white; border-radius: 8px; cursor: pointer; border: 2px solid #e2e8f0; transition: all 0.3s;" class="category-checkbox">
+                                    <input type="checkbox" class="nomination-checkbox" data-category="cat3" {{ in_array('cat3', $selectedCategories) ? 'checked' : '' }} style="width: 20px; height: 20px; accent-color: #ef4444;">
+                                    <span style="font-weight: 600; color: #334155;">📱 Next-Level Student Council Media</span>
+                                </label>
+                                
+                                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: white; border-radius: 8px; cursor: pointer; border: 2px solid #e2e8f0; transition: all 0.3s;" class="category-checkbox">
+                                    <input type="checkbox" class="nomination-checkbox" data-category="cat4" {{ in_array('cat4', $selectedCategories) ? 'checked' : '' }} style="width: 20px; height: 20px; accent-color: #ef4444;">
+                                    <span style="font-weight: 600; color: #334155;">🎬 Peoples Choice Student Council - DKI Jakarta</span>
+                                </label>
+                                
+                                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: white; border-radius: 8px; cursor: pointer; border: 2px solid #e2e8f0; transition: all 0.3s;" class="category-checkbox">
+                                    <input type="checkbox" class="nomination-checkbox" data-category="cat5" {{ in_array('cat5', $selectedCategories) ? 'checked' : '' }} style="width: 20px; height: 20px; accent-color: #ef4444;">
+                                    <span style="font-weight: 600; color: #334155;">👑 Student Council President of the Year 2026</span>
+                                </label>
                             </div>
-                        @endif
+                            
+                            <div id="selection-counter" style="margin-top: 15px; padding: 12px; background: #eff6ff; border-radius: 8px; text-align: center; font-weight: 600; color: #1e40af;">
+                                <span id="counter-text">{{ $selectedCount }} kategori dipilih</span>
+                            </div>
+                        </div>
                     </div>
 
                     <script>
-                        function clearCategoryInputs(catId) {
-                            const section = document.getElementById(catId);
-                            if (!section) return;
-                            
-                            // Kosongkan file & url agar tidak tersubmit ganda
-                            const inputs = section.querySelectorAll('input[type="file"], input[type="url"]');
-                            inputs.forEach(input => input.value = '');
-                            
-                            const checkboxes = section.querySelectorAll('input[type="checkbox"]');
-                            checkboxes.forEach(input => input.checked = false);
-                        }
+                        const checkboxes = document.querySelectorAll('.nomination-checkbox');
+                        const counterText = document.getElementById('counter-text');
+                        const maxNominations = 5;
+                        const minNominations = 1;
 
-                        function filterCategory(catId) {
-                            for(let i = 1; i <= 5; i++) {
-                                const id = 'cat' + i;
-                                const el = document.getElementById(id);
-                                if(el) {
-                                    el.style.display = 'none';
-                                    if(id !== catId) {
-                                        clearCategoryInputs(id);
-                                    }
+                        function updateCounter() {
+                            const checked = document.querySelectorAll('.nomination-checkbox:checked').length;
+                            counterText.textContent = checked + ' kategori dipilih';
+                            
+                            const counter = document.getElementById('selection-counter');
+                            if (checked < minNominations) {
+                                counter.style.background = '#fef3c7';
+                                counter.style.color = '#b45309';
+                                counterText.textContent = checked + ' kategori dipilih (minimal ' + minNominations + ')';
+                            } else if (checked > maxNominations) {
+                                counter.style.background = '#fee2e2';
+                                counter.style.color = '#991b1b';
+                                counterText.textContent = checked + ' kategori dipilih (maksimal ' + maxNominations + ')';
+                            } else {
+                                counter.style.background = '#dcfce7';
+                                counter.style.color = '#15803d';
+                                counterText.textContent = checked + ' kategori dipilih ✓';
+                            }
+
+                            // Show/hide sections based on selection
+                            checkboxes.forEach(cb => {
+                                const catId = cb.dataset.category;
+                                const section = document.getElementById(catId);
+                                if (section) {
+                                    section.style.display = cb.checked ? 'block' : 'none';
                                 }
-                            }
-                            if(catId) {
-                                document.getElementById(catId).style.display = 'block';
-                            }
+                            });
                         }
 
+                        checkboxes.forEach(cb => {
+                            cb.addEventListener('change', updateCounter);
+                        });
+
+                        // Initialize on page load
                         document.addEventListener('DOMContentLoaded', function() {
-                            @if($lockedCategory)
-                                filterCategory('{{ $lockedCategory }}');
-                            @endif
+                            updateCounter();
+                        });
+
+                        // Form validation before submit
+                        document.getElementById('nominationForm').addEventListener('submit', function(e) {
+                            const checked = document.querySelectorAll('.nomination-checkbox:checked').length;
+                            if (checked < minNominations) {
+                                e.preventDefault();
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Pilih Minimal 1 Kategori',
+                                    text: 'Anda harus memilih minimal ' + minNominations + ' kategori nominasi.',
+                                    confirmButtonColor: '#e53e3e'
+                                });
+                                return false;
+                            }
+                            if (checked > maxNominations) {
+                                e.preventDefault();
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Maksimal 5 Kategori',
+                                    text: 'Anda hanya dapat memilih maksimal ' + maxNominations + ' kategori nominasi.',
+                                    confirmButtonColor: '#e53e3e'
+                                });
+                                return false;
+                            }
                         });
                     </script>
 
