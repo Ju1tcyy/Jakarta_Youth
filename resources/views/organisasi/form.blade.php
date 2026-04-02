@@ -115,12 +115,12 @@
                 </div>
 
                 <!-- reCAPTCHA -->
-                <div class="flex justify-center pt-4">
+                <div class="flex flex-col items-center pt-4 gap-2">
                     <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}"></div>
+                    @if($errors->has('g-recaptcha-response'))
+                        <p class="text-[10px] text-red-500 font-bold text-center">{{ $errors->first('g-recaptcha-response') }}</p>
+                    @endif
                 </div>
-                @error('g-recaptcha-response') 
-                    <p class="text-[10px] text-red-500 font-bold text-center">{{ $message }}</p> 
-                @enderror
 
                 <div class="pt-6">
                     <button type="submit" class="w-full bg-gradient-jyaa text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] shadow-xl shadow-red-200 hover:scale-[1.02] transition-all flex items-center justify-center">
@@ -138,6 +138,24 @@
 
     <script>
         feather.replace();
+
+        // Form validation for reCAPTCHA
+        const form = document.getElementById('registrationForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    e.preventDefault();
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Verifikasi Diperlukan',
+                        text: 'Mohon selesaikan verifikasi reCAPTCHA terlebih dahulu.',
+                        confirmButtonColor: '#e53e3e'
+                    });
+                    return false;
+                }
+            });
+        }
 
         @if($errors->any())
             Swal.fire({

@@ -61,7 +61,7 @@
             align-items: center;
             gap: 12px;
         }
-        .header .logo img { height: 38px; width: auto; }
+        .header .logo img { height: 48px; width: auto; }
         .header h1 {
             font-size: 1.25rem;
             font-weight: 700;

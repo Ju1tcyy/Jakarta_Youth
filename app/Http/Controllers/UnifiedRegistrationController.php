@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organisasi;
 use App\Models\User;
+use App\Helpers\RecaptchaHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -31,15 +32,15 @@ class UnifiedRegistrationController extends Controller
         ]);
 
         // Verify reCAPTCHA
-        $recaptchaSecret = config('recaptcha.secret_key');
         $recaptchaResponse = $request->input('g-recaptcha-response');
+        $result = RecaptchaHelper::verify($recaptchaResponse, $request->ip());
         
-        $verifyURL = "https://www.google.com/recaptcha/api/siteverify";
-        $response = file_get_contents($verifyURL . "?secret={$recaptchaSecret}&response={$recaptchaResponse}");
-        $responseKeys = json_decode($response, true);
-        
-        if (!$responseKeys["success"]) {
-            return back()->withErrors(['g-recaptcha-response' => 'Verifikasi reCAPTCHA gagal. Silakan coba lagi.'])->withInput();
+        if (!isset($result['success']) || !$result['success']) {
+            $errorMessage = 'Verifikasi reCAPTCHA gagal. Silakan coba lagi.';
+            if (isset($result['error-codes'])) {
+                \Log::error('reCAPTCHA Error: ' . json_encode($result['error-codes']));
+            }
+            return back()->withErrors(['g-recaptcha-response' => $errorMessage])->withInput();
         }
 
         // Create user with pendaftar role

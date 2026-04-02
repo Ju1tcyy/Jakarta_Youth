@@ -134,10 +134,12 @@
             </div>
 
             <!-- reCAPTCHA -->
-            <div class="flex justify-center pt-4">
+            <div class="flex flex-col items-center pt-4 gap-2">
                 <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}"></div>
+                @if($errors->has('g-recaptcha-response'))
+                    <p class="text-xs font-bold text-red-500 text-center">{{ $errors->first('g-recaptcha-response') }}</p>
+                @endif
             </div>
-            <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-2 text-center" />
 
             <button type="submit"
                 class="group w-full bg-primary text-white py-6 rounded-3xl font-black text-sm uppercase tracking-[0.3em] hover:bg-slate-900 shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4">
@@ -157,6 +159,19 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             feather.replace();
+            
+            // Form validation for reCAPTCHA
+            const form = document.getElementById('registrationForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const recaptchaResponse = grecaptcha.getResponse();
+                    if (!recaptchaResponse) {
+                        e.preventDefault();
+                        alert('Mohon selesaikan verifikasi reCAPTCHA terlebih dahulu.');
+                        return false;
+                    }
+                });
+            }
         });
     </script>
 </x-guest-layout>

@@ -101,11 +101,11 @@
         <!-- Sidebar -->
         <aside class="w-64 bg-white shadow-xl flex flex-col h-screen z-50 mobile-sidebar border-r border-slate-100">
             <div class="p-8 border-b flex-shrink-0 mobile-sidebar-header">
-                <div class="flex items-center">
-                    <img src="{{ asset('icon/logo collab.png') }}" alt="Logo" class="h-10 w-auto max-w-[150px] object-contain">
+                <div class="flex items-center justify-center">
+                    <img src="{{ asset('icon/logo_fix.png') }}" alt="Logo JYAA" class="h-20 w-auto max-w-full object-contain">
                 </div>
                 <div class="mt-4">
-                    <h1 class="text-xs font-black text-slate-400 tracking-[0.2em] uppercase">Management</h1>
+                    <h1 class="text-xs font-black text-slate-400 tracking-[0.2em] uppercase text-center">Management</h1>
                 </div>
             </div>
             
