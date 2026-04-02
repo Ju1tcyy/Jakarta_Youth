@@ -476,7 +476,7 @@
     <div class="header">
         <div class="logo">
             <img src="{{ asset('icon/logo_fix.png') }}" alt="Logo">
-            <h1>Jakarta Youth</h1>
+            <h1>Jakarta Youth Achievement Award 2026</h1>
         </div>
         <div class="header-right">
             <div class="header-badge">
@@ -716,7 +716,7 @@
 
                             <!-- Bukti Share IG -->
                             <div class="document-card {{ $organisasi->buktishare ? 'completed' : '' }}">
-                                <h4>Screenshot Share IG Story</h4>
+                                <h4>Screenshot Share IG Story (10 Orang)</h4>
                                 <div class="document-status {{ $organisasi->buktishare ? 'completed' : 'pending' }}">
                                     <i data-feather="{{ $organisasi->buktishare ? 'check-circle' : 'clock' }}"></i>
                                     <span>{{ $organisasi->buktishare ? 'Selesai' : 'Belum diupload' }}</span>
@@ -741,7 +741,7 @@
 
                             <!-- Bukti Repost IG -->
                             <div class="document-card {{ $organisasi->buktirepost ? 'completed' : '' }}">
-                                <h4>Screenshot Repost IG Feeds</h4>
+                                <h4>Screenshot Repost IG Feeds (10 Orang)</h4>
                                 <div class="document-status {{ $organisasi->buktirepost ? 'completed' : 'pending' }}">
                                     <i data-feather="{{ $organisasi->buktirepost ? 'check-circle' : 'clock' }}"></i>
                                     <span>{{ $organisasi->buktirepost ? 'Selesai' : 'Belum diupload' }}</span>
@@ -1131,13 +1131,26 @@
                             <strong>2. Fotokopi Rapor</strong><br>
                             • Rapor 1 tahun terakhir, resmi dengan TTD/Stempel sekolah.<br><br>
                             <strong>3. Video Profil "Empowering Student Voices..."</strong><br>
-                            • Max 3 menit (.MP4/1080p). Memuat pengenalan, visi misi, dan bukti aksi nyata.<br>
-                            • Terstruktur (pembukaan - narasi - penutup) berupa storytelling.<br>
-                            • Diunggah di sosmed pribadi (IG/TikTok), wajib gunakan caption, tag dan hashtag.<br><br>
-                            <strong>4. Portofolio Inovasi (3-5 halaman)</strong><br>
-                            • Memuat proker unggulan (latar belakang, konsep, pelaksanaan, dokumentasi, dampak terukur, testimoni eksternal).<br><br>
-                            <strong>5. Esai Solusi Kepemimpinan (500 - 1.000 kata)</strong><br>
-                            • Tema: "Mewujudkan OSIS yang Inklusif: Menghapus Budaya Eksklusivitas dan Circle..." (memuat latar belakang, masalah, solusi, implementasi).<br><br>
+                            • Peserta wajib membuat video berdurasi maksimal 3 menit dalam format .MP4 (1080p).<br>
+                            • Video harus memuat: Pengenalan diri dan jabatan sebagai Ketua OSIS, Visi dan misi kepemimpinan, Bukti nyata aksi kepemimpinan (program/kegiatan yang telah dilakukan).<br>
+                            • Disusun secara komunikatif, terstruktur, mencerminkan karakter kepemimpinan, disarankan menggunakan pendekatan storytelling.<br>
+                            • Struktur video minimal mencakup: pembukaan – visi & misi – aksi nyata – penutup.<br>
+                            • Konten selaras dengan semangat: “Empowering Student Voices, Shaping Future Leaders.”<br>
+                            • Wajib diunggah pada akun IG/TikTok pribadi. Video harus orisinil, tidak melanggar hak cipta, dan pantas.<br>
+                            • Caption wajib memuat deskripsi OSIS, ajakan mendukung (call to action), hashtag: #JakartaYouthAchivementAward2026 #OSISJakarta.<br>
+                            • Wajib menandai (tag): @direktorat.sma dan @mncuiversity (jika di IG).<br>
+                            • Peserta wajib mencantumkan link postingan pada form pengumpulan.<br><br>
+                            <strong>4. Portofolio Inovasi</strong><br>
+                            • Menyusun portofolio 3–5 halaman yang memuat program kerja unggulan selama masa kepemimpinan.<br>
+                            • Setiap program wajib mencakup: (1) latar belakang & tujuan, (2) konsep inovasi/kebaruan, (3) deskripsi pelaksanaan, (4) dokumentasi kegiatan, (5) dampak terukur (jumlah peserta/penerima manfaat/nominal), (6) testimoni pihak eksternal.<br>
+                            • Menunjukkan peran aktif peserta sebagai Ketua OSIS dalam program tersebut.<br>
+                            • Disusun secara ringkas, jelas, sistematis, dan berbasis data dengan visual profesional.<br>
+                            • Portofolio harus orisinil dan dapat dipertanggungjawabkan.<br><br>
+                            <strong>5. Esai Solusi Kepemimpinan</strong><br>
+                            • Tema: “Mewujudkan OSIS yang Inklusif: Menghapus Budaya Eksklusivitas dan Circle dalam Organisasi Siswa”.<br>
+                            • Esai memuat: latar belakang, analisis masalah, solusi konkret, langkah implementasi, dampak yang diharapkan.<br>
+                            • Panjang 500–1.000 kata, ditulis secara sistematis dan argumentatif.<br>
+                            • Orisinil dan dikumpulkan dalam format PDF.<br><br>
                             <strong>6. Google Form Kepuasan & Surat Kedisiplinan</strong><br>
                             • Form Google untuk 3 target. Surat kedisiplinan menyatakan peserta bebas pelanggaran.
                         </div>
@@ -1218,8 +1231,8 @@
                                 
                                 <div class="form-group" style="margin-top: 10px;">
                                     <label for="video_profil_jakarta">Link Video:</label>
-                                    <input type="url" id="video_profil_jakarta" name="video_profil_jakarta" value="{{ $organisasi->video_profil_jakarta }}" placeholder="https://youtube.com/...">
-                                    <small>Masukkan link video YouTube/Drive</small>
+                                    <input type="url" id="video_profil_jakarta" name="video_profil_jakarta" value="{{ $organisasi->video_profil_jakarta }}" placeholder="https://ig/tiktok/ ...">
+                                    <small>Masukkan link video Instagram or Tiktok</small>
                                 </div>
                             </div>
 

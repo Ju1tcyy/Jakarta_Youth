@@ -1253,15 +1253,20 @@
                     </div>
 
                     <div class="requirements-section">
-                        <h4>4. Video Profil "Jakarta Muda Bergerak":</h4>
+                        <h4>4. Video Profil:</h4>
                         <div class="requirements-list">
                             <ul>
-                                <li>Peserta wajib membuat video berdurasi maksimal 1 menit dalam format .MP4 (1080p)</li>
-                                <li>Video harus memuat: (1) pengenalan diri dan jabatan sebagai Ketua OSIS, (2) visi dan misi kepemimpinan, (3) bukti nyata aksi kepemimpinan (program/kegiatan yang telah dilakukan)</li>
-                                <li>Video disusun secara komunikatif, terstruktur, dan mencerminkan karakter kepemimpinan, serta disarankan menggunakan pendekatan storytelling</li>
-                                <li>Struktur video minimal mencakup: pembukaan, visi & misi, aksi nyata, dan penutup</li>
-                                <li>Video wajib diunggah pada akun media sosial pribadi Ketua OSIS (Instagram/TikTok)</li>
+                                <li>Peserta wajib membuat video berdurasi maksimal 3 menit dalam format .MP4 (1080p)</li>
+                                <li>Video harus memuat: Pengenalan diri dan jabatan sebagai Ketua OSIS, Visi dan misi kepemimpinan, Bukti nyata aksi kepemimpinan (program/kegiatan yang telah dilakukan)</li>
+                                <li>Video disusun secara komunikatif, terstruktur, mencerminkan karakter kepemimpinan, serta disarankan menggunakan pendekatan storytelling</li>
+                                <li>Struktur video minimal mencakup: pembukaan – visi & misi – aksi nyata – penutup</li>
+                                <li>Konten video diharapkan selaras dengan semangat: "Empowering Student Voices, Shaping Future Leaders."</li>
+                                <li>Video wajib diunggah pada akun media sosial pribadi Ketua OSIS (Instagram atau TikTok)</li>
                                 <li>Video harus orisinil, tidak melanggar hak cipta, serta tidak mengandung konten yang tidak pantas</li>
+                                <li>Caption wajib memuat deskripsi singkat mengenai OSIS serta ajakan untuk mendukung (call to action)</li>
+                                <li>Caption wajib mencantumkan hashtag: #JakartaYouthAchivementAward2026 #OSISJakarta</li>
+                                <li>Peserta wajib menandai (tag) akun: @direktorat.sma dan @mncuiversity pada postingan Instagram</li>
+                                <li>Peserta wajib mencantumkan link postingan pada form pengumpulan</li>
                             </ul>
                         </div>
                     </div>
@@ -1337,9 +1342,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="video_profil_jakarta">Link Video Profil "Jakarta Muda Bergerak":</label>
+                            <label for="video_profil_jakarta">Link Video Profil:</label>
                             <input type="url" id="video_profil_jakarta" name="video_profil_jakarta" placeholder="https://www.instagram.com/p/... atau https://www.tiktok.com/@...">
-                            <div class="file-info">Link video di media sosial pribadi, maksimal 1 menit, format MP4 1080p</div>
+                            <div class="file-info">Link video di media sosial pribadi, maksimal 3 menit, format MP4 1080p</div>
                         </div>
 
                         <div class="form-group">
