@@ -135,7 +135,7 @@
 
             <!-- reCAPTCHA -->
             <div class="flex flex-col items-center pt-4 gap-2">
-                <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}"></div>
+                <div id="recaptcha-container"></div>
                 @if($errors->has('g-recaptcha-response'))
                     <p class="text-xs font-bold text-red-500 text-center">{{ $errors->first('g-recaptcha-response') }}</p>
                 @endif
@@ -157,14 +157,53 @@
     </div>
 
     <script>
+        let recaptchaWidgetId;
+        
+        function onRecaptchaLoad() {
+            console.log('reCAPTCHA loaded successfully');
+            const container = document.getElementById('recaptcha-container');
+            if (container && typeof grecaptcha !== 'undefined') {
+                recaptchaWidgetId = grecaptcha.render('recaptcha-container', {
+                    'sitekey': '{{ config('recaptcha.site_key') }}',
+                    'theme': 'light'
+                });
+                console.log('reCAPTCHA widget rendered with ID:', recaptchaWidgetId);
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             feather.replace();
+            
+            // Try to load reCAPTCHA
+            if (typeof grecaptcha !== 'undefined' && grecaptcha.render) {
+                onRecaptchaLoad();
+            } else {
+                // Wait for grecaptcha to load
+                let attempts = 0;
+                const checkInterval = setInterval(function() {
+                    attempts++;
+                    if (typeof grecaptcha !== 'undefined' && grecaptcha.render) {
+                        clearInterval(checkInterval);
+                        onRecaptchaLoad();
+                    } else if (attempts > 50) { // 5 seconds timeout
+                        clearInterval(checkInterval);
+                        console.error('reCAPTCHA failed to load after 5 seconds');
+                        alert('Gagal memuat reCAPTCHA. Silakan refresh halaman.');
+                    }
+                }, 100);
+            }
             
             // Form validation for reCAPTCHA
             const form = document.getElementById('registrationForm');
             if (form) {
                 form.addEventListener('submit', function(e) {
-                    const recaptchaResponse = grecaptcha.getResponse();
+                    if (typeof grecaptcha === 'undefined') {
+                        e.preventDefault();
+                        alert('reCAPTCHA belum dimuat. Silakan refresh halaman.');
+                        return false;
+                    }
+                    
+                    const recaptchaResponse = grecaptcha.getResponse(recaptchaWidgetId);
                     if (!recaptchaResponse) {
                         e.preventDefault();
                         alert('Mohon selesaikan verifikasi reCAPTCHA terlebih dahulu.');

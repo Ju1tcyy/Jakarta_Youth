@@ -99,7 +99,7 @@ class DashboardController extends Controller
                 'avg_score' => Organisasi::whereNotNull('nilai_media')->avg('nilai_media')
             ],
             'video_reels' => [
-                'name' => "People's Choice Student Council - DKI Jakarta",
+                'name' => 'Peoples Choice Student Council - DKI Jakarta',
                 'icon' => '🎬',
                 'total' => Organisasi::whereNotNull('link_instagram_reels')
                     ->whereNotNull('google_form_kepuasan_reels')
