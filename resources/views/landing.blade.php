@@ -493,6 +493,9 @@
                     <a href="{{ route('register') }}"
                         class="w-full text-center py-5 border-2 border-primary text-primary rounded-full text-sm font-black uppercase tracking-widest group-hover:bg-primary group-hover:text-white transition-all">Daftar
                         Sekarang</a>
+                    <p class="mt-8 text-xs font-bold text-slate-400 uppercase tracking-widest">Sudah memiliki akun? 
+                        <a href="{{ route('login') }}" class="text-primary hover:text-accent ml-1 font-black underline underline-offset-8 decoration-2 decoration-primary/10 hover:decoration-accent transition-all">Portal Login</a>
+                    </p>
                 </div>
 
                 <!-- Ketos Card -->
