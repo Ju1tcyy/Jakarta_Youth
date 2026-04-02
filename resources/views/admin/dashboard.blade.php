@@ -6,7 +6,7 @@
 @section('content')
 <!-- Logo Section -->
 <div class="text-center mb-8">
-    <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo" class="mx-auto h-20 w-auto mb-3">
+    <img src="{{ asset('icon/logo_fix.png') }}" alt="Jakarta Youth Achivement Award  Logo" class="mx-auto h-20 w-auto mb-3">
     <h1 class="text-2xl font-bold text-gray-800 mb-1">Admin Dashboard</h1>
     <p class="text-gray-600 text-sm">Jakarta Youth Achievement Award 2026</p>
 </div>

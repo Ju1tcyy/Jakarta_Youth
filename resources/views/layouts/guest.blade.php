@@ -84,7 +84,7 @@
     <!-- Branding Header -->
     <div class="mb-2 flex justify-center animate-fade-up">
         <a href="/">
-            <img src="{{ asset('icon/logo_collab.png') }}" class="h-44 w-auto object-contain" alt="JYAA Logo">
+            <img src="{{ asset('icon/logo_fix.png') }}" class="h-44 w-auto object-contain" alt="JYAA Logo">
         </a>
     </div>
 

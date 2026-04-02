@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Organisasi - Youth Generation</title>
+    <title>Dashboard Organisasi - Jakarta Youth Achivement Award </title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -475,7 +475,7 @@
 <body>
     <div class="header">
         <div class="logo">
-            <img src="{{ asset('icon/logo_collab.png') }}" alt="Logo">
+            <img src="{{ asset('icon/logo_fix.png') }}" alt="Logo">
             <h1>Jakarta Youth</h1>
         </div>
         <div class="header-right">

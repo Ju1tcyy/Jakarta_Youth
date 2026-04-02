@@ -296,8 +296,8 @@
     <nav>
         <div class="container">
             <div class="logo">
-                <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo">
-                Youth Generation
+                <img src="{{ asset('icon/logo_fix.png') }}" alt="Jakarta Youth Achivement Award  Logo">
+                Jakarta Youth Achivement Award 
             </div>
             <ul>
                 <li><a href="{{ route('home') }}">Home</a></li>
@@ -311,7 +311,7 @@
     <div class="main-content">
         <!-- Header Section -->
         <div class="header-section">
-            <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo">
+            <img src="{{ asset('icon/logo_fix.png') }}" alt="Jakarta Youth Achivement Award  Logo">
             <h1>Tata Cara Pendaftaran</h1>
             <p>Jakarta Youth Achievement Award 2026</p>
         </div>

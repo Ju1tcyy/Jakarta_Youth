@@ -210,7 +210,7 @@
         <div class="success-icon">✅</div>
         
         <div class="logo">
-            <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo">
+            <img src="{{ asset('icon/logo_fix.png') }}" alt="Jakarta Youth Achivement Award  Logo">
         </div>
 
         <h1>Pendaftaran Berhasil!</h1>

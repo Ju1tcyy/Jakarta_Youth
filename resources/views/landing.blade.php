@@ -172,7 +172,7 @@
         x-transition>
         <div class="p-6 sm:p-8 lg:p-10 flex flex-col h-full">
             <div class="flex justify-between items-center mb-12 sm:mb-16">
-                <img src="{{ asset('icon/logo_collab.png') }}" class="h-12 sm:h-16 lg:h-20 w-auto" alt="JYAA Logo">
+                <img src="{{ asset('icon/logo_fix.png') }}" class="h-12 sm:h-16 lg:h-20 w-auto" alt="JYAA Logo">
                 <button @click="mobileMenu = false"
                     class="text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
                     <i data-feather="x" class="w-6 h-6 sm:w-8 sm:h-8"></i>
@@ -214,7 +214,7 @@
             <a href="#" class="flex items-center gap-3">
                 <div class="h-12 sm:h-16 lg:h-20 flex items-center"
                     :class="scrolled ? 'h-10 sm:h-12 lg:h-14' : 'h-12 sm:h-16 lg:h-20'">
-                    <img src="{{ asset('icon/logo_collab.png') }}" alt="JYAA Logo"
+                    <img src="{{ asset('icon/logo_fix.png') }}" alt="JYAA Logo"
                         class="h-full w-auto object-contain transition-all duration-300">
                 </div>
             </a>
@@ -565,7 +565,7 @@
         <div class="container mx-auto px-10 relative z-10">
             <div class="grid lg:grid-cols-12 gap-20">
                 <div class="lg:col-span-5 space-y-12">
-                    <img src="{{ asset('icon/logo_collab.png') }}" alt="Logo" class="h-48 w-auto object-contain">
+                    <img src="{{ asset('icon/logo_fix.png') }}" alt="Logo" class="h-48 w-auto object-contain">
                     <p class="text-slate-300 font-medium text-lg leading-relaxed max-w-sm">
                         Membangun generasi emas bangsa melalui pendampingan kepemimpinan yang progresif bagi setiap
                         pemuda Jakarta.

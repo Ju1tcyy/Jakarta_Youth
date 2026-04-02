@@ -159,7 +159,7 @@
 <body>
     <div class="login-container">
         <div class="logo">
-            <img src="{{ asset('icon/logo_collab.png') }}" alt="Youth Generation Logo">
+            <img src="{{ asset('icon/logo_fix.png') }}" alt="Jakarta Youth Achivement Award  Logo">
             <h1>Portal Organisasi</h1>
             <p>Jakarta Youth Achievement Award 2026</p>
         </div>

@@ -32,7 +32,7 @@
                 <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i> Kembali ke Beranda
             </a>
             <div class="mb-2 mt-4 w-[95%] sm:w-full max-w-[800px] h-[60px] sm:h-[110px] flex justify-center items-center mx-auto overflow-hidden">
-                <img src="{{ asset('icon/logo_collab.png') }}" alt="Logo JYAA" class="w-[120%] sm:w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                <img src="{{ asset('icon/logo_fix.png') }}" alt="Logo JYAA" class="w-[120%] sm:w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             </div>
             <h1 class="text-3xl font-black text-slate-900 font-outfit uppercase tracking-tight italic">Registrasi Organisasi</h1>
             <p class="text-slate-500 mt-2 font-medium">Daftarkan ekstrakurikuler atau organisasi kepemudaan Anda.</p>
