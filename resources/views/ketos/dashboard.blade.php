@@ -1079,7 +1079,7 @@
                 </div>
             </div>
 
-            <!-- Nominasi 4: Video IG Reels -->
+            <!-- Nominasi 4: People's Choice Student Council - DKI Jakarta -->
             <div id="nominasi4" class="content-section">
                 <div class="nomination-section">
                     <h2 class="nomination-title"> People's Choice Student Council - DKI Jakarta</h2>
@@ -1158,7 +1158,7 @@
                     <form action="{{ route('ketos.upload.nomination') }}" method="POST" enctype="multipart/form-data" class="upload-form">
                         @csrf
                         <input type="hidden" name="nomination_type" value="video_reels">
-                        <h4 style="margin-bottom: 20px; color: #333;">Upload Berkas Video IG Reels</h4>
+                        <h4 style="margin-bottom: 20px; color: #333;">Upload Berkas People's Choice Student Council - DKI Jakarta</h4>
                         
                         <div class="form-group">
                             <label for="link_instagram_reels">Link Postingan Instagram Reels:</label>

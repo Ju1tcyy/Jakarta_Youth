@@ -25,7 +25,22 @@ class UnifiedRegistrationController extends Controller
             'nama_organisasi' => 'required|string|max:255',
             'nomor_wa'        => 'required|string|max:20',
             'alamat'          => 'required|string',
+            'g-recaptcha-response' => 'required',
+        ], [
+            'g-recaptcha-response.required' => 'Mohon verifikasi bahwa Anda bukan robot.',
         ]);
+
+        // Verify reCAPTCHA
+        $recaptchaSecret = config('recaptcha.secret_key');
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+        
+        $verifyURL = "https://www.google.com/recaptcha/api/siteverify";
+        $response = file_get_contents($verifyURL . "?secret={$recaptchaSecret}&response={$recaptchaResponse}");
+        $responseKeys = json_decode($response, true);
+        
+        if (!$responseKeys["success"]) {
+            return back()->withErrors(['g-recaptcha-response' => 'Verifikasi reCAPTCHA gagal. Silakan coba lagi.'])->withInput();
+        }
 
         // Create user with pendaftar role
         $user = User::create([

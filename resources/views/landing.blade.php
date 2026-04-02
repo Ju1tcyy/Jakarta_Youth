@@ -519,14 +519,14 @@
 
             <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto animate-fade-up delay-100">
                 <!-- WhatsApp -->
-                <a href="https://wa.me/6285880059189" target="_blank"
+                <a href="https://wa.me/628979884380" target="_blank"
                     class="bg-slate-50 p-12 rounded-[2.5rem] border border-slate-100 hover:border-primary transition-all group shadow-sm hover:shadow-xl hover:shadow-primary/5">
                     <div
                         class="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-primary group-hover:text-accent transition-all duration-500 text-primary">
                         <i data-feather="phone" class="w-8 h-8"></i>
                     </div>
                     <h3 class="text-2xl font-black capitalize text-slate-900 mb-2">WhatsApp</h3>
-                    <p class="text-primary font-black text-lg mb-4">+62 858-8005-9189</p>
+                    <p class="text-primary font-black text-lg mb-4"> +62 897-9884-380 (Silvi)</p>
                     <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Respon Cepat (09:00 - 17:00)
                     </p>
                 </a>
@@ -551,7 +551,7 @@
                         <i data-feather="instagram" class="w-8 h-8"></i>
                     </div>
                     <h3 class="text-2xl font-black capitalize text-slate-900 mb-2">Instagram</h3>
-                    <p class="text-primary font-black text-lg mb-4"></p>
+                    <p class="text-primary font-black text-lg mb-4">@beasiswamncu</p>
                     <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Update & Berita Terbaru</p>
                 </a>
             </div>

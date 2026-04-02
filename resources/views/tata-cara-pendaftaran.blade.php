@@ -357,7 +357,7 @@
                         <li>Outstanding Student Council Innovation</li>
                         <li>Leading Student Council Social Impact</li>
                         <li>Next-Level Student Council Media</li>
-                        <li>Video IG Reels</li>
+                        <li>People's Choice Student Council - DKI Jakarta</li>
                         <li>Student Council President of the Year 2026</li>
                     </ul>
                 </div>

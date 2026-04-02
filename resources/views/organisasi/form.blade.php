@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         :root {
             --primary: #e53e3e;
@@ -112,6 +113,14 @@
                         @error('alamat') <p class="text-[10px] text-red-500 font-bold mt-1 ml-1">{{ $message }}</p> @enderror
                     </div>
                 </div>
+
+                <!-- reCAPTCHA -->
+                <div class="flex justify-center pt-4">
+                    <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}"></div>
+                </div>
+                @error('g-recaptcha-response') 
+                    <p class="text-[10px] text-red-500 font-bold text-center">{{ $message }}</p> 
+                @enderror
 
                 <div class="pt-6">
                     <button type="submit" class="w-full bg-gradient-jyaa text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] shadow-xl shadow-red-200 hover:scale-[1.02] transition-all flex items-center justify-center">

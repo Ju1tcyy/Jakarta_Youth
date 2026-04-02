@@ -808,7 +808,7 @@
                             <option value="cat1" {{ $lockedCategory == 'cat1' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🏆 Outstanding Student Council Innovation</option>
                             <option value="cat2" {{ $lockedCategory == 'cat2' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🤝 Leading Student Council Social Impact</option>
                             <option value="cat3" {{ $lockedCategory == 'cat3' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>📱 Next-Level Student Council Media</option>
-                            <option value="cat4" {{ $lockedCategory == 'cat4' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🎬 Video IG Reels</option>
+                            <option value="cat4" {{ $lockedCategory == 'cat4' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>🎬 People's Choice Student Council - DKI Jakarta</option>
                             <option value="cat5" {{ $lockedCategory == 'cat5' ? 'selected' : ($lockedCategory ? 'disabled' : '') }}>👑 Student Council President of the Year 2026</option>
                         </select>
                         
@@ -859,7 +859,15 @@
                     <!-- Category 1: Innovation -->
                     <div class="documents-section" id="cat1" style="display: none;">
                         <h3>🏆 Outstanding Student Council Innovation</h3>
-                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan program kerja inovatif dan berdampak.</p>
+                        <p style="margin-bottom: 15px; color: #666;">Kategori untuk organisasi dengan program kerja inovatif dan berdampak.</p>
+                        
+                        <div class="note-box" style="margin-bottom: 20px;">
+                            <strong>Ketentuan Kategori:</strong><br>
+                            • Portofolio program kerja yang telah dilaksanakan selama periode kepengurusan<br>
+                            • Program kerja harus menunjukkan inovasi dan kreativitas<br>
+                            • Dokumentasi lengkap pelaksanaan program (foto, video, laporan)<br>
+                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        </div>
                         
                         <div class="documents-grid">
                             <div class="document-card {{ $organisasi->portofolio_program_kerja ? 'completed' : '' }}">
@@ -897,7 +905,15 @@
                     <!-- Category 2: Social Impact -->
                     <div class="documents-section" id="cat2" style="display: none;">
                         <h3>🤝 Leading Student Council Social Impact</h3>
-                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan kegiatan sosial yang berdampak luas.</p>
+                        <p style="margin-bottom: 15px; color: #666;">Kategori untuk organisasi dengan kegiatan sosial yang berdampak luas.</p>
+                        
+                        <div class="note-box" style="margin-bottom: 20px;">
+                            <strong>Ketentuan Kategori:</strong><br>
+                            • Portofolio kegiatan sosial yang telah dilaksanakan<br>
+                            • Kegiatan harus memberikan dampak positif bagi masyarakat<br>
+                            • Dokumentasi lengkap kegiatan sosial (foto, video, testimoni)<br>
+                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        </div>
                         
                         <div class="documents-grid">
                             <div class="document-card {{ $organisasi->portofolio_kegiatan_sosial ? 'completed' : '' }}">
@@ -935,7 +951,15 @@
                     <!-- Category 3: Media -->
                     <div class="documents-section" id="cat3" style="display: none;">
                         <h3>📱 Next-Level Student Council Media</h3>
-                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk organisasi dengan pengelolaan media sosial yang kreatif.</p>
+                        <p style="margin-bottom: 15px; color: #666;">Kategori untuk organisasi dengan pengelolaan media sosial yang kreatif.</p>
+                        
+                        <div class="note-box" style="margin-bottom: 20px;">
+                            <strong>Ketentuan Kategori:</strong><br>
+                            • Portofolio pengelolaan media sosial organisasi<br>
+                            • Konten media sosial harus kreatif dan engaging<br>
+                            • Dokumentasi statistik engagement (likes, comments, shares)<br>
+                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        </div>
                         
                         <div class="documents-grid">
                             <div class="document-card {{ $organisasi->portofolio_sosial_media ? 'completed' : '' }}">
@@ -972,8 +996,17 @@
 
                     <!-- Category 4: Video Reels -->
                     <div class="documents-section" id="cat4" style="display: none;">
-                        <h3>🎬 Video IG Reels</h3>
-                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk video Instagram Reels terbaik.</p>
+                        <h3>🎬 People's Choice Student Council - DKI Jakarta</h3>
+                        <p style="margin-bottom: 15px; color: #666;">Kategori untuk video Instagram Reels terbaik.</p>
+                        
+                        <div class="note-box" style="margin-bottom: 20px;">
+                            <strong>Ketentuan Kategori:</strong><br>
+                            • Video Instagram Reels yang menarik dan kreatif<br>
+                            • Durasi video maksimal 90 detik<br>
+                            • Konten harus relevan dengan kegiatan OSIS<br>
+                            • Link Instagram Reels harus dapat diakses publik<br>
+                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        </div>
                         
                         <div class="documents-grid">
                             <div class="document-card {{ $organisasi->link_instagram_reels ? 'completed' : '' }}">
@@ -1011,7 +1044,19 @@
                     <!-- Category 5: President -->
                     <div class="documents-section" id="cat5" style="display: none;">
                         <h3>👑 Student Council President of the Year 2026</h3>
-                        <p style="margin-bottom: 20px; color: #666;">Kategori untuk Ketua OSIS terbaik tahun 2026.</p>
+                        <p style="margin-bottom: 15px; color: #666;">Kategori untuk Ketua OSIS terbaik tahun 2026.</p>
+                        
+                        <div class="note-box" style="margin-bottom: 20px;">
+                            <strong>Ketentuan Kategori:</strong><br>
+                            • Pas foto formal dengan latar belakang merah/biru (ukuran 4x6)<br>
+                            • Curriculum Vitae (CV) lengkap dengan prestasi dan pengalaman organisasi<br>
+                            • Fotokopi rapor semester terakhir (minimal rata-rata 75)<br>
+                            • Video profil tentang Jakarta (durasi 2-3 menit)<br>
+                            • Portofolio inovasi dan program kerja yang telah dilaksanakan<br>
+                            • Esai solusi kepemimpinan (500-1000 kata)<br>
+                            • Surat pernyataan kedisiplinan dari sekolah<br>
+                            • Mengisi form kepuasan OSIS untuk kategori ini
+                        </div>
                         
                         <div class="documents-grid">
                             <div class="document-card {{ $organisasi->pas_foto_formal ? 'completed' : '' }}">

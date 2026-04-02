@@ -133,6 +133,12 @@
                 </div>
             </div>
 
+            <!-- reCAPTCHA -->
+            <div class="flex justify-center pt-4">
+                <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}"></div>
+            </div>
+            <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-2 text-center" />
+
             <button type="submit"
                 class="group w-full bg-primary text-white py-6 rounded-3xl font-black text-sm uppercase tracking-[0.3em] hover:bg-slate-900 shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4">
                 Daftar Sekarang

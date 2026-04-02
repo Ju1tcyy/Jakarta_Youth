@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('portofolio_sosial_media')->nullable()->after('google_form_kepuasan_sosial');
             $table->boolean('google_form_kepuasan_media')->default(0)->after('portofolio_sosial_media');
             
-            // Video IG Reels
+            // People's Choice Student Council - DKI Jakarta
             $table->string('link_instagram_reels')->nullable()->after('google_form_kepuasan_media');
             $table->boolean('google_form_kepuasan_reels')->default(0)->after('link_instagram_reels');
             
