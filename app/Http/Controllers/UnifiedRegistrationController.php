@@ -26,22 +26,22 @@ class UnifiedRegistrationController extends Controller
             'nama_organisasi' => 'required|string|max:255',
             'nomor_wa'        => 'required|string|max:20',
             'alamat'          => 'required|string',
-            'g-recaptcha-response' => 'required',
+            // 'g-recaptcha-response' => 'required',
         ], [
-            'g-recaptcha-response.required' => 'Mohon verifikasi bahwa Anda bukan robot.',
+            // 'g-recaptcha-response.required' => 'Mohon verifikasi bahwa Anda bukan robot.',
         ]);
 
-        // Verify reCAPTCHA
-        $recaptchaResponse = $request->input('g-recaptcha-response');
-        $result = RecaptchaHelper::verify($recaptchaResponse, $request->ip());
-        
-        if (!isset($result['success']) || !$result['success']) {
-            $errorMessage = 'Verifikasi reCAPTCHA gagal. Silakan coba lagi.';
-            if (isset($result['error-codes'])) {
-                \Log::error('reCAPTCHA Error: ' . json_encode($result['error-codes']));
-            }
-            return back()->withErrors(['g-recaptcha-response' => $errorMessage])->withInput();
-        }
+        // Verify reCAPTCHA (Temporarily Disabled)
+        // $recaptchaResponse = $request->input('g-recaptcha-response');
+        // $result = RecaptchaHelper::verify($recaptchaResponse, $request->ip());
+        // 
+        // if (!isset($result['success']) || !$result['success']) {
+        //     $errorMessage = 'Verifikasi reCAPTCHA gagal. Silakan coba lagi.';
+        //     if (isset($result['error-codes'])) {
+        //         \Log::error('reCAPTCHA Error: ' . json_encode($result['error-codes']));
+        //     }
+        //     return back()->withErrors(['g-recaptcha-response' => $errorMessage])->withInput();
+        // }
 
         // Create user with pendaftar role
         $user = User::create([

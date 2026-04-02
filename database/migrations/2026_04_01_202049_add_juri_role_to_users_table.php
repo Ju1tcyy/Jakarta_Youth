@@ -9,7 +9,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'pendaftar', 'juri'])->default('pendaftar')->change();
+            // Mengubah tipe menjadi string agar tidak bentrok dengan CHECK constraint SQLite
+            $table->string('role')->default('pendaftar')->change();
         });
     }
 
