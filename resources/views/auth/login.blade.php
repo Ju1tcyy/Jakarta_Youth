@@ -44,9 +44,16 @@
             </div>
 
             <!-- Remember Me -->
-            <div class="flex items-center ml-1">
+            <div class="flex items-center ml-1 pb-4 border-b border-slate-100">
                 <input id="remember_me" type="checkbox" name="remember" class="w-5 h-5 rounded-lg border-2 border-slate-100 text-primary focus:ring-primary/10 transition-all">
                 <label for="remember_me" class="ml-4 text-xs font-black text-slate-500 uppercase tracking-widest">Ingat Saya</label>
+            </div>
+
+            <!-- CAPTCHA -->
+            <div class="space-y-4 pt-2">
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}" data-theme="light"></div>
+                <x-input-error :messages="$errors->get('g-recaptcha-response')" class="mt-2 ml-2" />
             </div>
 
             <button type="submit" class="group w-full bg-primary text-white py-6 rounded-3xl font-black text-sm uppercase tracking-[0.3em] hover:bg-slate-900 shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4">

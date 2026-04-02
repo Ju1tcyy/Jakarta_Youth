@@ -133,13 +133,15 @@
                 </div>
             </div>
 
-            <!-- reCAPTCHA (Temporarily Disabled) -->
-            <!-- <div class="flex flex-col items-center pt-4 gap-2">
+            <!-- reCAPTCHA -->
+            <div class="flex flex-col items-center pt-4 gap-2">
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                 <div class="g-recaptcha" data-sitekey="{{ config('recaptcha.site_key') }}"></div>
                 @if($errors->has('g-recaptcha-response'))
                     <p class="text-xs font-bold text-red-500 text-center">{{ $errors->first('g-recaptcha-response') }}</p>
                 @endif
-            </div> -->
+            </div>
+
 
             <button type="submit"
                 class="group w-full bg-primary text-white py-6 rounded-3xl font-black text-sm uppercase tracking-[0.3em] hover:bg-slate-900 shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4">
@@ -160,8 +162,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             feather.replace();
             
-            // Form validation for reCAPTCHA (Temporarily Disabled)
-            /*
+            // Form validation for reCAPTCHA
             const form = document.getElementById('registrationForm');
             if (form) {
                 form.addEventListener('submit', function(e) {
@@ -179,7 +180,6 @@
                     }
                 });
             }
-            */
         });
     </script>
 </x-guest-layout>
