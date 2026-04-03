@@ -37,24 +37,50 @@ class PendaftarDashboardController extends Controller
         $request->validate([
             'surat_rekomendasi'      => 'nullable|file|mimes:pdf|max:2048',
             'struktur_kepengurusan'  => 'nullable|file|mimes:pdf|max:2048',
-            'buktishare'             => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
-            'buktirepost'            => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'buktishare'             => 'nullable|array|max:10',
+            'buktishare.*'           => 'file|mimes:jpg,jpeg,png|max:5120',
+            'buktirepost'            => 'nullable|array|max:10',
+            'buktirepost.*'          => 'file|mimes:jpg,jpeg,png|max:5120',
         ]);
 
         $updateData = [];
-        $files = [
+        // Handle single PDF files
+        $singleFiles = [
             'surat_rekomendasi' => 'documents/organisasi',
             'struktur_kepengurusan' => 'documents/organisasi',
-            'buktishare' => 'documents/organisasi',
-            'buktirepost' => 'documents/organisasi',
         ];
 
-        foreach ($files as $field => $path) {
+        foreach ($singleFiles as $field => $path) {
             if ($request->hasFile($field)) {
                 if ($organisasi->$field) {
                     Storage::disk('public')->delete($organisasi->$field);
                 }
                 $updateData[$field] = $request->file($field)->store($path, 'public');
+            }
+        }
+
+        // Handle multiple image files (array)
+        $arrayFiles = [
+            'buktishare' => 'documents/organisasi',
+            'buktirepost' => 'documents/organisasi',
+        ];
+
+        foreach ($arrayFiles as $field => $path) {
+            if ($request->hasFile($field)) {
+                // Delete old files first
+                $oldFiles = $organisasi->$field;
+                if (!empty($oldFiles)) {
+                    foreach ((array)$oldFiles as $oldPath) {
+                        Storage::disk('public')->delete($oldPath);
+                    }
+                }
+                
+                // Store new files
+                $paths = [];
+                foreach ($request->file($field) as $file) {
+                    $paths[] = $file->store($path, 'public');
+                }
+                $updateData[$field] = $paths;
             }
         }
 

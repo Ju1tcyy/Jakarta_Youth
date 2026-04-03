@@ -176,10 +176,14 @@
                         @endif
                     </div>
                     @if($organisasi->buktishare)
-                        <a href="{{ Storage::url($organisasi->buktishare) }}" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
-                            <i data-feather="external-link" class="w-3 h-3 mr-1"></i>
-                            Lihat Gambar
-                        </a>
+                        <div class="flex flex-col gap-1">
+                            @foreach($organisasi->buktishare as $index => $file)
+                                <a href="{{ Storage::url($file) }}" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                                    <i data-feather="external-link" class="w-3 h-3 mr-1"></i>
+                                    Lihat Gambar #{{ $index + 1 }}
+                                </a>
+                            @endforeach
+                        </div>
                     @else
                         <p class="text-xs text-slate-400 italic">Belum diupload</p>
                     @endif
@@ -204,10 +208,14 @@
                         @endif
                     </div>
                     @if($organisasi->buktirepost)
-                        <a href="{{ Storage::url($organisasi->buktirepost) }}" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
-                            <i data-feather="external-link" class="w-3 h-3 mr-1"></i>
-                            Lihat Gambar
-                        </a>
+                        <div class="flex flex-col gap-1">
+                            @foreach($organisasi->buktirepost as $index => $file)
+                                <a href="{{ Storage::url($file) }}" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                                    <i data-feather="external-link" class="w-3 h-3 mr-1"></i>
+                                    Lihat Gambar #{{ $index + 1 }}
+                                </a>
+                            @endforeach
+                        </div>
                     @else
                         <p class="text-xs text-slate-400 italic">Belum diupload</p>
                     @endif

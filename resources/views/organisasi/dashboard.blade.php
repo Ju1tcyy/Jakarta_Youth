@@ -588,7 +588,7 @@
                             <h4>Bukti Share IG Story</h4>
                             <div class="document-status {{ $organisasi->buktishare ? 'completed' : 'pending' }}">
                                 <i data-feather="{{ $organisasi->buktishare ? 'check-circle' : 'clock' }}"></i>
-                                <span>{{ $organisasi->buktishare ? 'Sudah diupload' : 'Belum diupload' }}</span>
+                                <span>{{ $organisasi->buktishare ? (count($organisasi->buktishare) . ' File diupload') : 'Belum diupload' }}</span>
                             </div>
                         </div>
 
@@ -596,7 +596,7 @@
                             <h4>Bukti Repost IG Feeds</h4>
                             <div class="document-status {{ $organisasi->buktirepost ? 'completed' : 'pending' }}">
                                 <i data-feather="{{ $organisasi->buktirepost ? 'check-circle' : 'clock' }}"></i>
-                                <span>{{ $organisasi->buktirepost ? 'Sudah diupload' : 'Belum diupload' }}</span>
+                                <span>{{ $organisasi->buktirepost ? (count($organisasi->buktirepost) . ' File diupload') : 'Belum diupload' }}</span>
                             </div>
                         </div>
                     </div>
@@ -728,9 +728,13 @@
                                 </div>
                                 
                                 @if($organisasi->buktishare)
-                                    <a href="{{ Storage::url($organisasi->buktishare) }}" target="_blank" class="file-link">
-                                        <i data-feather="image" style="width:16px;"></i> Lihat gambar tersimpan
-                                    </a>
+                                    <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:12px;">
+                                        @foreach($organisasi->buktishare as $index => $file)
+                                            <a href="{{ Storage::url($file) }}" target="_blank" class="file-link" style="margin-bottom:0;">
+                                                <i data-feather="image" style="width:16px;"></i> Gambar #{{ $index + 1 }}
+                                            </a>
+                                        @endforeach
+                                    </div>
                                 @endif
                                 
                                 <div class="form-group" style="margin-top: 10px;">
@@ -739,8 +743,8 @@
                                         <strong>Catatan Penting:</strong><br>
                                         Screenshot menampilkan nama akun dan postingan secara jelas serta masih tersedia (belum dihapus)
                                     </div>
-                                    <input type="file" id="buktishare" name="buktishare" accept=".jpg,.jpeg,.png">
-                                    <small>Format: JPG/PNG, Maks 2MB</small>
+                                    <input type="file" id="buktishare" name="buktishare[]" accept=".jpg,.jpeg,.png" multiple>
+                                    <small>Format: JPG/PNG, Maks 5MB/file (Bisa upload 1-10 file sekaligus)</small>
                                 </div>
                             </div>
 
@@ -753,9 +757,13 @@
                                 </div>
                                 
                                 @if($organisasi->buktirepost)
-                                    <a href="{{ Storage::url($organisasi->buktirepost) }}" target="_blank" class="file-link">
-                                        <i data-feather="image" style="width:16px;"></i> Lihat gambar tersimpan
-                                    </a>
+                                    <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:12px;">
+                                        @foreach($organisasi->buktirepost as $index => $file)
+                                            <a href="{{ Storage::url($file) }}" target="_blank" class="file-link" style="margin-bottom:0;">
+                                                <i data-feather="image" style="width:16px;"></i> Gambar #{{ $index + 1 }}
+                                            </a>
+                                        @endforeach
+                                    </div>
                                 @endif
                                 
                                 <div class="form-group" style="margin-top: 10px;">
@@ -764,8 +772,8 @@
                                         <strong>Catatan Penting:</strong><br>
                                         Screenshot menampilkan nama akun dan postingan secara jelas serta masih tersedia (belum dihapus)
                                     </div>
-                                    <input type="file" id="buktirepost" name="buktirepost" accept=".jpg,.jpeg,.png">
-                                    <small>Format: JPG/PNG, Maks 2MB</small>
+                                    <input type="file" id="buktirepost" name="buktirepost[]" accept=".jpg,.jpeg,.png" multiple>
+                                    <small>Format: JPG/PNG, Maks 5MB/file (Bisa upload 1-10 file sekaligus)</small>
                                 </div>
                             </div>
                         </div>

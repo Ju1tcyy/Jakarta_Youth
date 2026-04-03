@@ -73,4 +73,24 @@ class Organisasi extends Model
         if ($this->pas_foto_formal || $this->curriculum_vitae) return 'president';
         return '';
     }
+
+    public function getBuktishareAttribute($value) {
+        if (!$value) return [];
+        $decoded = json_decode($value, true);
+        return is_array($decoded) ? $decoded : [$value];
+    }
+
+    public function setBuktishareAttribute($value) {
+        $this->attributes['buktishare'] = is_array($value) ? json_encode($value) : $value;
+    }
+
+    public function getBuktirepostAttribute($value) {
+        if (!$value) return [];
+        $decoded = json_decode($value, true);
+        return is_array($decoded) ? $decoded : [$value];
+    }
+
+    public function setBuktirepostAttribute($value) {
+        $this->attributes['buktirepost'] = is_array($value) ? json_encode($value) : $value;
+    }
 }
