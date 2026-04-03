@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Juri - {{ config('app.name', 'Jakarta Youth Achievement Award') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root {
@@ -214,7 +215,7 @@
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit" class="logout-btn">
-                ↩ Logout
+                <i data-feather="log-out" style="width:14px;height:14px;"></i> Logout
             </button>
         </form>
     </div>
@@ -231,21 +232,21 @@
     @endphp
     <div class="stats-row">
         <div class="stat-card">
-            <div class="stat-icon purple">👥</div>
+            <div class="stat-icon purple"><i data-feather="users"></i></div>
             <div>
                 <div class="stat-label">Total Peserta</div>
                 <div class="stat-value">{{ $totalPeserta }}</div>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon green">✅</div>
+            <div class="stat-icon green"><i data-feather="check-circle"></i></div>
             <div>
                 <div class="stat-label">Sudah Dinilai</div>
                 <div class="stat-value">{{ $sudahDinilai }}</div>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon orange">⏳</div>
+            <div class="stat-icon orange"><i data-feather="clock"></i></div>
             <div>
                 <div class="stat-label">Belum Dinilai</div>
                 <div class="stat-value">{{ $belumDinilai }}</div>
@@ -255,12 +256,12 @@
 
     <div class="table-card">
         <div class="table-header">
-            <span style="font-size:18px;color:#4f46e5;">🏅</span>
+            <i data-feather="award" style="width:18px;height:18px;color:#4f46e5;"></i>
             <h3>Semua Peserta</h3>
         </div>
         @if($organisasis->isEmpty())
             <div class="empty-state">
-                <div style="font-size:40px;margin-bottom:12px;">📭</div>
+                <i data-feather="inbox"></i>
                 <p>Belum ada peserta terdaftar.</p>
             </div>
         @else
@@ -316,11 +317,11 @@
                     <td>
                         @if($penilaian)
                             <a href="{{ route('juri.show', $org->id) }}" class="btn-edit">
-                                ✏️ Edit
+                                <i data-feather="edit-2" style="width:13px;height:13px;"></i> Edit
                             </a>
                         @else
                             <a href="{{ route('juri.show', $org->id) }}" class="btn-nilai">
-                                ⭐ Nilai
+                                <i data-feather="star" style="width:13px;height:13px;"></i> Nilai
                             </a>
                         @endif
                     </td>
@@ -336,6 +337,7 @@
 </div>
 
 <script>
+    feather.replace({ 'width': 18, 'height': 18 });
     @if(session('success'))
         Swal.fire({ icon:'success', title:'Berhasil!', text:'{{ session("success") }}', confirmButtonColor:'#4f46e5', timer:3000 });
     @endif
