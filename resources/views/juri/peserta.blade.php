@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nilai Peserta - {{ $organisasi->nama_organisasi }} - {{ config('app.name', 'Jakarta Youth Achievement Award') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root { --primary: #4f46e5; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        svg[data-feather] { display: inline-block !important; width: 18px !important; height: 18px !important; vertical-align: middle; }
         body { font-family: 'Inter', sans-serif; background: #f1f5f9; min-height: 100vh; }
         .header {
             background: #0f172a;
@@ -76,7 +74,7 @@
 <div class="header">
     <div class="header-left">
         <a href="{{ route('juri.dashboard') }}" class="back-link">
-            <i data-feather="arrow-left" style="width:14px;height:14px;"></i> Kembali
+            ← Kembali
         </a>
         <h1>Form Penilaian</h1>
     </div>
@@ -99,7 +97,6 @@
 </div>
 
 <script>
-feather.replace({ 'width': 18, 'height': 18 });
 @if(session('success'))
     Swal.fire({ icon:'success', title:'Tersimpan!', text:'{{ session("success") }}', confirmButtonColor:'#4f46e5', timer:3000 });
 @endif

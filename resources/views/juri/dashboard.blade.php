@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Juri - {{ config('app.name', 'Jakarta Youth Achievement Award') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root {
@@ -15,7 +14,6 @@
             --card-shadow: 0 4px 24px rgba(0,0,0,0.07);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        svg[data-feather] { display: inline-block !important; width: 18px !important; height: 18px !important; vertical-align: middle; }
         body { font-family: 'Inter', sans-serif; background: #f1f5f9; min-height: 100vh; }
         .header {
             background: var(--dark);
@@ -216,7 +214,7 @@
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit" class="logout-btn">
-                <i data-feather="log-out" style="width:14px;height:14px;"></i> Logout
+                ↩ Logout
             </button>
         </form>
     </div>
@@ -233,21 +231,21 @@
     @endphp
     <div class="stats-row">
         <div class="stat-card">
-            <div class="stat-icon purple"><i data-feather="users"></i></div>
+            <div class="stat-icon purple">👥</div>
             <div>
                 <div class="stat-label">Total Peserta</div>
                 <div class="stat-value">{{ $totalPeserta }}</div>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon green"><i data-feather="check-circle"></i></div>
+            <div class="stat-icon green">✅</div>
             <div>
                 <div class="stat-label">Sudah Dinilai</div>
                 <div class="stat-value">{{ $sudahDinilai }}</div>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon orange"><i data-feather="clock"></i></div>
+            <div class="stat-icon orange">⏳</div>
             <div>
                 <div class="stat-label">Belum Dinilai</div>
                 <div class="stat-value">{{ $belumDinilai }}</div>
@@ -257,12 +255,12 @@
 
     <div class="table-card">
         <div class="table-header">
-            <i data-feather="award" style="width:18px;height:18px;color:#4f46e5;"></i>
+            <span style="font-size:18px;color:#4f46e5;">🏅</span>
             <h3>Semua Peserta</h3>
         </div>
         @if($organisasis->isEmpty())
             <div class="empty-state">
-                <i data-feather="inbox"></i>
+                <div style="font-size:40px;margin-bottom:12px;">📭</div>
                 <p>Belum ada peserta terdaftar.</p>
             </div>
         @else
@@ -318,11 +316,11 @@
                     <td>
                         @if($penilaian)
                             <a href="{{ route('juri.show', $org->id) }}" class="btn-edit">
-                                <i data-feather="edit-2" style="width:13px;height:13px;"></i> Edit
+                                ✏️ Edit
                             </a>
                         @else
                             <a href="{{ route('juri.show', $org->id) }}" class="btn-nilai">
-                                <i data-feather="star" style="width:13px;height:13px;"></i> Nilai
+                                ⭐ Nilai
                             </a>
                         @endif
                     </td>
@@ -338,13 +336,6 @@
 </div>
 
 <script>
-    feather.replace({ 'width': 18, 'height': 18 });
-    // Override specific sizes
-    document.querySelectorAll('i[data-feather]').forEach(el => {
-        const w = el.style.width || el.getAttribute('data-width');
-        const h = el.style.height || el.getAttribute('data-height');
-        if (w) el.nextElementSibling && (el.nextElementSibling.style.width = w);
-    });
     @if(session('success'))
         Swal.fire({ icon:'success', title:'Berhasil!', text:'{{ session("success") }}', confirmButtonColor:'#4f46e5', timer:3000 });
     @endif
