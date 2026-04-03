@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Juri - {{ config('app.name', 'Jakarta Youth Achievement Award') }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root {
@@ -15,6 +15,7 @@
             --card-shadow: 0 4px 24px rgba(0,0,0,0.07);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        svg { display: inline-block; }
         body { font-family: 'Inter', sans-serif; background: #f1f5f9; min-height: 100vh; }
         .header {
             background: var(--dark);
