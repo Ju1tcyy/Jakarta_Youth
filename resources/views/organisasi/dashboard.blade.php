@@ -30,7 +30,8 @@
             --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; } svg { max-width: 100%; height: auto; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        svg[data-feather] { display: inline-block !important; width: 18px !important; height: 18px !important; vertical-align: middle; flex-shrink: 0; }
 
         body {
             font-family: var(--font-body);
