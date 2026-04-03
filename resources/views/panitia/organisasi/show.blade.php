@@ -1,28 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.panitia')
 
 @section('title', 'Detail Organisasi')
 @section('page-title', 'Profil Organisasi')
 
 @section('content')
 <div class="mb-8 flex items-center justify-between pt-6 relative z-10">
-    <a href="{{ route('sekolah.index') }}" class="inline-flex items-center text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors">
+    <a href="{{ route('panitia.sekolah.index') }}" class="inline-flex items-center text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors">
         <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
         Kembali ke Daftar
     </a>
-    <div class="flex space-x-3">
-        <form action="{{ route('sekolah.destroy', $organisasi->id) }}" method="POST" id="delete-form">
-            @csrf
-            @method('DELETE')
-            <button type="button" id="delete-btn" class="inline-flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-xl font-bold text-xs hover:bg-red-600 hover:text-white transition-all">
-                <i data-feather="trash-2" class="w-4 h-4 mr-2"></i>
-                Hapus Data
-            </button>
-        </form>
-        <a href="{{ route('sekolah.edit', $organisasi->id) }}" class="inline-flex items-center px-6 py-2 bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-xl font-bold text-xs shadow-lg shadow-blue-200 hover:scale-105 transition-all">
-            <i data-feather="edit-3" class="w-4 h-4 mr-2"></i>
-            {{ $organisasi->nilai ? 'Edit Penilaian' : 'Beri Penilaian' }}
-        </a>
-    </div>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -214,65 +200,7 @@
                 </div>
             </div>
             
-            <div class="mt-12 p-8 bg-slate-50 rounded-[30px] border border-dashed border-slate-200 text-center">
-                <h4 class="text-sm font-black text-slate-800 uppercase tracking-widest mb-2">Instruksi Verifikasi</h4>
-                <p class="text-xs text-slate-500 leading-relaxed max-w-lg mx-auto font-medium">
-                    Mohon periksa keaslian dokumen di atas sebelum memberikan skor. Isi form penilaian di bawah.
-                </p>
-            </div>
         </div>
     </div>
 </div>
-
-{{-- PASSWORD RESET FORM --}}
-<div class="mt-8 bg-white rounded-[30px] p-8 shadow-sm border border-slate-100">
-    <h3 class="text-sm font-black text-slate-800 mb-6 flex items-center uppercase tracking-widest border-b border-slate-50 pb-4">
-        <i data-feather="key" class="w-4 h-4 mr-3 text-red-500"></i>
-        Ubah Password Peserta / Organisasi
-    </h3>
-    <form action="{{ route('sekolah.password', $organisasi->user->id) }}" method="POST" class="flex flex-col sm:flex-row gap-4">
-        @csrf
-        @method('PUT')
-        <div class="flex-1 relative">
-            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><i data-feather="lock" class="w-4 h-4"></i></div>
-            <input type="text" name="password" placeholder="Ketik password baru..." class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-12 pr-4 py-3 text-sm font-bold focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all" required minlength="8">
-        </div>
-        <button type="submit" class="px-6 py-3 bg-slate-900 text-white rounded-xl font-bold text-xs uppercase hover:bg-black transition-all flex items-center shadow-lg shadow-slate-200">
-            Ganti Password
-        </button>
-    </form>
-</div>
-
-{{-- SCORING FORM --}}
-<div class="mt-8">
-    @php
-        $penilaian = \App\Models\Penilaian::where('organisasi_id', $organisasi->id)
-            ->where('juri_id', auth()->id())
-            ->first();
-    @endphp
-    @include('juri._scoring_form', [
-        'formAction' => route('sekolah.nilai', $organisasi->id),
-        'backUrl'    => route('sekolah.show', $organisasi->id),
-    ])
-</div>
-
-
-<script>
-    document.getElementById('delete-btn').addEventListener('click', function() {
-        Swal.fire({
-            title: 'Hapus Peserta?',
-            text: "Tindakan ini tidak dapat dibatalkan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#e53e3e',
-            cancelButtonColor: '#94a3b8',
-            confirmButtonText: 'Ya, Hapus Data!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('delete-form').submit();
-            }
-        })
-    });
-</script>
 @endsection

@@ -28,6 +28,15 @@ class SekolahController extends Controller
         return view('admin.organisasi.edit', compact('organisasi'));
     }
 
+    public function updatePassword(Request $request, $id)
+    {
+        $request->validate(['password' => 'required|min:8']);
+        $user = User::findOrFail($id);
+        $user->update(['password' => Hash::make($request->password)]);
+        
+        return back()->with('success', 'Password pengguna berhasil diubah!');
+    }
+
     public function update(Request $request, $id)
     {
         $organisasi = Organisasi::findOrFail($id);

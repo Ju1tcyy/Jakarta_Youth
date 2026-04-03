@@ -525,6 +525,11 @@
                     <div class="hero-tag"><i data-feather="award" style="width:12px;height:12px;"></i> Jakarta Youth Achievement Award 2026</div>
                     <h2>Selamat Datang, <span>{{ $organisasi->nama_organisasi }}!</span></h2>
                     <p>Pantau kelengkapan dokumen dan status nominasi Anda melalui dashboard ini.</p>
+                    <div style="margin-top: 24px; position: relative; z-index: 10;">
+                        <a href="https://chat.whatsapp.com/JYUH1TY27i9BfOvxCV1l6C?mode=gi_t" target="_blank" class="btn" style="background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 4px 14px rgba(37,211,102,0.3); text-decoration: none;">
+                            <i data-feather="message-circle" style="width: 18px; height: 18px;"></i> Bergabung ke Grup WhatsApp
+                        </a>
+                    </div>
                 </div>
 
                 @php

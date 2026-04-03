@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\SekolahController;
 use App\Http\Controllers\Juri\PenilaianController;
 use App\Http\Controllers\PendaftarDashboardController;
 use App\Http\Controllers\UnifiedRegistrationController;
+use App\Http\Controllers\Panitia\DashboardController as PanitiaDashboardController;
+use App\Http\Controllers\Panitia\SekolahController as PanitiaSekolahController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -50,6 +52,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/sekolah/{id}', [SekolahController::class, 'show'])->name('sekolah.show');
     Route::get('/sekolah/{id}/edit', [SekolahController::class, 'edit'])->name('sekolah.edit');
     Route::put('/sekolah/{id}', [SekolahController::class, 'update'])->name('sekolah.update');
+    Route::put('/sekolah/{id}/password', [SekolahController::class, 'updatePassword'])->name('sekolah.password');
     Route::delete('/sekolah/{id}', [SekolahController::class, 'destroy'])->name('sekolah.destroy');
 
     // Admin scoring route
@@ -62,6 +65,16 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     // Leaderboard
     Route::get('/leaderboard/{kategori}', [SekolahController::class, 'leaderboard'])->name('admin.leaderboard');
+});
+
+// Panitia Dashboard
+Route::middleware(['auth', 'role:panitia'])->prefix('panitia')->group(function () {
+    Route::get('/', [PanitiaDashboardController::class, 'index'])->name('panitia.dashboard');
+    Route::get('/dashboard', [PanitiaDashboardController::class, 'index']);
+    
+    Route::get('/sekolah', [PanitiaSekolahController::class, 'index'])->name('panitia.sekolah.index');
+    Route::get('/sekolah/{id}', [PanitiaSekolahController::class, 'show'])->name('panitia.sekolah.show');
+    Route::get('/leaderboard/{kategori}', [PanitiaSekolahController::class, 'leaderboard'])->name('panitia.leaderboard');
 });
 
 // Juri Dashboard
