@@ -160,7 +160,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            feather.replace();
+            feather.replace({ 'width': 18, 'height': 18 });
             
             // Form validation for reCAPTCHA
             const form = document.getElementById('registrationForm');

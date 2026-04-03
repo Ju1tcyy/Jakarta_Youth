@@ -1385,7 +1385,7 @@
     </div>
 
     <script>
-        feather.replace();
+        feather.replace({ 'width': 18, 'height': 18 });
 
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.content-section');

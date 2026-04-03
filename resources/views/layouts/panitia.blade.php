@@ -226,7 +226,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            feather.replace();
+            feather.replace({ 'width': 18, 'height': 18 });
         });
 
         @if(session('success'))

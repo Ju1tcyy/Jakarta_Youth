@@ -15,7 +15,7 @@
             --card-shadow: 0 4px 24px rgba(0,0,0,0.07);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        svg { display: inline-block; }
+        svg[data-feather] { display: inline-block !important; width: 18px !important; height: 18px !important; vertical-align: middle; }
         body { font-family: 'Inter', sans-serif; background: #f1f5f9; min-height: 100vh; }
         .header {
             background: var(--dark);
@@ -338,7 +338,13 @@
 </div>
 
 <script>
-    feather.replace();
+    feather.replace({ 'width': 18, 'height': 18 });
+    // Override specific sizes
+    document.querySelectorAll('i[data-feather]').forEach(el => {
+        const w = el.style.width || el.getAttribute('data-width');
+        const h = el.style.height || el.getAttribute('data-height');
+        if (w) el.nextElementSibling && (el.nextElementSibling.style.width = w);
+    });
     @if(session('success'))
         Swal.fire({ icon:'success', title:'Berhasil!', text:'{{ session("success") }}', confirmButtonColor:'#4f46e5', timer:3000 });
     @endif

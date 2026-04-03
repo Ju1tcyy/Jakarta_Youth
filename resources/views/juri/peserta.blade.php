@@ -10,7 +10,7 @@
     <style>
         :root { --primary: #4f46e5; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        svg { display: inline-block; }
+        svg[data-feather] { display: inline-block !important; width: 18px !important; height: 18px !important; vertical-align: middle; }
         body { font-family: 'Inter', sans-serif; background: #f1f5f9; min-height: 100vh; }
         .header {
             background: #0f172a;
@@ -99,7 +99,7 @@
 </div>
 
 <script>
-feather.replace();
+feather.replace({ 'width': 18, 'height': 18 });
 @if(session('success'))
     Swal.fire({ icon:'success', title:'Tersimpan!', text:'{{ session("success") }}', confirmButtonColor:'#4f46e5', timer:3000 });
 @endif
