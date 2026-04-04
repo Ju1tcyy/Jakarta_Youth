@@ -59,7 +59,7 @@ class PendaftarDashboardController extends Controller
             }
         }
 
-        // Handle multiple image files (array)
+        // Handle multiple image files (array) - APPEND mode
         $arrayFiles = [
             'buktishare' => 'documents/organisasi',
             'buktirepost' => 'documents/organisasi',
@@ -67,20 +67,25 @@ class PendaftarDashboardController extends Controller
 
         foreach ($arrayFiles as $field => $path) {
             if ($request->hasFile($field)) {
-                // Delete old files first
-                $oldFiles = $organisasi->$field;
-                if (!empty($oldFiles)) {
-                    foreach ((array)$oldFiles as $oldPath) {
-                        Storage::disk('public')->delete($oldPath);
-                    }
+                // Get existing files (don't delete them)
+                $existingFiles = $organisasi->$field ?? [];
+                if (!is_array($existingFiles)) {
+                    $existingFiles = [];
                 }
-                
-                // Store new files
-                $paths = [];
+
+                // Store new files and APPEND to existing
+                $newPaths = [];
                 foreach ($request->file($field) as $file) {
-                    $paths[] = $file->store($path, 'public');
+                    $newPaths[] = $file->store($path, 'public');
                 }
-                $updateData[$field] = $paths;
+
+                // Merge: existing + new (max 10 total)
+                $merged = array_merge($existingFiles, $newPaths);
+                if (count($merged) > 10) {
+                    $merged = array_slice($merged, -10);
+                }
+
+                $updateData[$field] = $merged;
             }
         }
 
