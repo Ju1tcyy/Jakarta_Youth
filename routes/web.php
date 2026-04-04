@@ -64,6 +64,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/juri', [SekolahController::class, 'juriStore'])->name('admin.juri.store');
     Route::delete('/juri/{id}', [SekolahController::class, 'juriDestroy'])->name('admin.juri.destroy');
 
+    // Panitia management
+    Route::get('/panitia', [SekolahController::class, 'panitiaIndex'])->name('admin.panitia.index');
+    Route::post('/panitia', [SekolahController::class, 'panitiaStore'])->name('admin.panitia.store');
+    Route::delete('/panitia/{id}', [SekolahController::class, 'panitiaDestroy'])->name('admin.panitia.destroy');
+
     // Leaderboard
     Route::get('/leaderboard/{kategori}', [SekolahController::class, 'leaderboard'])->name('admin.leaderboard');
 });

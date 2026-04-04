@@ -96,6 +96,42 @@ class SekolahController extends Controller
             ->with('success', 'Akun juri berhasil dihapus.');
     }
 
+    // ─── Panitia Management ─────────────────────────────────────────
+
+    public function panitiaIndex()
+    {
+        $panitias = User::where('role', 'panitia')->latest()->get();
+        return view('admin.panitia.index', compact('panitias'));
+    }
+
+    public function panitiaStore(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:100',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+        ]);
+
+        User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => Hash::make($request->password),
+            'role'     => 'panitia',
+        ]);
+
+        return redirect()->route('admin.panitia.index')
+            ->with('success', 'Akun panitia berhasil dibuat!');
+    }
+
+    public function panitiaDestroy($id)
+    {
+        $panitia = User::where('role', 'panitia')->findOrFail($id);
+        $panitia->delete();
+
+        return redirect()->route('admin.panitia.index')
+            ->with('success', 'Akun panitia berhasil dihapus.');
+    }
+
     // ─── Leaderboard ────────────────────────────────────────────────
 
     public function leaderboard($kategori)
