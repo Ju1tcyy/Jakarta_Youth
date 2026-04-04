@@ -744,15 +744,9 @@
                                                 <a href="{{ Storage::url($file) }}" target="_blank" class="file-link" style="margin-bottom:0; flex:1;">
                                                     <i data-feather="image" style="width:16px;"></i> Gambar #{{ $index + 1 }}
                                                 </a>
-                                                <form action="{{ route('organisasi.delete.bukti') }}" method="POST" style="margin:0;" onsubmit="return confirm('Hapus Gambar #{{ $index + 1 }}?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="field" value="buktishare">
-                                                    <input type="hidden" name="file_path" value="{{ $file }}">
-                                                    <button type="submit" style="background:#fee2e2;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;color:#dc2626;font-size:0.8rem;" title="Hapus foto ini">
-                                                        &times;
-                                                    </button>
-                                                </form>
+                                                <button type="button"
+                                                    onclick="hapusBukti('buktishare', '{{ addslashes($file) }}', {{ $index + 1 }})"
+                                                    style="background:#fee2e2;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;color:#dc2626;font-weight:bold;font-size:1rem;" title="Hapus foto ini">&times;</button>
                                             </div>
                                         @endforeach
                                     </div>
@@ -785,15 +779,9 @@
                                                 <a href="{{ Storage::url($file) }}" target="_blank" class="file-link" style="margin-bottom:0; flex:1;">
                                                     <i data-feather="image" style="width:16px;"></i> Gambar #{{ $index + 1 }}
                                                 </a>
-                                                <form action="{{ route('organisasi.delete.bukti') }}" method="POST" style="margin:0;" onsubmit="return confirm('Hapus Gambar #{{ $index + 1 }}?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="field" value="buktirepost">
-                                                    <input type="hidden" name="file_path" value="{{ $file }}">
-                                                    <button type="submit" style="background:#fee2e2;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;color:#dc2626;font-size:0.8rem;" title="Hapus foto ini">
-                                                        &times;
-                                                    </button>
-                                                </form>
+                                                <button type="button"
+                                                    onclick="hapusBukti('buktirepost', '{{ addslashes($file) }}', {{ $index + 1 }})"
+                                                    style="background:#fee2e2;border:none;border-radius:6px;padding:4px 10px;cursor:pointer;color:#dc2626;font-weight:bold;font-size:1rem;" title="Hapus foto ini">&times;</button>
                                             </div>
                                         @endforeach
                                     </div>
@@ -1402,6 +1390,19 @@
     <script>
         feather.replace({ 'width': 18, 'height': 18 });
 
+        function hapusBukti(field, filePath, index) {
+            if (!confirm('Hapus Gambar #' + index + '? Tindakan ini tidak bisa dibatalkan.')) return;
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ route("organisasi.delete.bukti") }}';
+            form.innerHTML =
+                '<input name="_token" value="{{ csrf_token() }}">' +
+                '<input name="_method" value="DELETE">' +
+                '<input name="field" value="' + field + '">' +
+                '<input name="file_path" value="' + filePath + '">';
+            document.body.appendChild(form);
+            form.submit();
+        }
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => {
