@@ -41,6 +41,7 @@ Route::middleware(['auth'])->prefix('organisasi')->group(function () {
     Route::get('/dashboard', [PendaftarDashboardController::class, 'index'])->name('organisasi.dashboard');
     Route::post('/upload', [PendaftarDashboardController::class, 'uploadDocuments'])->name('organisasi.upload');
     Route::post('/upload-nomination', [PendaftarDashboardController::class, 'uploadNomination'])->name('organisasi.upload.nomination');
+    Route::delete('/delete-bukti', [PendaftarDashboardController::class, 'deleteBukti'])->name('organisasi.delete.bukti');
 });
 
 // Admin Dashboard

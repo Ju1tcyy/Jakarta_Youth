@@ -738,11 +738,22 @@
                                 </div>
                                 
                                 @if($organisasi->buktishare)
-                                    <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:12px;">
+                                    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:12px;">
                                         @foreach($organisasi->buktishare as $index => $file)
-                                            <a href="{{ Storage::url($file) }}" target="_blank" class="file-link" style="margin-bottom:0;">
-                                                <i data-feather="image" style="width:16px;"></i> Gambar #{{ $index + 1 }}
-                                            </a>
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <a href="{{ Storage::url($file) }}" target="_blank" class="file-link" style="margin-bottom:0; flex:1;">
+                                                    <i data-feather="image" style="width:16px;"></i> Gambar #{{ $index + 1 }}
+                                                </a>
+                                                <form action="{{ route('organisasi.delete.bukti') }}" method="POST" style="margin:0;" onsubmit="return confirm('Hapus Gambar #{{ $index + 1 }}?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="field" value="buktishare">
+                                                    <input type="hidden" name="file_path" value="{{ $file }}">
+                                                    <button type="submit" style="background:#fee2e2;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;color:#dc2626;font-size:0.8rem;" title="Hapus foto ini">
+                                                        &times;
+                                                    </button>
+                                                </form>
+                                            </div>
                                         @endforeach
                                     </div>
                                 @endif
@@ -768,11 +779,22 @@
                                 </div>
                                 
                                 @if($organisasi->buktirepost)
-                                    <div style="display:flex; flex-direction:column; gap:4px; margin-bottom:12px;">
+                                    <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:12px;">
                                         @foreach($organisasi->buktirepost as $index => $file)
-                                            <a href="{{ Storage::url($file) }}" target="_blank" class="file-link" style="margin-bottom:0;">
-                                                <i data-feather="image" style="width:16px;"></i> Gambar #{{ $index + 1 }}
-                                            </a>
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <a href="{{ Storage::url($file) }}" target="_blank" class="file-link" style="margin-bottom:0; flex:1;">
+                                                    <i data-feather="image" style="width:16px;"></i> Gambar #{{ $index + 1 }}
+                                                </a>
+                                                <form action="{{ route('organisasi.delete.bukti') }}" method="POST" style="margin:0;" onsubmit="return confirm('Hapus Gambar #{{ $index + 1 }}?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="field" value="buktirepost">
+                                                    <input type="hidden" name="file_path" value="{{ $file }}">
+                                                    <button type="submit" style="background:#fee2e2;border:none;border-radius:6px;padding:4px 8px;cursor:pointer;color:#dc2626;font-size:0.8rem;" title="Hapus foto ini">
+                                                        &times;
+                                                    </button>
+                                                </form>
+                                            </div>
                                         @endforeach
                                     </div>
                                 @endif

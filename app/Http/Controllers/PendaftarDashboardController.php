@@ -97,6 +97,35 @@ class PendaftarDashboardController extends Controller
             ->with('success', 'Dokumen berhasil diupload!');
     }
 
+    public function deleteBukti(Request $request)
+    {
+        $request->validate([
+            'field'     => 'required|in:buktishare,buktirepost',
+            'file_path' => 'required|string',
+        ]);
+
+        $organisasi = auth()->user()->organisasi;
+        $field      = $request->field;
+        $filePath   = $request->file_path;
+
+        $currentFiles = $organisasi->$field ?? [];
+        if (!is_array($currentFiles)) {
+            $currentFiles = [];
+        }
+
+        // Remove the specific file from array
+        $updated = array_values(array_filter($currentFiles, fn($f) => $f !== $filePath));
+
+        // Delete physical file from storage
+        Storage::disk('public')->delete($filePath);
+
+        // Update DB
+        $organisasi->update([$field => $updated]);
+
+        return redirect()->route('organisasi.dashboard')
+            ->with('success', 'File berhasil dihapus!');
+    }
+
     public function uploadNomination(Request $request)
     {
         $user = Auth::user();
