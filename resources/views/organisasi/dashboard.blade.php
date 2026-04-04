@@ -585,19 +585,27 @@
                             </div>
                         </div>
 
-                        <div class="document-card {{ $organisasi->buktishare ? 'completed' : '' }}">
-                            <h4>Bukti Share IG Story</h4>
-                            <div class="document-status {{ $organisasi->buktishare ? 'completed' : 'pending' }}">
-                                <i data-feather="{{ $organisasi->buktishare ? 'check-circle' : 'clock' }}"></i>
-                                <span>{{ $organisasi->buktishare ? (count($organisasi->buktishare) . ' File diupload') : 'Belum diupload' }}</span>
+                        @php
+                            $shareCount = count($organisasi->buktishare ?? []);
+                            $shareComplete = $shareCount >= 10;
+                        @endphp
+                        <div class="document-card {{ $shareComplete ? 'completed' : '' }}">
+                            <h4>Bukti Share IG Story (10 Orang)</h4>
+                            <div class="document-status {{ $shareComplete ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ $shareComplete ? 'check-circle' : 'clock' }}"></i>
+                                <span>{{ $shareCount > 0 ? $shareCount . '/10 File diupload' . ($shareComplete ? '' : ' — Belum Selesai') : 'Belum diupload' }}</span>
                             </div>
                         </div>
 
-                        <div class="document-card {{ $organisasi->buktirepost ? 'completed' : '' }}">
-                            <h4>Bukti Repost IG Feeds</h4>
-                            <div class="document-status {{ $organisasi->buktirepost ? 'completed' : 'pending' }}">
-                                <i data-feather="{{ $organisasi->buktirepost ? 'check-circle' : 'clock' }}"></i>
-                                <span>{{ $organisasi->buktirepost ? (count($organisasi->buktirepost) . ' File diupload') : 'Belum diupload' }}</span>
+                        @php
+                            $repostCount = count($organisasi->buktirepost ?? []);
+                            $repostComplete = $repostCount >= 10;
+                        @endphp
+                        <div class="document-card {{ $repostComplete ? 'completed' : '' }}">
+                            <h4>Bukti Repost IG Feeds (10 Orang)</h4>
+                            <div class="document-status {{ $repostComplete ? 'completed' : 'pending' }}">
+                                <i data-feather="{{ $repostComplete ? 'check-circle' : 'clock' }}"></i>
+                                <span>{{ $repostCount > 0 ? $repostCount . '/10 File diupload' . ($repostComplete ? '' : ' — Belum Selesai') : 'Belum diupload' }}</span>
                             </div>
                         </div>
                     </div>
@@ -721,11 +729,12 @@
                             </div>
 
                             <!-- Bukti Share IG -->
-                            <div class="document-card {{ $organisasi->buktishare ? 'completed' : '' }}">
-                                <h4>Screenshot Share IG Story (10 Orang)</h4>
-                                <div class="document-status {{ $organisasi->buktishare ? 'completed' : 'pending' }}">
-                                    <i data-feather="{{ $organisasi->buktishare ? 'check-circle' : 'clock' }}"></i>
-                                    <span>{{ $organisasi->buktishare ? 'Selesai' : 'Belum diupload' }}</span>
+                            @php $shareCount2 = count($organisasi->buktishare ?? []); @endphp
+                            <div class="document-card {{ $shareCount2 >= 10 ? 'completed' : '' }}">
+                                <h4>Screenshot Share IG Story ({{ $shareCount2 }}/10 Orang)</h4>
+                                <div class="document-status {{ $shareCount2 >= 10 ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $shareCount2 >= 10 ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $shareCount2 >= 10 ? 'Selesai' : ($shareCount2 > 0 ? $shareCount2 . '/10 — Belum Selesai' : 'Belum diupload') }}</span>
                                 </div>
                                 
                                 @if($organisasi->buktishare)
@@ -750,11 +759,12 @@
                             </div>
 
                             <!-- Bukti Repost IG -->
-                            <div class="document-card {{ $organisasi->buktirepost ? 'completed' : '' }}">
-                                <h4>Screenshot Repost IG Feeds (10 Orang)</h4>
-                                <div class="document-status {{ $organisasi->buktirepost ? 'completed' : 'pending' }}">
-                                    <i data-feather="{{ $organisasi->buktirepost ? 'check-circle' : 'clock' }}"></i>
-                                    <span>{{ $organisasi->buktirepost ? 'Selesai' : 'Belum diupload' }}</span>
+                            @php $repostCount2 = count($organisasi->buktirepost ?? []); @endphp
+                            <div class="document-card {{ $repostCount2 >= 10 ? 'completed' : '' }}">
+                                <h4>Screenshot Repost IG Feeds ({{ $repostCount2 }}/10 Orang)</h4>
+                                <div class="document-status {{ $repostCount2 >= 10 ? 'completed' : 'pending' }}">
+                                    <i data-feather="{{ $repostCount2 >= 10 ? 'check-circle' : 'clock' }}"></i>
+                                    <span>{{ $repostCount2 >= 10 ? 'Selesai' : ($repostCount2 > 0 ? $repostCount2 . '/10 — Belum Selesai' : 'Belum diupload') }}</span>
                                 </div>
                                 
                                 @if($organisasi->buktirepost)
