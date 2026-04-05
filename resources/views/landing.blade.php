@@ -4,14 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jakarta Youth Achievement Award 2026</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Satisfy&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <meta name="google-site-verification" content="_GMuXItfRBx1U68w_ADfOsAEKbEYsUn-j_sqVt2kq2k" />
+
+    {{-- ═══ SEO META TAGS ═══ --}}
+    <title>Jakarta Youth Achievement Award 2026 | Beasiswa Prestasi SMP & SMA Jakarta</title>
+    <meta name="description" content="Jakarta Youth Achievement Award 2026 adalah program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta. Daftarkan organisasi sekolahmu sekarang!">
+    <meta name="keywords" content="Jakarta Youth Achievement Award, JYAA 2026, beasiswa Jakarta, beasiswa SMA, beasiswa SMP, MNC beasiswa, prestasi siswa Jakarta, kompetisi sekolah Jakarta">
+    <meta name="author" content="MNC Group - Jakarta Youth Achievement Award">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jyaa.beasiswamncu.com/">
+
+    {{-- ═══ OPEN GRAPH (WhatsApp, Facebook, LinkedIn preview) ═══ --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jyaa.beasiswamncu.com/">
+    <meta property="og:title" content="Jakarta Youth Achievement Award 2026 | Beasiswa Prestasi SMP & SMA Jakarta">
+    <meta property="og:description" content="Program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta. Daftarkan organisasi sekolahmu sekarang!">
+    <meta property="og:image" content="https://jyaa.beasiswamncu.com/icon/poster.jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Jakarta Youth Achievement Award 2026">
+
+    {{-- ═══ TWITTER CARD ═══ --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jakarta Youth Achievement Award 2026">
+    <meta name="twitter:description" content="Program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta.">
+    <meta name="twitter:image" content="https://jyaa.beasiswamncu.com/icon/poster.jpeg">
+
 
     <script>
         tailwind.config = {
