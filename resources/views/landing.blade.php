@@ -8,19 +8,22 @@
 
     {{-- ═══ SEO META TAGS ═══ --}}
     <title>Jakarta Youth Achievement Award 2026 | Beasiswa Prestasi SMP & SMA Jakarta</title>
-    <meta name="description" content="Jakarta Youth Achievement Award 2026 adalah program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta. Daftarkan organisasi sekolahmu sekarang!">
-    <meta name="keywords" content="Jakarta Youth Achievement Award, JYAA 2026, beasiswa Jakarta, beasiswa SMA, beasiswa SMP, MNC beasiswa, prestasi siswa Jakarta, kompetisi sekolah Jakarta">
+    <meta name="description"
+        content="Jakarta Youth Achievement Award 2026 adalah program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta. Daftarkan organisasi sekolahmu sekarang!">
+    <meta name="keywords"
+        content="Jakarta Youth Achievement Award, JYAA 2026, beasiswa Jakarta, beasiswa SMA, beasiswa SMP, MNC beasiswa, prestasi siswa Jakarta, kompetisi sekolah Jakarta">
     <meta name="author" content="MNC Group - Jakarta Youth Achievement Award">
     <meta name="robots" content="index, follow">
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}?v=2">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}?v=2">
     <link rel="canonical" href="https://jyaa.beasiswamncu.com/">
 
     {{-- ═══ OPEN GRAPH (WhatsApp, Facebook, LinkedIn preview) ═══ --}}
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jyaa.beasiswamncu.com/">
     <meta property="og:title" content="Jakarta Youth Achievement Award 2026 | Beasiswa Prestasi SMP & SMA Jakarta">
-    <meta property="og:description" content="Program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta. Daftarkan organisasi sekolahmu sekarang!">
+    <meta property="og:description"
+        content="Program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta. Daftarkan organisasi sekolahmu sekarang!">
     <meta property="og:image" content="https://jyaa.beasiswamncu.com/icon/poster.jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -30,7 +33,8 @@
     {{-- ═══ TWITTER CARD ═══ --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Jakarta Youth Achievement Award 2026">
-    <meta name="twitter:description" content="Program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta.">
+    <meta name="twitter:description"
+        content="Program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta.">
     <meta name="twitter:image" content="https://jyaa.beasiswamncu.com/icon/poster.jpeg">
 
     {{-- ═══ SCHEMA.ORG (Untuk Nama Situs di Pencarian Google) ═══ --}}
@@ -45,7 +49,9 @@
     </script>
 
     {{-- ═══ FONTS & SCRIPTS ═══ --}}
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Satisfy&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Satisfy&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -237,10 +243,10 @@
 
             <!-- Mobile Footer Links -->
             <div class="mt-auto pt-8 border-t border-white/20">
-                    <a @click="mobileMenu = false" href="{{ route('login') }}"
-                        class="block text-center text-white/80 hover:text-white text-sm font-medium transition-colors">
-                        Portal Login
-                    </a>
+                <a @click="mobileMenu = false" href="{{ route('login') }}"
+                    class="block text-center text-white/80 hover:text-white text-sm font-medium transition-colors">
+                    Portal Login
+                </a>
             </div>
         </div>
     </div>
@@ -531,8 +537,10 @@
                     <a href="{{ route('register') }}"
                         class="w-full text-center py-5 border-2 border-primary text-primary rounded-full text-sm font-black uppercase tracking-widest group-hover:bg-primary group-hover:text-white transition-all">Daftar
                         Sekarang</a>
-                    <p class="mt-8 text-xs font-bold text-slate-400 uppercase tracking-widest">Sudah memiliki akun? 
-                        <a href="{{ route('login') }}" class="text-primary hover:text-accent ml-1 font-black underline underline-offset-8 decoration-2 decoration-primary/10 hover:decoration-accent transition-all">Portal Login</a>
+                    <p class="mt-8 text-xs font-bold text-slate-400 uppercase tracking-widest">Sudah memiliki akun?
+                        <a href="{{ route('login') }}"
+                            class="text-primary hover:text-accent ml-1 font-black underline underline-offset-8 decoration-2 decoration-primary/10 hover:decoration-accent transition-all">Portal
+                            Login</a>
                     </p>
                 </div>
 
@@ -625,8 +633,8 @@
                     <div class="space-y-8">
                         <h5 class="text-accent font-black text-xs uppercase tracking-[0.5em]">Layanan</h5>
                         <ul class="space-y-5 text-slate-400 font-bold text-sm tracking-wide">
-                            <li><a href="{{ route('login') }}"
-                                    class="hover:text-accent transition-all">Portal Login</a></li>
+                            <li><a href="{{ route('login') }}" class="hover:text-accent transition-all">Portal Login</a>
+                            </li>
                             <li><a href="#" class="hover:text-accent transition-all">Bantuan Registrasi</a></li>
                         </ul>
                     </div>
