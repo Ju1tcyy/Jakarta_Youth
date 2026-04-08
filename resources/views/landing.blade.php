@@ -12,6 +12,8 @@
     <meta name="keywords" content="Jakarta Youth Achievement Award, JYAA 2026, beasiswa Jakarta, beasiswa SMA, beasiswa SMP, MNC beasiswa, prestasi siswa Jakarta, kompetisi sekolah Jakarta">
     <meta name="author" content="MNC Group - Jakarta Youth Achievement Award">
     <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="{{ asset('icon/logo_fix.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('icon/logo_fix.png') }}">
     <link rel="canonical" href="https://jyaa.beasiswamncu.com/">
 
     {{-- ═══ OPEN GRAPH (WhatsApp, Facebook, LinkedIn preview) ═══ --}}
@@ -31,6 +33,16 @@
     <meta name="twitter:description" content="Program beasiswa bergengsi dari MNC Group untuk siswa-siswi berprestasi SMP dan SMA di DKI Jakarta.">
     <meta name="twitter:image" content="https://jyaa.beasiswamncu.com/icon/poster.jpeg">
 
+    {{-- ═══ SCHEMA.ORG (Untuk Nama Situs di Pencarian Google) ═══ --}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Jakarta Youth Achievement Award 2026",
+      "alternateName": ["Jakarta Youth Achievement Award", "JYAA 2026", "Jakarta Youth Achievement Award 26", "MNCU Future Leader Scholarship"],
+      "url": "https://jyaa.beasiswamncu.com/"
+    }
+    </script>
 
     {{-- ═══ FONTS & SCRIPTS ═══ --}}
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Satisfy&display=swap" rel="stylesheet">

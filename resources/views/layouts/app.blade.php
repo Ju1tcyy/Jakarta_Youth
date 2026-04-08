@@ -6,6 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Jakarta Youth Achievement Award 2026 - Portal pendaftaran beasiswa prestasi SMP & SMA Jakarta oleh MNC Group.">
     <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="icon" type="image/png" href="{{ asset('icon/logo_fix.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('icon/logo_fix.png') }}">
 
     <title>{{ config('app.name', 'Jakarta Youth Achievement Award') }}</title>
 
