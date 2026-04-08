@@ -12,8 +12,8 @@
     <meta name="keywords" content="Jakarta Youth Achievement Award, JYAA 2026, beasiswa Jakarta, beasiswa SMA, beasiswa SMP, MNC beasiswa, prestasi siswa Jakarta, kompetisi sekolah Jakarta">
     <meta name="author" content="MNC Group - Jakarta Youth Achievement Award">
     <meta name="robots" content="index, follow">
-    <link rel="icon" type="image/png" href="{{ asset('icon/logo_fix.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('icon/logo_fix.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="canonical" href="https://jyaa.beasiswamncu.com/">
 
     {{-- ═══ OPEN GRAPH (WhatsApp, Facebook, LinkedIn preview) ═══ --}}
