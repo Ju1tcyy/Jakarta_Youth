@@ -1112,6 +1112,7 @@
                             • Video memuat unsur utama: OSIS, sekolah, dan siswa sebagai narasi yang konsisten<br>
                             • Menjelaskan visi dan misi OSIS dikemas berupa dokumentasi/aktivitas kreatif siswa<br>
                             • Diunggah dengan caption deskripsi singkat dan hashtag wajib (serta tag ke @direktorat.sma & @mncuiversity)<br>
+                            • Caption wajib mencantumkan hashtag resmi berikut: <strong>#JakartaYouthAchivementAward2026, #OSISJakarta, #OSISBergerak, #DariSiswaUntukSiswa, #LebihDariSekadarOrganisasi</strong><br>
                             • Pemenang ditentukan dari likes/comments organik (dilarang bot/manipulasi)<br>
                             • Orisinil dan tidak melanggar hak cipta<br><br>
                             <strong>2. Google Form Kepuasan OSIS (3 Pihak)</strong><br>
