@@ -1106,12 +1106,9 @@
                         <h4>Ketentuan  People's Choice Student Council - DKI Jakarta:</h4>
                         <div class="requirements-list">
                             <ul>
-                                <li>Peserta diwajibkan membuat video berdurasi maksimal 3 menit yang menampilkan profil dan kegiatan OSIS</li>
-                                <li>Video wajib mengangkat tema: <strong>"Dari Siswa, Untuk Siswa: Lebih dari Sekadar Organisasi"</strong></li>
-                                <li>Seluruh isi video harus merepresentasikan tema secara konsisten, termasuk alur cerita, visual, dan pesan yang disampaikan</li>
-                                <li>Video memuat unsur utama: OSIS, sekolah, dan siswa sebagai bagian dari narasi</li>
-                                <li>Video menjelaskan visi dan misi OSIS secara jelas dan dikemas sesuai dengan tema</li>
-                                <li>Konten video dapat berupa dokumentasi kegiatan, profil pengurus, maupun aktivitas siswa yang dikemas secara kreatif</li>
+                                <li>Video berdurasi maksimal 3 menit dengan tema: <strong>"Dari Siswa, Untuk Siswa: Lebih dari Sekadar Organisasi"</strong></li>
+                                <li>Video wajib memuat unsur utama: OSIS, sekolah, dan siswa dalam narasi yang konsisten dan utuh.</li>
+                                <li>Struktur video minimal mencakup: Pembukaan, Visi & Misi OSIS, Program Kerja Unggulan (memuat latar belakang, dampak yang dihasilkan, dan output dari program), Kampanye penutup (menyampaikan alasan mengapa OSIS mereka layak mendapatkan penghargaan, khususnya sebagai bentuk pengakuan yang <strong>bermanfaat untuk mendukung jalur SNBP</strong>).</li>
                                 <li>Video diunggah pada akun Instagram resmi OSIS masing-masing sekolah</li>
                                 <li>Konten video harus orisinil dan tidak melanggar hak cipta</li>
                             </ul>
@@ -1257,9 +1254,8 @@
                         <div class="requirements-list">
                             <ul>
                                 <li>Peserta wajib membuat video berdurasi maksimal 3 menit dalam format .MP4 (1080p)</li>
-                                <li>Video harus memuat: Pengenalan diri dan jabatan sebagai Ketua OSIS, Visi dan misi kepemimpinan, Bukti nyata aksi kepemimpinan (program/kegiatan yang telah dilakukan)</li>
                                 <li>Video disusun secara komunikatif, terstruktur, mencerminkan karakter kepemimpinan, serta disarankan menggunakan pendekatan storytelling</li>
-                                <li>Struktur video minimal mencakup: pembukaan – visi & misi – aksi nyata – penutup</li>
+                                <li>Struktur video minimal mencakup: Pembukaan, Visi & Misi OSIS, Bukti nyata aksi kepemimpinan (program/kegiatan yang telah dilakukan), Study Case: Bagaimana cara kamu sebagai pemimpin muda atau Ketua OSIS dalam merangkul rekan pengurus OSIS di sekolah (mention gaya kepemimpinan), Kampanye penutup (menyampaikan alasan mengapa OSIS kamu layak mendapatkan penghargaan, khususnya sebagai bentuk pengakuan yang <strong>bermanfaat untuk mendukung jalur SNBP</strong>).</li>
                                 <li>Konten video diharapkan selaras dengan semangat: "Empowering Student Voices, Shaping Future Leaders."</li>
                                 <li>Video wajib diunggah pada akun media sosial pribadi Ketua OSIS (Instagram atau TikTok)</li>
                                 <li>Video harus orisinil, tidak melanggar hak cipta, serta tidak mengandung konten yang tidak pantas</li>

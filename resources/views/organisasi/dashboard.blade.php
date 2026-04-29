@@ -1108,9 +1108,9 @@
                         <div class="note-box" style="margin-bottom: 20px; font-size: 0.8rem; line-height: 1.6;">
                             <strong>Kriteria Penilaian:</strong><br>
                             <strong>1. Video IG Reels</strong><br>
-                            • Berdurasi maksimal 3 menit dengan tema: <em>"Dari Siswa, Untuk Siswa: Lebih dari Sekadar Organisasi"</em><br>
-                            • Video memuat unsur utama: OSIS, sekolah, dan siswa sebagai narasi yang konsisten<br>
-                            • Menjelaskan visi dan misi OSIS dikemas berupa dokumentasi/aktivitas kreatif siswa<br>
+                            • Video berdurasi maksimal 3 menit dengan tema: <em>"Dari Siswa, Untuk Siswa: Lebih dari Sekadar Organisasi"</em><br>
+                            • Video wajib memuat unsur utama: OSIS, sekolah, dan siswa dalam narasi yang konsisten dan utuh.<br>
+                            • Struktur video minimal mencakup: Pembukaan, Visi & Misi OSIS, Program Kerja Unggulan (memuat latar belakang, dampak yang dihasilkan, dan output dari program), Kampanye penutup (menyampaikan alasan mengapa OSIS mereka layak mendapatkan penghargaan, khususnya sebagai bentuk pengakuan yang <strong>bermanfaat untuk mendukung jalur SNBP</strong>).<br>
                             • Diunggah dengan caption deskripsi singkat dan hashtag wajib (serta tag ke @direktorat.sma & @mncuiversity)<br>
                             • Caption wajib mencantumkan hashtag resmi berikut: <strong>#JakartaYouthAchivementAward2026, #OSISJakarta, #OSISBergerak, #DariSiswaUntukSiswa, #LebihDariSekadarOrganisasi</strong><br>
                             • Pemenang ditentukan dari likes/comments organik (dilarang bot/manipulasi)<br>
@@ -1167,9 +1167,8 @@
                             • Rapor 1 tahun terakhir, resmi dengan TTD/Stempel sekolah.<br><br>
                             <strong>3. Video Profil "Empowering Student Voices..."</strong><br>
                             • Peserta wajib membuat video berdurasi maksimal 3 menit dalam format .MP4 (1080p).<br>
-                            • Video harus memuat: Pengenalan diri dan jabatan sebagai Ketua OSIS, Visi dan misi kepemimpinan, Bukti nyata aksi kepemimpinan (program/kegiatan yang telah dilakukan).<br>
                             • Disusun secara komunikatif, terstruktur, mencerminkan karakter kepemimpinan, disarankan menggunakan pendekatan storytelling.<br>
-                            • Struktur video minimal mencakup: pembukaan – visi & misi – aksi nyata – penutup.<br>
+                            • Struktur video minimal mencakup: Pembukaan, Visi & Misi OSIS, Bukti nyata aksi kepemimpinan (program/kegiatan yang telah dilakukan), Study Case: Bagaimana cara kamu sebagai pemimpin muda atau Ketua OSIS dalam merangkul rekan pengurus OSIS di sekolah (mention gaya kepemimpinan), Kampanye penutup (menyampaikan alasan mengapa OSIS kamu layak mendapatkan penghargaan, khususnya sebagai bentuk pengakuan yang <strong>bermanfaat untuk mendukung jalur SNBP</strong>).<br>
                             • Konten selaras dengan semangat: “Empowering Student Voices, Shaping Future Leaders.”<br>
                             • Wajib diunggah pada akun IG/TikTok pribadi. Video harus orisinil, tidak melanggar hak cipta, dan pantas.<br>
                             • Caption wajib memuat deskripsi OSIS, ajakan mendukung (call to action), hashtag: #JakartaYouthAchivementAward2026 #OSISJakarta.<br>
