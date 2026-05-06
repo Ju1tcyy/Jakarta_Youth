@@ -138,13 +138,32 @@ class DashboardController extends Controller
             ]
         ];
         
+        // Get all organizations with their uploaded PDFs
+        $organisasiWithPdfs = Organisasi::with('user')
+            ->where(function($query) {
+                $query->whereNotNull('surat_rekomendasi')
+                      ->orWhereNotNull('struktur_kepengurusan')
+                      ->orWhereNotNull('portofolio_program_kerja')
+                      ->orWhereNotNull('portofolio_kegiatan_sosial')
+                      ->orWhereNotNull('portofolio_sosial_media')
+                      ->orWhereNotNull('pas_foto_formal')
+                      ->orWhereNotNull('curriculum_vitae')
+                      ->orWhereNotNull('fotokopi_rapor')
+                      ->orWhereNotNull('portofolio_inovasi')
+                      ->orWhereNotNull('esai_solusi_kepemimpinan')
+                      ->orWhereNotNull('surat_pernyataan_kedisiplinan');
+            })
+            ->latest()
+            ->get();
+        
         return view('admin.dashboard', compact(
             'totalOrganisasi', 
             'totalPendaftar',
             'recentOrganisasi',
             'documentStats',
             'nominationStats',
-            'analyticsData'
+            'analyticsData',
+            'organisasiWithPdfs'
         ));
     }
 }

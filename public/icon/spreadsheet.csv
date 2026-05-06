@@ -1,0 +1,32 @@
+Section,Item,Value,Formula/Notes,
+,,,,
+INPUTS,SELLING PRICE PER UNIT,100,Change this,
+INPUTS,VARIABLE COST PER UNIT,60,Change this,
+INPUTS,FIXED COSTS,50000,Change this,
+INPUTS,ACTUAL UNITS SOLD,2000,Change this for your scenario,
+,,,,
+CALCULATIONS,Contribution Margin per Unit,1,=Selling Price - Variable Cost,
+CALCULATIONS,Break-Even Units (units),6,Fixed Costs / Contribution Margin,
+Section,Item,Value,Notes/Formula,
+,,,,
+INPUTS,SELLING PRICE PER UNIT,100,Change this,
+INPUTS,VARIABLE COST PER UNIT,60,Change this,
+INPUTS,FIXED COSTS,50000,Change this,
+INPUTS,ACTUAL UNITS SOLD,2000,Change this for your scenario,
+,,,,
+CALCULATIONS,Contribution Margin per Unit,40,Selling Price - Variable Cost,
+CALCULATIONS,Break-Even Units (units),1250,Fixed Costs / Contribution Margin per Unit,
+CALCULATIONS,Break-Even Revenue,600,Break-even units × Selling Price,
+CALCULATIONS,Total Revenue,200000,Selling Price × Units Sold,
+CALCULATIONS,Total Variable Costs,120000,Variable Cost × Units Sold,
+CALCULATIONS,Contribution Margin Total,-100,Revenue - Variable Costs,
+CALCULATIONS,Net Profit / (Loss),-49940,Contribution Margin - Fixed Costs,
+,,,,
+SCENARIO ANALYSIS,Units Sold,Revenue,Total Costs,Net Profit/Loss
+SCENARIO ANALYSIS,500,,,-49960
+SCENARIO ANALYSIS,1000,,,-48750
+SCENARIO ANALYSIS,1250,,,-49400
+SCENARIO ANALYSIS,1500,,,150000
+SCENARIO ANALYSIS,2000,,,70000
+SCENARIO ANALYSIS,2500,,,-50100
+SCENARIO ANALYSIS,3000,,,-99940

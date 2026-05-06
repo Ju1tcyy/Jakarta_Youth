@@ -187,6 +187,98 @@
     </div>
 </div>
 
+<!-- PDF Documents Section -->
+<div class="mb-10">
+    <div class="flex items-center mb-8 ml-1">
+        <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center text-white mr-4 shadow-lg shadow-red-200">
+            <i data-feather="file" class="w-5 h-5"></i>
+        </div>
+        <h2 class="text-2xl font-black text-slate-800 tracking-tight">Dokumen PDF yang Dikirim</h2>
+    </div>
+    
+    <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b-2 border-slate-100">
+                        <th class="text-left py-4 px-4 text-xs font-black text-slate-600 uppercase tracking-wider">No</th>
+                        <th class="text-left py-4 px-4 text-xs font-black text-slate-600 uppercase tracking-wider">Nama Organisasi</th>
+                        <th class="text-left py-4 px-4 text-xs font-black text-slate-600 uppercase tracking-wider">Nama Sekolah</th>
+                        <th class="text-left py-4 px-4 text-xs font-black text-slate-600 uppercase tracking-wider">Dokumen PDF</th>
+                        <th class="text-left py-4 px-4 text-xs font-black text-slate-600 uppercase tracking-wider">Tanggal Upload</th>
+                        <th class="text-center py-4 px-4 text-xs font-black text-slate-600 uppercase tracking-wider">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($organisasiWithPdfs as $index => $org)
+                        @php
+                            $documents = [];
+                            if($org->surat_rekomendasi) $documents[] = ['name' => 'Surat Rekomendasi', 'file' => $org->surat_rekomendasi];
+                            if($org->struktur_kepengurusan) $documents[] = ['name' => 'Struktur Kepengurusan', 'file' => $org->struktur_kepengurusan];
+                            if($org->portofolio_program_kerja) $documents[] = ['name' => 'Portofolio Program Kerja', 'file' => $org->portofolio_program_kerja];
+                            if($org->portofolio_kegiatan_sosial) $documents[] = ['name' => 'Portofolio Kegiatan Sosial', 'file' => $org->portofolio_kegiatan_sosial];
+                            if($org->portofolio_sosial_media) $documents[] = ['name' => 'Portofolio Sosial Media', 'file' => $org->portofolio_sosial_media];
+                            if($org->pas_foto_formal) $documents[] = ['name' => 'Pas Foto Formal', 'file' => $org->pas_foto_formal];
+                            if($org->curriculum_vitae) $documents[] = ['name' => 'Curriculum Vitae', 'file' => $org->curriculum_vitae];
+                            if($org->fotokopi_rapor) $documents[] = ['name' => 'Fotokopi Rapor', 'file' => $org->fotokopi_rapor];
+                            if($org->portofolio_inovasi) $documents[] = ['name' => 'Portofolio Inovasi', 'file' => $org->portofolio_inovasi];
+                            if($org->esai_solusi_kepemimpinan) $documents[] = ['name' => 'Esai Solusi Kepemimpinan', 'file' => $org->esai_solusi_kepemimpinan];
+                            if($org->surat_pernyataan_kedisiplinan) $documents[] = ['name' => 'Surat Pernyataan Kedisiplinan', 'file' => $org->surat_pernyataan_kedisiplinan];
+                        @endphp
+                        
+                        @if(count($documents) > 0)
+                            <tr class="border-b border-slate-50 hover:bg-slate-50 transition-colors group">
+                                <td class="py-4 px-4 text-sm font-bold text-slate-600">{{ $index + 1 }}</td>
+                                <td class="py-4 px-4">
+                                    <p class="text-sm font-black text-slate-800">{{ $org->nama_organisasi }}</p>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <p class="text-sm font-bold text-slate-600">{{ $org->nama_sekolah }}</p>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="space-y-2">
+                                        @foreach($documents as $doc)
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-6 h-6 bg-red-50 rounded-lg flex items-center justify-center text-red-500 shrink-0">
+                                                    <i data-feather="file-text" class="w-3 h-3"></i>
+                                                </div>
+                                                <span class="text-xs font-bold text-slate-700">{{ $doc['name'] }}</span>
+                                                <a href="{{ asset('storage/' . $doc['file']) }}" target="_blank" class="text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                                                    <i data-feather="external-link" class="w-3 h-3"></i>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span class="text-xs font-bold text-slate-500">{{ $org->updated_at->format('d M Y, H:i') }}</span>
+                                </td>
+                                <td class="py-4 px-4 text-center">
+                                    <a href="{{ route('sekolah.show', $org->id) }}" class="inline-flex items-center px-4 py-2 bg-blue-500 text-white text-xs font-bold rounded-xl hover:bg-blue-600 transition-colors">
+                                        <i data-feather="eye" class="w-3 h-3 mr-1"></i>
+                                        Lihat Detail
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
+                    @empty
+                        <tr>
+                            <td colspan="6" class="py-10 text-center">
+                                <div class="flex flex-col items-center justify-center">
+                                    <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 mb-4">
+                                        <i data-feather="inbox" class="w-8 h-8"></i>
+                                    </div>
+                                    <p class="text-sm font-bold text-slate-500">Belum ada dokumen PDF yang dikirim</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
     <!-- Analitik Pendaftaran -->
     <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100">
