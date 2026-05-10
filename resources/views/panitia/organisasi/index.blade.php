@@ -16,7 +16,11 @@
                     <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">No</th>
                     <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Informasi Organisasi</th>
                     <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Kontak</th>
-                    <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Skor Akhir</th>
+                    @if(isset($kategori))
+                        <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Status Berkas</th>
+                    @else
+                        <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Skor Akhir</th>
+                    @endif
                     <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Tanggal</th>
                     <th class="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Aksi</th>
                 </tr>
@@ -44,13 +48,39 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            @if($item->nilai)
-                                <div class="inline-flex items-center px-3 py-1.5 bg-blue-50 text-blue-700 rounded-2xl">
-                                    <i data-feather="bar-chart-2" class="w-3 h-3 mr-2"></i>
-                                    <span class="text-sm font-black">{{ $item->nilai }}</span>
-                                </div>
+                            @if(isset($kategori))
+                                @php
+                                    $isLengkap = false;
+                                    if ($kategori == 'innovation') {
+                                        $isLengkap = $item->portofolio_program_kerja && $item->google_form_kepuasan;
+                                    } elseif ($kategori == 'social_impact') {
+                                        $isLengkap = $item->portofolio_kegiatan_sosial && $item->google_form_kepuasan_sosial;
+                                    } elseif ($kategori == 'media') {
+                                        $isLengkap = $item->portofolio_sosial_media && $item->google_form_kepuasan_media;
+                                    } elseif ($kategori == 'video_reels') {
+                                        $isLengkap = $item->link_instagram_reels && $item->google_form_kepuasan_reels;
+                                    } elseif ($kategori == 'president') {
+                                        $isLengkap = $item->pas_foto_formal && $item->curriculum_vitae && $item->fotokopi_rapor && $item->video_profil_jakarta;
+                                    }
+                                @endphp
+                                @if($isLengkap)
+                                    <span class="inline-flex items-center px-2.5 py-1 bg-green-50 text-green-600 rounded-full text-xs font-bold border border-green-100">
+                                        <i data-feather="check-circle" class="w-3 h-3 mr-1"></i> Lengkap
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-2.5 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-bold border border-orange-100">
+                                        <i data-feather="x-circle" class="w-3 h-3 mr-1"></i> Belum
+                                    </span>
+                                @endif
                             @else
-                                <span class="text-[10px] font-bold text-slate-300 uppercase italic">Belum Dinilai</span>
+                                @if($item->nilai)
+                                    <div class="inline-flex items-center px-3 py-1.5 bg-blue-50 text-blue-700 rounded-2xl">
+                                        <i data-feather="bar-chart-2" class="w-3 h-3 mr-2"></i>
+                                        <span class="text-sm font-black">{{ $item->nilai }}</span>
+                                    </div>
+                                @else
+                                    <span class="text-[10px] font-bold text-slate-300 uppercase italic">Belum Dinilai</span>
+                                @endif
                             @endif
                         </td>
                         <td class="px-6 py-4 text-center">

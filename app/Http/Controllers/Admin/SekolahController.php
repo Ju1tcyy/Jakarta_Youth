@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class SekolahController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $organisasi = Organisasi::with('user')->latest()->paginate(10);
-        return view('admin.organisasi.index', compact('organisasi'));
+        $kategori = $request->kategori;
+        $organisasi = Organisasi::with('user')->latest()->paginate(20);
+        return view('admin.organisasi.index', compact('organisasi', 'kategori'));
     }
 
     public function show($id)

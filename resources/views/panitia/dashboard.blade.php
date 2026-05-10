@@ -127,9 +127,9 @@
                             <h3 class="font-black text-slate-800 text-sm leading-tight uppercase tracking-wide">{{ $nomination['name'] }}</h3>
                         </div>
                     </div>
-                    <div class="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-blue-500 group-hover:bg-blue-50 transition-colors">
+                    <a href="{{ route('panitia.sekolah.index', ['kategori' => $key]) }}" class="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-blue-500 group-hover:bg-blue-50 transition-colors" title="Lihat Pendaftar Kategori Ini">
                         <i data-feather="chevron-right" class="w-4 h-4"></i>
-                    </div>
+                    </a>
                 </div>
                 
                 <div class="space-y-4">

@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class SekolahController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $organisasi = Organisasi::with('user')->latest()->paginate(10);
-        return view('panitia.organisasi.index', compact('organisasi'));
+        $kategori = $request->kategori;
+        $organisasi = Organisasi::with('user')->latest()->paginate(20);
+        return view('panitia.organisasi.index', compact('organisasi', 'kategori'));
     }
 
     public function show($id)
